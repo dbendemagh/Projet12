@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>453973493002-rl9o9754smlnu742he7500sc96ajghv0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.453973493002-rl9o9754smlnu742he7500sc96ajghv0</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCDzA5Xwnr4ugR-71xzQ00WlW2oUrQynGk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>453973493002</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>fr.dbendemagh.BicycleRide</string>
+	<key>PROJECT_ID</key>
+	<string>bicycle-ride-25c02</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bicycle-ride-25c02.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:453973493002:ios:306a61b55d1d274558a6f3</string>
+	<key>DATABASE_URL</key>
+	<string>https://bicycle-ride-25c02.firebaseio.com</string>
+</dict>
+</plist>
