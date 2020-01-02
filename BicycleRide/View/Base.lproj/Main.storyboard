@@ -10,7 +10,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BicycleRide" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Bicycle_Ride" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,11 +19,17 @@
                                 <rect key="frame" x="148" y="731" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Se connecter"/>
+                                <connections>
+                                    <segue destination="JzB-Mc-ner" kind="show" id="fwL-n2-gcx"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ps1-DT-YZG">
                                 <rect key="frame" x="162" y="659" width="64" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="S'inscrire"/>
+                                <connections>
+                                    <segue destination="LBq-vJ-6It" kind="show" id="Y2P-cY-bBQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -40,7 +46,7 @@
             <objects>
                 <viewController id="JzB-Mc-ner" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hp4-MW-Nlj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Adresse mail" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WEb-RZ-SsP">
@@ -71,6 +77,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="FlT-jA-gMe"/>
                     </view>
+                    <navigationItem key="navigationItem" id="rhg-gI-0Cm"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyW-nZ-IqM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -138,16 +145,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="YhP-Tu-Zw1"/>
                     </view>
-                    <navigationItem key="navigationItem" id="8gx-IB-3iB"/>
+                    <navigationItem key="navigationItem" id="8gx-IB-3iB">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="jgl-TD-Xxs"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LEd-Mk-QuL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1739" y="723"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="K99-yX-BUM">
             <objects>
-                <tabBarController id="Ozi-FI-E1l" sceneMemberID="viewController">
+                <tabBarController id="Ozi-FI-E1l" customClass="TabBarViewController" customModule="Bicycle_Ride" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ifg-y4-XVY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -155,7 +164,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="WXL-4g-P67" kind="relationship" relationship="viewControllers" id="JFh-vc-dhx"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="L8W-9l-Kni"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="LoginRegister" modalPresentationStyle="fullScreen" id="L8W-9l-Kni"/>
                         <segue destination="kfi-uU-tbA" kind="relationship" relationship="viewControllers" id="IWP-E9-0Zs"/>
                     </connections>
                 </tabBarController>
@@ -168,7 +177,7 @@
             <objects>
                 <viewController id="LBq-vJ-6It" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YXy-XO-7Xo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Adresse mail" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b2Y-vO-W41">
@@ -205,6 +214,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="9r7-8s-RwC"/>
                     </view>
+                    <navigationItem key="navigationItem" id="4kS-sE-jQQ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sLq-Lp-fIZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
