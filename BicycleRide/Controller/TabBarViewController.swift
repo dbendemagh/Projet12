@@ -7,27 +7,28 @@
 //
 
 import UIKit
+import Firebase
 
 class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let authService = AuthService()
-        try! authService.signOut()
         
-        checkIfUserLoggedIn()
+        AuthService.addUserConnectionListener { user in
+            if user == nil {
+                print("Utilisateur déconnecté")
+                self.showLogginScreen()
+            } else {
+                print("Utilisateur connecté")
+            }
+        }
     }
     
-    private func checkIfUserLoggedIn() {
+    private func showLogginScreen() {
         DispatchQueue.main.async {
-            if AuthService.getCurrentUser() == nil {
-                //self.performSegue(withIdentifier: "LoginRegister", sender: self)
-                let loginRegisterSB = UIStoryboard(name: Constants.Storyboard.LoginRegister, bundle: nil)
-                let loginVC = loginRegisterSB.instantiateViewController(identifier: Constants.ViewController.Login)
-                self.present(loginVC, animated: true, completion: nil)
-            } else {
-                print("Déjà connecté")
-            }
+            let loginRegisterSB = UIStoryboard(name: Constants.Storyboard.LoginRegister, bundle: nil)
+            let loginVC = loginRegisterSB.instantiateViewController(identifier: Constants.ViewController.Login)
+            self.present(loginVC, animated: true, completion: nil)
         }
     }
 }

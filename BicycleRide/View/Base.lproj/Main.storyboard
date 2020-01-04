@@ -128,10 +128,10 @@
             </objects>
             <point key="canvasLocation" x="5763.768115942029" y="590.625"/>
         </scene>
-        <!--View Controller-->
+        <!--Meetings View Controller-->
         <scene sceneID="uvi-k3-HtP">
             <objects>
-                <viewController id="E6i-rz-cf6" sceneMemberID="viewController">
+                <viewController id="E6i-rz-cf6" customClass="MeetingsViewController" customModule="Bicycle_Ride" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z6b-NS-2n1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,7 +146,11 @@
                         <viewLayoutGuide key="safeArea" id="YhP-Tu-Zw1"/>
                     </view>
                     <navigationItem key="navigationItem" id="8gx-IB-3iB">
-                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="jgl-TD-Xxs"/>
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="jgl-TD-Xxs">
+                            <connections>
+                                <action selector="logOutButtonItemPressed:" destination="E6i-rz-cf6" id="7dM-bB-Xet"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LEd-Mk-QuL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -164,7 +168,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="WXL-4g-P67" kind="relationship" relationship="viewControllers" id="JFh-vc-dhx"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="LoginRegister" modalPresentationStyle="fullScreen" id="L8W-9l-Kni"/>
                         <segue destination="kfi-uU-tbA" kind="relationship" relationship="viewControllers" id="IWP-E9-0Zs"/>
                     </connections>
                 </tabBarController>

@@ -23,6 +23,7 @@
 		65B273D223BCCFC000BF04FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B273D123BCCFC000BF04FF /* LoginViewController.swift */; };
 		65B273D423BCCFE100BF04FF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B273D323BCCFE100BF04FF /* RegisterViewController.swift */; };
 		65B273D623BCF3E700BF04FF /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B273D523BCF3E700BF04FF /* UIViewController.swift */; };
+		65B273D823BE704300BF04FF /* MeetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B273D723BE704300BF04FF /* MeetingsViewController.swift */; };
 		F33F46BA87BB41C232F87066 /* Pods_BicycleRideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88DE0A4713B3779FA306CDCB /* Pods_BicycleRideTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		65B273D123BCCFC000BF04FF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		65B273D323BCCFE100BF04FF /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		65B273D523BCF3E700BF04FF /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		65B273D723BE704300BF04FF /* MeetingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingsViewController.swift; sourceTree = "<group>"; };
 		88DE0A4713B3779FA306CDCB /* Pods_BicycleRideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BicycleRideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4297558102073EB6D966BAB /* Pods-BicycleRideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BicycleRideTests.debug.xcconfig"; path = "Target Support Files/Pods-BicycleRideTests/Pods-BicycleRideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B5B8E26B74C325A61209167F /* Pods-BicycleRide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BicycleRide.debug.xcconfig"; path = "Target Support Files/Pods-BicycleRide/Pods-BicycleRide.debug.xcconfig"; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				65B273CD23BBB86600BF04FF /* TabBarViewController.swift */,
 				65B273D123BCCFC000BF04FF /* LoginViewController.swift */,
 				65B273D323BCCFE100BF04FF /* RegisterViewController.swift */,
+				65B273D723BE704300BF04FF /* MeetingsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				65B2735623A975C100BF04FF /* ViewController.swift in Sources */,
 				65B273D623BCF3E700BF04FF /* UIViewController.swift in Sources */,
 				65B2735223A975C100BF04FF /* AppDelegate.swift in Sources */,
+				65B273D823BE704300BF04FF /* MeetingsViewController.swift in Sources */,
 				65B273D423BCCFE100BF04FF /* RegisterViewController.swift in Sources */,
 				65B273CC23BBAFDC00BF04FF /* AuthService.swift in Sources */,
 				65B2735423A975C100BF04FF /* SceneDelegate.swift in Sources */,

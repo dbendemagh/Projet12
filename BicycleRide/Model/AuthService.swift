@@ -21,6 +21,12 @@ public class AuthService {
         }
     }
     
+    static func addUserConnectionListener(completion: @escaping (User?) -> Void) {
+        _ = Auth.auth().addStateDidChangeListener { (auth, user) in
+            completion(user)
+        }
+    }
+    
     func createUSer(email: String, password: String, completion: @escaping AuthDataResultCallback) {
         Auth.auth().createUser(withEmail: email, password: password, completion: completion)
     }
