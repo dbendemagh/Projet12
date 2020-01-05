@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3188139FD272384B6DBC4926 /* Pods_BicycleRide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1BBFEAEBBBCF4F91BFB730C /* Pods_BicycleRide.framework */; };
+		651EF80523C0F850005FD140 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651EF80423C0F850005FD140 /* Meeting.swift */; };
+		651EF80823C100EA005FD140 /* MeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651EF80623C100EA005FD140 /* MeetingCell.swift */; };
+		651EF80923C100EA005FD140 /* MeetingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 651EF80723C100EA005FD140 /* MeetingCell.xib */; };
 		65B2735223A975C100BF04FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735123A975C100BF04FF /* AppDelegate.swift */; };
 		65B2735423A975C100BF04FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735323A975C100BF04FF /* SceneDelegate.swift */; };
 		65B2735623A975C100BF04FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735523A975C100BF04FF /* ViewController.swift */; };
@@ -39,6 +42,9 @@
 
 /* Begin PBXFileReference section */
 		4522D4B2676DDC16B144F441 /* Pods-BicycleRideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BicycleRideTests.release.xcconfig"; path = "Target Support Files/Pods-BicycleRideTests/Pods-BicycleRideTests.release.xcconfig"; sourceTree = "<group>"; };
+		651EF80423C0F850005FD140 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
+		651EF80623C100EA005FD140 /* MeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCell.swift; sourceTree = "<group>"; };
+		651EF80723C100EA005FD140 /* MeetingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeetingCell.xib; sourceTree = "<group>"; };
 		65B2734E23A975C100BF04FF /* Bicycle Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bicycle Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B2735123A975C100BF04FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65B2735323A975C100BF04FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				65B273CB23BBAFDC00BF04FF /* AuthService.swift */,
+				651EF80423C0F850005FD140 /* Meeting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -143,6 +150,8 @@
 				65B2735C23A975C300BF04FF /* LaunchScreen.storyboard */,
 				65B2735723A975C100BF04FF /* Main.storyboard */,
 				65B273CF23BCBCB600BF04FF /* LoginRegister.storyboard */,
+				651EF80623C100EA005FD140 /* MeetingCell.swift */,
+				651EF80723C100EA005FD140 /* MeetingCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -283,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65B2735E23A975C300BF04FF /* LaunchScreen.storyboard in Resources */,
+				651EF80923C100EA005FD140 /* MeetingCell.xib in Resources */,
 				65B273CA23BAA7A800BF04FF /* GoogleService-Info.plist in Resources */,
 				65B2735B23A975C300BF04FF /* Assets.xcassets in Resources */,
 				65B273D023BCBCB600BF04FF /* LoginRegister.storyboard in Resources */,
@@ -369,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65B273D223BCCFC000BF04FF /* LoginViewController.swift in Sources */,
+				651EF80823C100EA005FD140 /* MeetingCell.swift in Sources */,
 				65B2735623A975C100BF04FF /* ViewController.swift in Sources */,
 				65B273D623BCF3E700BF04FF /* UIViewController.swift in Sources */,
 				65B2735223A975C100BF04FF /* AppDelegate.swift in Sources */,
@@ -376,6 +387,7 @@
 				65B273D423BCCFE100BF04FF /* RegisterViewController.swift in Sources */,
 				65B273CC23BBAFDC00BF04FF /* AuthService.swift in Sources */,
 				65B2735423A975C100BF04FF /* SceneDelegate.swift in Sources */,
+				651EF80523C0F850005FD140 /* Meeting.swift in Sources */,
 				65B273CE23BBB86600BF04FF /* TabBarViewController.swift in Sources */,
 				65B2739823AA2DB700BF04FF /* Constants.swift in Sources */,
 			);

@@ -9,12 +9,18 @@
 import Foundation
 
 struct Constants {
+    
     struct Storyboard {
         static let LoginRegister = "LoginRegister"
     }
     
     struct ViewController {
         static let Login = "Login"
+    }
+    
+    struct Cells {
+        static let meetingCell = "MeetingCell"
+        static let chatCell = "ChatCell"
     }
     
     struct Alert {
