@@ -10,10 +10,12 @@ import UIKit
 
 class RegisterViewController: UIViewController {
 
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
     let authService = AuthService()
+    let firestoreService = FirestoreService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +40,12 @@ class RegisterViewController: UIViewController {
     }
     
     private func createUser() {
+        
+        guard let name = nameTextField.text, !name.isEmpty else {
+            displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.noName)
+            return
+        }
+        
         guard let email = emailTextField.text, !email.isEmpty else {
             displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.noEmail)
             return
@@ -49,14 +57,30 @@ class RegisterViewController: UIViewController {
         }
         
         authService.createUSer(email: email, password: password) { (authDataResult, error) in
-            
             if let e = error {
                 print(e.localizedDescription)
             } else {
-            //if error == nil && authDataResult != nil {
-                print(AuthService.getCurrentUser() ?? "pas de user")
-                self.dismiss(animated: true, completion: nil)
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
+                if let authDataResult = authDataResult {
+                    //print(AuthService.getCurrentUser() ?? "")
+                    
+                    let user = UserProfile(id: authDataResult.user.uid, email: email, name: name)
+                    self.saveUserProfile(userProfile: user)
+                    
+                    self.dismiss(animated: true, completion: nil)
+                    self.presentingViewController?.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
+    private func saveUserProfile(userProfile: UserProfile) {
+        //let user = UserProfile(id: userProfile.id, email: userProfile.email, name: userProfile.name)
+        firestoreService.saveData(data: userProfile.dictionary) { [weak self] (error) in
+            if let error = error {
+                print("Erreur sauvegarde : \(error.localizedDescription)")
+                self?.displayAlert(title: "Aïe", message: Constants.Alert.databaseError)
+            } else {
+                print("Profil sauvegardé")
             }
         }
     }

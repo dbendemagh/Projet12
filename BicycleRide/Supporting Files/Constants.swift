@@ -25,8 +25,14 @@ struct Constants {
     
     struct Alert {
         static let alertTitle = "Invalide"
-        static let noEmail = "Entre votre adresse mail"
+        static let noName = "Entrez votre nom"
+        static let noEmail = "Entrez votre adresse mail"
         static let noPassword = "Entrez un mot de passe"
+        static let databaseError = "Une erreur est survenue pendant la sauvegarde des données"
     }
     
+    struct Firestore {
+        static let userCollectionName = "user"
+        static let meetingCollectionName = "meeting"
+    }
 }
