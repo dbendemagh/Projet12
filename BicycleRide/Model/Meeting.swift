@@ -8,11 +8,17 @@
 
 import Foundation
 
+struct Coordinate {
+    var latitude: Double
+    var longitude: Double
+}
+
 struct Meeting {
-    let id: String
-    let creatorId: String
-    let name: String
-    let date: String
-    let time: String
-    let description: String
+    var id: String
+    var creatorId: String
+    var name: String
+    var coordinate: Coordinate
+    var date: String
+    var time: String
+    var description: String
 }

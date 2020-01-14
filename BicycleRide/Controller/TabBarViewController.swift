@@ -7,13 +7,16 @@
 //
 
 import UIKit
-import Firebase
 
 class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupUserConnectionListener()
+    }
+    
+    private func setupUserConnectionListener() {
         AuthService.addUserConnectionListener { user in
             if user == nil {
                 print("Utilisateur déconnecté")

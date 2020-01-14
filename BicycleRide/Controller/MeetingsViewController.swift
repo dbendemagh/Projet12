@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class MeetingsViewController: UIViewController {
     
@@ -17,7 +18,8 @@ class MeetingsViewController: UIViewController {
     // MARK: - Properties
     
     let authService = AuthService()
-    var meetings: [Meeting] = [Meeting(id: "12", creatorId: "3", name: "Etang de Commelles", date: "10/01/2020", time: "09:00", description: "Balade en forêt")]
+    
+    var meetings: [Meeting] = [Meeting(id: "12", creatorId: "3", name: "Etang de Commelles", coordinate: Coordinate(latitude: 48.8567, longitude: 2.3508), date: "10/01/2020", time: "09:00", description: "Balade en forêt")]
     
     // MARK: - Init Methods
     
@@ -34,16 +36,28 @@ class MeetingsViewController: UIViewController {
         //tableView.reloadData()
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        guard let email = AuthService.getCurrentUser()?.email  else { return }
+        
+        if let newMeetingVC = segue.destination as? NewMeetingFirstViewController {
+            newMeetingVC.meeting = Meeting(id: "", creatorId: email, name: "", coordinate: Coordinate(latitude: 0, longitude: 0), date: "", time: "", description: "")
+            newMeetingVC.displayMode = Constants.DisplayMode.Entry
+        }
     }
-    */
+    
+    // MARK: - Action buttons
 
+    @IBAction func addMeetingButtonItemPressed(_ sender: UIBarButtonItem) {
+        
+        
+    }
+    
     @IBAction func logOutButtonItemPressed(_ sender: UIBarButtonItem) {
         do {
             try authService.signOut()

@@ -35,4 +35,14 @@ struct Constants {
         static let userCollectionName = "user"
         static let meetingCollectionName = "meeting"
     }
+    
+    struct Annotation {
+        static let meeting = "MeetingAnnotation"
+        static let regionRadius: Double = 4000
+    }
+    
+    enum DisplayMode {
+        case Entry
+        case View
+    }
 }

@@ -13,6 +13,9 @@
 		651EF80923C100EA005FD140 /* MeetingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 651EF80723C100EA005FD140 /* MeetingCell.xib */; };
 		651EF80B23C24B8F005FD140 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651EF80A23C24B8F005FD140 /* UserProfile.swift */; };
 		651EF80D23C24E7D005FD140 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651EF80C23C24E7D005FD140 /* FirestoreService.swift */; };
+		651EF80F23C4D180005FD140 /* NewMeetingFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651EF80E23C4D180005FD140 /* NewMeetingFirstViewController.swift */; };
+		651EF81123C5D8D3005FD140 /* NewMeetingSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651EF81023C5D8D3005FD140 /* NewMeetingSecondViewController.swift */; };
+		651EF85D23CB8F78005FD140 /* MeetingAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651EF85C23CB8F78005FD140 /* MeetingAnnotation.swift */; };
 		65B2735223A975C100BF04FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735123A975C100BF04FF /* AppDelegate.swift */; };
 		65B2735423A975C100BF04FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735323A975C100BF04FF /* SceneDelegate.swift */; };
 		65B2735623A975C100BF04FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735523A975C100BF04FF /* ViewController.swift */; };
@@ -49,6 +52,9 @@
 		651EF80723C100EA005FD140 /* MeetingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeetingCell.xib; sourceTree = "<group>"; };
 		651EF80A23C24B8F005FD140 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		651EF80C23C24E7D005FD140 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		651EF80E23C4D180005FD140 /* NewMeetingFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeetingFirstViewController.swift; sourceTree = "<group>"; };
+		651EF81023C5D8D3005FD140 /* NewMeetingSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMeetingSecondViewController.swift; sourceTree = "<group>"; };
+		651EF85C23CB8F78005FD140 /* MeetingAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingAnnotation.swift; sourceTree = "<group>"; };
 		65B2734E23A975C100BF04FF /* Bicycle Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bicycle Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B2735123A975C100BF04FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65B2735323A975C100BF04FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +152,7 @@
 				651EF80423C0F850005FD140 /* Meeting.swift */,
 				651EF80A23C24B8F005FD140 /* UserProfile.swift */,
 				651EF80C23C24E7D005FD140 /* FirestoreService.swift */,
+				651EF85C23CB8F78005FD140 /* MeetingAnnotation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -170,6 +177,8 @@
 				65B273D123BCCFC000BF04FF /* LoginViewController.swift */,
 				65B273D323BCCFE100BF04FF /* RegisterViewController.swift */,
 				65B273D723BE704300BF04FF /* MeetingsViewController.swift */,
+				651EF80E23C4D180005FD140 /* NewMeetingFirstViewController.swift */,
+				651EF81023C5D8D3005FD140 /* NewMeetingSecondViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -387,6 +396,8 @@
 				651EF80B23C24B8F005FD140 /* UserProfile.swift in Sources */,
 				65B273D223BCCFC000BF04FF /* LoginViewController.swift in Sources */,
 				651EF80823C100EA005FD140 /* MeetingCell.swift in Sources */,
+				651EF85D23CB8F78005FD140 /* MeetingAnnotation.swift in Sources */,
+				651EF80F23C4D180005FD140 /* NewMeetingFirstViewController.swift in Sources */,
 				65B2735623A975C100BF04FF /* ViewController.swift in Sources */,
 				65B273D623BCF3E700BF04FF /* UIViewController.swift in Sources */,
 				65B2735223A975C100BF04FF /* AppDelegate.swift in Sources */,
@@ -396,6 +407,7 @@
 				65B273CC23BBAFDC00BF04FF /* AuthService.swift in Sources */,
 				65B2735423A975C100BF04FF /* SceneDelegate.swift in Sources */,
 				651EF80523C0F850005FD140 /* Meeting.swift in Sources */,
+				651EF81123C5D8D3005FD140 /* NewMeetingSecondViewController.swift in Sources */,
 				65B273CE23BBB86600BF04FF /* TabBarViewController.swift in Sources */,
 				65B2739823AA2DB700BF04FF /* Constants.swift in Sources */,
 			);
