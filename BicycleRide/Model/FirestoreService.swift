@@ -12,7 +12,7 @@ import FirebaseFirestore
 public class FirestoreService {
     let db = Firestore.firestore()
     
-    public func saveData(data: [String: Any], completion: @escaping (Error?) -> Void) {
-        db.collection(Constants.Firestore.userCollectionName).addDocument(data: data, completion: completion)
+    public func saveData(collection: String, data: [String: Any], completion: @escaping (Error?) -> Void) {
+        db.collection(collection).addDocument(data: data, completion: completion)
     }
 }

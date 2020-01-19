@@ -75,7 +75,7 @@ class RegisterViewController: UIViewController {
     
     private func saveUserProfile(userProfile: UserProfile) {
         //let user = UserProfile(id: userProfile.id, email: userProfile.email, name: userProfile.name)
-        firestoreService.saveData(data: userProfile.dictionary) { [weak self] (error) in
+        firestoreService.saveData(collection: Constants.Firestore.userCollectionName, data: userProfile.dictionary) { [weak self] (error) in
             if let error = error {
                 print("Erreur sauvegarde : \(error.localizedDescription)")
                 self?.displayAlert(title: "Aïe", message: Constants.Alert.databaseError)

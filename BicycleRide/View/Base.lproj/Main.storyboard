@@ -42,14 +42,14 @@
             <objects>
                 <viewController id="6h6-hj-9jj" customClass="NewMeetingSecondViewController" customModule="Bicycle_Ride" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hVx-Ki-4Ai">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMx-mk-5wy">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="1029"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RV0-US-Lrh">
-                                        <rect key="frame" x="20" y="10" width="374" height="695.5"/>
+                                        <rect key="frame" x="20" y="10" width="374" height="955"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parcours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiE-WK-RZr">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -108,21 +108,39 @@
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date - Heure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUi-8m-vRl">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUi-8m-vRl">
                                                 <rect key="frame" x="0.0" y="475" width="374" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="jWE-hz-pyz">
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="jWE-hz-pyz">
                                                 <rect key="frame" x="0.0" y="505.5" width="374" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="YYZ-0a-BJz"/>
                                                 </constraints>
+                                                <locale key="locale" localeIdentifier="fr"/>
+                                            </datePicker>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVT-8E-PM0">
+                                                <rect key="frame" x="0.0" y="665.5" width="374" height="20.5"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="3JA-yl-gAf">
+                                                <rect key="frame" x="0.0" y="696" width="374" height="216"/>
+                                                <locale key="locale" localeIdentifier="fr"/>
                                             </datePicker>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2M-ed-3Wk">
-                                                <rect key="frame" x="0.0" y="665.5" width="374" height="30"/>
-                                                <state key="normal" title="Valider"/>
+                                                <rect key="frame" x="0.0" y="922" width="374" height="33"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <state key="normal" title="Valider">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="saveButtonTapped:" destination="6h6-hj-9jj" eventType="touchUpInside" id="DTu-a2-tiG"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -148,11 +166,15 @@
                         <viewLayoutGuide key="safeArea" id="eKC-yW-Akf"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZZe-Yn-UZ8"/>
+                    <size key="freeformSize" width="414" height="1200"/>
                     <connections>
+                        <outlet property="meetingBikeTypeSegmentedControl" destination="Mfh-Oa-XJ9" id="NGf-MR-K2v"/>
                         <outlet property="meetingCityTextField" destination="w8h-QZ-seX" id="FaM-ah-Dch"/>
+                        <outlet property="meetingDatePicker" destination="jWE-hz-pyz" id="k0l-Wv-uxF"/>
                         <outlet property="meetingDescriptionTextView" destination="Yuu-bX-9ib" id="Ew8-BI-J7g"/>
                         <outlet property="meetingNameTextField" destination="V9u-m3-Ptd" id="anQ-j7-h93"/>
                         <outlet property="meetingStreetTextField" destination="8XZ-8m-TGN" id="9WT-Bl-eV9"/>
+                        <outlet property="meetingTimeDatePicker" destination="3JA-yl-gAf" id="xNR-py-Mow"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="exs-pp-vs8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

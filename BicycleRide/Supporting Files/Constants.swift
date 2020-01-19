@@ -37,8 +37,13 @@ struct Constants {
     }
     
     struct Annotation {
-        static let meeting = "MeetingAnnotation"
+        static let meetingAnnotation = "MeetingAnnotation"
         static let regionRadius: Double = 4000
+    }
+    
+    struct Bike {
+        static let road = "Route"
+        static let vtt = "VTT"
     }
     
     enum DisplayMode {

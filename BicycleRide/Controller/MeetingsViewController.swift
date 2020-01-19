@@ -47,7 +47,7 @@ class MeetingsViewController: UIViewController {
         guard let email = AuthService.getCurrentUser()?.email  else { return }
         
         if let newMeetingVC = segue.destination as? NewMeetingFirstViewController {
-            newMeetingVC.meeting = Meeting(id: "", creatorId: email, name: "", street: "", city: "", coordinate: Coordinate(latitude: 0, longitude: 0), date: "", time: "", description: "")
+            newMeetingVC.meeting = Meeting(creatorId: email, name: "", street: "", city: "", date: "", time: "", description: "", bikeType: "", latitude: "", longitude: "")
             newMeetingVC.displayMode = Constants.DisplayMode.Entry
         }
     }

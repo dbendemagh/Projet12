@@ -24,15 +24,16 @@ class NewMeetingFirstViewController: UIViewController {
     let locationManager = CLLocationManager()
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(addAnnotation(sender:)))
     
-    var meeting = Meeting(id: "",
-                          creatorId: "",
+    var meeting: Meeting = Meeting(creatorId: "",
                           name: "",
                           street: "",
                           city: "",
-                          coordinate: Coordinate(latitude: 0, longitude: 0),
                           date: "",
                           time: "",
-                          description: "")
+                          description: "",
+                          bikeType: "",
+                          latitude: "",
+                          longitude: "")
     
     var displayMode = Constants.DisplayMode.Entry
     
@@ -74,16 +75,19 @@ class NewMeetingFirstViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        // coordinate: Coordinate(latitude: meeting.coordinate.latitude, longitude: meeting.coordinate.longitude),
         if let newMeetingVC = segue.destination as? NewMeetingSecondViewController {
-            newMeetingVC.meeting = Meeting(id: meeting.id,
-                                           creatorId: meeting.creatorId,
+            newMeetingVC.meeting = Meeting(creatorId: meeting.creatorId,
                                            name: meeting.name,
                                            street: meeting.street,
                                            city: meeting.city,
-                                           coordinate: Coordinate(latitude: meeting.coordinate.latitude, longitude: meeting.coordinate.longitude),
                                            date: meeting.date,
                                            time: meeting.time,
-                                           description: meeting.description)
+                                           description: meeting.description,
+                                           bikeType: meeting.bikeType,
+                                           latitude: meeting.latitude,
+                                           longitude: meeting.longitude)
+            
             //newMeetingVC.displayMode = Constants.DisplayMode.Entry
         }
     }
@@ -92,8 +96,8 @@ class NewMeetingFirstViewController: UIViewController {
         for annotation in mapView.annotations {
             if annotation is MeetingAnnotation {
                 print("\(annotation.coordinate.latitude) \(annotation.coordinate.longitude)")
-                meeting.coordinate.latitude = annotation.coordinate.latitude
-                meeting.coordinate.longitude = annotation.coordinate.longitude
+                meeting.latitude = String(annotation.coordinate.latitude)
+                meeting.longitude = String(annotation.coordinate.longitude)
             }
         }
     }
@@ -129,10 +133,10 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard annotation is MeetingAnnotation else { return nil }
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.Annotation.meeting)
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.Annotation.meetingAnnotation)
         
         if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.Annotation.meeting)
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.Annotation.meetingAnnotation)
             annotationView?.canShowCallout = true
             
             let btn = UIButton(type: .detailDisclosure)
@@ -163,8 +167,8 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
         
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-        meeting.coordinate.longitude = touchCoordinate.longitude
-        meeting.coordinate.latitude = touchCoordinate.latitude
+        meeting.longitude = String(Double(touchCoordinate.longitude))
+        meeting.latitude = String(Double(touchCoordinate.latitude))
         
         let annotation = MeetingAnnotation(title: "Point de départ", coordinate: touchCoordinate, bikeType: "")
         mapView.addAnnotation(annotation)

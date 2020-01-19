@@ -14,16 +14,23 @@ class NewMeetingSecondViewController: UIViewController {
     @IBOutlet weak var meetingStreetTextField: UITextField!
     @IBOutlet weak var meetingCityTextField: UITextField!
     @IBOutlet weak var meetingDescriptionTextView: UITextView!
+    @IBOutlet weak var meetingDatePicker: UIDatePicker!
+    @IBOutlet weak var meetingTimeDatePicker: UIDatePicker!
+    @IBOutlet weak var meetingBikeTypeSegmentedControl: UISegmentedControl!
     
-    var meeting = Meeting(id: "",
-                          creatorId: "",
+    let firestoreService = FirestoreService()
+    
+    // coordinate: Coordinate(latitude: "", longitude: ""),
+    var meeting: Meeting = Meeting(creatorId: "",
                           name: "",
                           street: "",
                           city: "",
-                          coordinate: Coordinate(latitude: 0, longitude: 0),
                           date: "",
                           time: "",
-                          description: "")
+                          description: "",
+                          bikeType: "",
+                          latitude: "",
+                          longitude: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +41,12 @@ class NewMeetingSecondViewController: UIViewController {
         meetingDescriptionTextView.layer.borderWidth = 1
         meetingDescriptionTextView.layer.cornerRadius = 5
         
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateStyle = DateFormatter.Style.short
+//        dateFormatter.timeStyle = DateFormatter.Style.short
+//        if let testDate = dateFormatter.date(from: "10/05/20, 7:15 PM") {
+//            meetingDatePicker.date = testDate
+//        }
     }
     
 
@@ -47,4 +60,39 @@ class NewMeetingSecondViewController: UIViewController {
     }
     */
 
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        meeting.name = meetingNameTextField.text ?? ""
+        meeting.street = meetingStreetTextField.text ?? ""
+        meeting.city = meetingCityTextField.text ?? ""
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        dateFormatter.dateFormat = "dd/MM/yy"
+        meeting.date = dateFormatter.string(from: meetingDatePicker.date)
+        
+        print(meeting.date)
+        
+        let date = meetingTimeDatePicker.date
+        dateFormatter.dateFormat = "HH:mm"
+        meeting.time = dateFormatter.string(from: date)
+        print(meeting.time)
+        
+        meeting.bikeType = meetingBikeTypeSegmentedControl.selectedSegmentIndex == 0 ? Constants.Bike.road : Constants.Bike.vtt
+        
+        saveMeeting(meeting1: meeting)
+    }
+    
+    private func saveMeeting(meeting1: Meeting) {
+        print(meeting1)
+        print(meeting1.dictionary)
+        firestoreService.saveData(collection: Constants.Firestore.meetingCollectionName, data: meeting.dictionary) { [weak self] (error) in
+            if let error = error {
+                print("Erreur sauvegarde : \(error.localizedDescription)")
+                self?.displayAlert(title: "Aïe", message: Constants.Alert.databaseError)
+            } else {
+                print("Meeting sauvegardé")
+            }
+        }
+    }
 }
