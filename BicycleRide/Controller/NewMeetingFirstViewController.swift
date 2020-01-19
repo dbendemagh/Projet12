@@ -27,6 +27,8 @@ class NewMeetingFirstViewController: UIViewController {
     var meeting = Meeting(id: "",
                           creatorId: "",
                           name: "",
+                          street: "",
+                          city: "",
                           coordinate: Coordinate(latitude: 0, longitude: 0),
                           date: "",
                           time: "",
@@ -72,6 +74,18 @@ class NewMeetingFirstViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if let newMeetingVC = segue.destination as? NewMeetingSecondViewController {
+            newMeetingVC.meeting = Meeting(id: meeting.id,
+                                           creatorId: meeting.creatorId,
+                                           name: meeting.name,
+                                           street: meeting.street,
+                                           city: meeting.city,
+                                           coordinate: Coordinate(latitude: meeting.coordinate.latitude, longitude: meeting.coordinate.longitude),
+                                           date: meeting.date,
+                                           time: meeting.time,
+                                           description: meeting.description)
+            //newMeetingVC.displayMode = Constants.DisplayMode.Entry
+        }
     }
     
     private func getCoordinate() {
@@ -149,8 +163,10 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
         
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
+        meeting.coordinate.longitude = touchCoordinate.longitude
+        meeting.coordinate.latitude = touchCoordinate.latitude
         
-        let annotation = MeetingAnnotation(title: "Nouveau", coordinate: touchCoordinate, bikeType: "")
+        let annotation = MeetingAnnotation(title: "Point de départ", coordinate: touchCoordinate, bikeType: "")
         mapView.addAnnotation(annotation)
         
         let coordinate = CLLocation(latitude: touchCoordinate.latitude, longitude: touchCoordinate.longitude)
@@ -177,15 +193,17 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
                 return
             }
             DispatchQueue.main.async {
-                self.streetLabel.text = placemark.name
-                var meetingCity = ""
+                self.meeting.street = placemark.name!
+                self.meeting.city = ""
                 if let postalCode = placemark.postalCode {
-                    meetingCity = postalCode
+                    self.meeting.city = postalCode
                 }
                 if let city = placemark.locality {
-                    meetingCity += " \(city)"
+                    self.meeting.city += " \(city)"
                 }
-                self.cityLabel.text = meetingCity
+                self.streetLabel.text = self.meeting.street
+                self.cityLabel.text = self.meeting.city
+                
                 //self.cityLabel.text = "\(placemark.postalCode) \(placemark.locality)"
             }
             

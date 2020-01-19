@@ -10,6 +10,11 @@ import Foundation
 import Firebase
 
 public class AuthService {
+    private var authSession: AuthProtocol
+    
+    init(authSession: AuthProtocol = AuthSession()) {
+        self.authSession = authSession
+    }
     
     static func getCurrentUser() -> User? {
         let currentUser = Auth.auth().currentUser

@@ -12,11 +12,11 @@ import MapKit
 class MeetingAnnotation: NSObject, MKAnnotation {
     let title: String?
     let coordinate: CLLocationCoordinate2D
-    let bikeType: String
+    //let bikeType: String
     
     init(title: String, coordinate: CLLocationCoordinate2D, bikeType: String) {
         self.title = title
         self.coordinate = coordinate
-        self.bikeType = bikeType
+        //self.bikeType = bikeType
     }
 }

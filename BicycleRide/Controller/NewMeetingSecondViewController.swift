@@ -13,11 +13,27 @@ class NewMeetingSecondViewController: UIViewController {
     @IBOutlet weak var meetingNameTextField: UITextField!
     @IBOutlet weak var meetingStreetTextField: UITextField!
     @IBOutlet weak var meetingCityTextField: UITextField!
+    @IBOutlet weak var meetingDescriptionTextView: UITextView!
+    
+    var meeting = Meeting(id: "",
+                          creatorId: "",
+                          name: "",
+                          street: "",
+                          city: "",
+                          coordinate: Coordinate(latitude: 0, longitude: 0),
+                          date: "",
+                          time: "",
+                          description: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        meetingStreetTextField.text = meeting.street
+        meetingCityTextField.text = meeting.city
+        meetingDescriptionTextView.text = ""
+        meetingDescriptionTextView.layer.borderWidth = 1
+        meetingDescriptionTextView.layer.cornerRadius = 5
+        
     }
     
 

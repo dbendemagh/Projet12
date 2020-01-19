@@ -19,7 +19,8 @@ class MeetingsViewController: UIViewController {
     
     let authService = AuthService()
     
-    var meetings: [Meeting] = [Meeting(id: "12", creatorId: "3", name: "Etang de Commelles", coordinate: Coordinate(latitude: 48.8567, longitude: 2.3508), date: "10/01/2020", time: "09:00", description: "Balade en forêt")]
+    var meetings: [Meeting] = []
+        //[Meeting(id: "12", creatorId: "3", name: "Etang de Commelles", coordinate: Coordinate(latitude: 48.8567, longitude: 2.3508), date: "10/01/2020", time: "09:00", description: "Balade en forêt")]
     
     // MARK: - Init Methods
     
@@ -46,7 +47,7 @@ class MeetingsViewController: UIViewController {
         guard let email = AuthService.getCurrentUser()?.email  else { return }
         
         if let newMeetingVC = segue.destination as? NewMeetingFirstViewController {
-            newMeetingVC.meeting = Meeting(id: "", creatorId: email, name: "", coordinate: Coordinate(latitude: 0, longitude: 0), date: "", time: "", description: "")
+            newMeetingVC.meeting = Meeting(id: "", creatorId: email, name: "", street: "", city: "", coordinate: Coordinate(latitude: 0, longitude: 0), date: "", time: "", description: "")
             newMeetingVC.displayMode = Constants.DisplayMode.Entry
         }
     }
