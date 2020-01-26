@@ -8,16 +8,15 @@
 
 import Foundation
 
-struct UserProfile {
-    let id: String
-    let email: String
+struct UserProfile: Decodable {
+    //let id: String
     let name: String
+    let email: String
     
     var dictionary: [String: Any] {
         return [
-            "id": id,
-            "email": email,
-            "name": name
+            "name": name,
+            "email": email
         ]
     }
 }

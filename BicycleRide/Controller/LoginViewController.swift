@@ -21,8 +21,6 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
-
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         logIn()
     }
@@ -38,8 +36,14 @@ class LoginViewController: UIViewController {
             return
         }
         
-        authService.signIn(email: email, password: password) { (authDataResult, error) in
+        authService.signIn(email: email, password: password) { (result) in
             self.dismiss(animated: true, completion: nil)
+            switch result {
+            case .failure(_):
+                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+            case .success(_):
+                break
+            }
         }
     }
 }

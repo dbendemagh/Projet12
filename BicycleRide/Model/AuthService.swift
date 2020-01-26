@@ -7,18 +7,17 @@
 //
 
 import Foundation
-import Firebase
 
 public class AuthService {
     private var authSession: AuthProtocol
-    
+
     init(authSession: AuthProtocol = AuthSession()) {
         self.authSession = authSession
     }
     
-    static func getCurrentUser() -> User? {
-        let currentUser = Auth.auth().currentUser
-        
+    func getCurrentUser() -> AuthUserProtocol? {
+        let currentUser = authSession.currentUser
+    
         if let currentUser = currentUser {
             return currentUser
         } else {
@@ -26,21 +25,46 @@ public class AuthService {
         }
     }
     
-    static func addUserConnectionListener(completion: @escaping (User?) -> Void) {
-        _ = Auth.auth().addStateDidChangeListener { (auth, user) in
-            completion(user)
+    func addUserConnectionListener(completion: @escaping (Result<Bool, Error>) -> Void) {
+        authSession.addUserConnectionListener { (result) in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let user):
+                if let _ = user {
+                    // Utilisateur connecté
+                    completion(.success(true))
+                } else {
+                    // Utilisateur non connecté
+                    completion(.success(false))
+                }
+            }
         }
     }
     
-    func createUSer(email: String, password: String, completion: @escaping AuthDataResultCallback) {
-        Auth.auth().createUser(withEmail: email, password: password, completion: completion)
+    func createUser(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void) {
+        authSession.createUser(email: email, password: password) { (result) in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let user):
+                completion(.success(user))
+            }
+        }
     }
     
-    func signIn(email: String, password: String, completion: @escaping AuthDataResultCallback) {
-        Auth.auth().signIn(withEmail: email, password: password, completion: completion)
+    func signIn(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void) {
+        authSession.signIn(email: email, password: password) { (result) in
+        switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let user):
+                completion(.success(user))
+            }
+        }
     }
     
-    func signOut() throws {
-        try Auth.auth().signOut()
+    func signOut(completion: @escaping (Result<Bool, Error>) -> Void) {
+        authSession.signOut(completion: completion)
     }
 }

@@ -15,13 +15,13 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     let authService = AuthService()
-    let firestoreService = FirestoreService()
+    let firestoreService = FirestoreService<UserProfile>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print(AuthService.getCurrentUser() ?? "pas de user")
+        //print(AuthService.getCurrentUser() ?? "pas de user")
     }
     
 
@@ -41,13 +41,26 @@ class RegisterViewController: UIViewController {
     
     private func createUser() {
         
-        guard let name = nameTextField.text, !name.isEmpty else {
-            displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.noName)
+        guard let email = emailTextField.text, !email.isEmpty else {
+            displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.noEmail)
             return
         }
         
-        guard let email = emailTextField.text, !email.isEmpty else {
-            displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.noEmail)
+        firestoreService.searchData(collection: Constants.Firestore.userCollectionName, field: "email", text: email) { (result) in
+            switch result {
+            case .failure(_):
+                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                return
+            case .success(let user):
+                if user.count > 0 {
+                    self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                    return
+                }
+            }
+        }
+        
+        guard let name = nameTextField.text, !name.isEmpty else {
+            displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.noName)
             return
         }
         
@@ -56,29 +69,25 @@ class RegisterViewController: UIViewController {
             return
         }
         
-        authService.createUSer(email: email, password: password) { (authDataResult, error) in
-            if let e = error {
-                print(e.localizedDescription)
-            } else {
-                if let authDataResult = authDataResult {
-                    //print(AuthService.getCurrentUser() ?? "")
-                    
-                    let user = UserProfile(id: authDataResult.user.uid, email: email, name: name)
-                    self.saveUserProfile(userProfile: user)
-                    
-                    self.dismiss(animated: true, completion: nil)
-                    self.presentingViewController?.dismiss(animated: true, completion: nil)
-                }
+        authService.createUser(email: email, password: password) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(_): //let user):
+                let userProfile = UserProfile(name: name, email: email)
+                self.saveUserProfile(userProfile: userProfile)
+                
+                self.dismiss(animated: true, completion: nil)
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
             }
         }
     }
     
     private func saveUserProfile(userProfile: UserProfile) {
-        //let user = UserProfile(id: userProfile.id, email: userProfile.email, name: userProfile.name)
-        firestoreService.saveData(collection: Constants.Firestore.userCollectionName, data: userProfile.dictionary) { [weak self] (error) in
+        firestoreService.addData(collection: Constants.Firestore.userCollectionName, data: userProfile.dictionary) { [weak self] (error) in
             if let error = error {
                 print("Erreur sauvegarde : \(error.localizedDescription)")
-                self?.displayAlert(title: "Aïe", message: Constants.Alert.databaseError)
+                self?.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
             } else {
                 print("Profil sauvegardé")
             }

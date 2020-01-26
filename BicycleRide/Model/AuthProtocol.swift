@@ -7,20 +7,21 @@
 //
 
 import Foundation
-import Firebase
 
-protocol AuthUser {
-    var uid: String { get }
+protocol AuthUserProtocol {
     var displayName: String? { get }
     var email: String? { get }
 }
 
-extension User: AuthUser {}
+typealias AuthResult = Result<AuthUserProtocol?, Error>
 
 protocol AuthProtocol {
-    var currentUser: AuthUser? { get }
+    var currentUser: AuthUserProtocol? { get }
     
-    func createUser(withEmail: String, password: String, completion: AuthDataResultCallback?)
+    func addUserConnectionListener(completion: @escaping (Result<AuthUserProtocol?, Error>) -> Void)
+    func createUser(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void)
+    func signIn(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void)
+    func signOut(completion: @escaping (Result<Bool, Error>) -> Void)
 }
 
 

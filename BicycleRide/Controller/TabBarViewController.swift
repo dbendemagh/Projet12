@@ -10,6 +10,8 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
 
+    let authService = AuthService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -17,12 +19,25 @@ class TabBarViewController: UITabBarController {
     }
     
     private func setupUserConnectionListener() {
-        AuthService.addUserConnectionListener { user in
-            if user == nil {
-                print("Utilisateur déconnecté")
-                self.showLogginScreen()
-            } else {
-                print("Utilisateur connecté")
+        authService.addUserConnectionListener { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(_):
+                break
+            }
+        }
+        
+        authService.addUserConnectionListener { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let connected):
+                if connected {
+                    print("Utilisateur connecté")
+                } else {
+                    print("Utilisateur déconnecté")
+                }
             }
         }
     }

@@ -25,15 +25,15 @@ class NewMeetingFirstViewController: UIViewController {
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(addAnnotation(sender:)))
     
     var meeting: Meeting = Meeting(creatorId: "",
-                          name: "",
-                          street: "",
-                          city: "",
-                          date: "",
-                          time: "",
-                          description: "",
-                          bikeType: "",
-                          latitude: "",
-                          longitude: "")
+                                   name: "",
+                                   street: "",
+                                   city: "",
+                                   date: "",
+                                   time: "",
+                                   description: "",
+                                   bikeType: "",
+                                   latitude: "",
+                                   longitude: "")
     
     var displayMode = Constants.DisplayMode.Entry
     

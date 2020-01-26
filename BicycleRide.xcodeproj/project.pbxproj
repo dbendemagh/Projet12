@@ -19,6 +19,8 @@
 		656FAA8623CF21A20090C4EC /* AuthProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656FAA8523CF21A20090C4EC /* AuthProtocol.swift */; };
 		656FAA8823CF21B90090C4EC /* FirestoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656FAA8723CF21B90090C4EC /* FirestoreProtocol.swift */; };
 		656FAA8A23CF251F0090C4EC /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656FAA8923CF251F0090C4EC /* AuthSession.swift */; };
+		656FAACE23D659800090C4EC /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656FAACD23D659800090C4EC /* Dictionary.swift */; };
+		6578525523DA121A009B1A4C /* FirestoreSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578525423DA121A009B1A4C /* FirestoreSession.swift */; };
 		65B2735223A975C100BF04FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735123A975C100BF04FF /* AppDelegate.swift */; };
 		65B2735423A975C100BF04FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735323A975C100BF04FF /* SceneDelegate.swift */; };
 		65B2735623A975C100BF04FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735523A975C100BF04FF /* ViewController.swift */; };
@@ -61,6 +63,8 @@
 		656FAA8523CF21A20090C4EC /* AuthProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProtocol.swift; sourceTree = "<group>"; };
 		656FAA8723CF21B90090C4EC /* FirestoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreProtocol.swift; sourceTree = "<group>"; };
 		656FAA8923CF251F0090C4EC /* AuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
+		656FAACD23D659800090C4EC /* Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		6578525423DA121A009B1A4C /* FirestoreSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreSession.swift; sourceTree = "<group>"; };
 		65B2734E23A975C100BF04FF /* Bicycle Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bicycle Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B2735123A975C100BF04FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65B2735323A975C100BF04FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,10 +162,11 @@
 				656FAA8923CF251F0090C4EC /* AuthSession.swift */,
 				65B273CB23BBAFDC00BF04FF /* AuthService.swift */,
 				651EF80423C0F850005FD140 /* Meeting.swift */,
-				651EF80A23C24B8F005FD140 /* UserProfile.swift */,
-				651EF80C23C24E7D005FD140 /* FirestoreService.swift */,
 				651EF85C23CB8F78005FD140 /* MeetingAnnotation.swift */,
+				651EF80A23C24B8F005FD140 /* UserProfile.swift */,
 				656FAA8723CF21B90090C4EC /* FirestoreProtocol.swift */,
+				6578525423DA121A009B1A4C /* FirestoreSession.swift */,
+				651EF80C23C24E7D005FD140 /* FirestoreService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -207,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				65B273D523BCF3E700BF04FF /* UIViewController.swift */,
+				656FAACD23D659800090C4EC /* Dictionary.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -404,6 +410,7 @@
 			files = (
 				651EF80B23C24B8F005FD140 /* UserProfile.swift in Sources */,
 				65B273D223BCCFC000BF04FF /* LoginViewController.swift in Sources */,
+				6578525523DA121A009B1A4C /* FirestoreSession.swift in Sources */,
 				656FAA8A23CF251F0090C4EC /* AuthSession.swift in Sources */,
 				651EF80823C100EA005FD140 /* MeetingCell.swift in Sources */,
 				651EF85D23CB8F78005FD140 /* MeetingAnnotation.swift in Sources */,
@@ -413,6 +420,7 @@
 				65B2735223A975C100BF04FF /* AppDelegate.swift in Sources */,
 				65B273D823BE704300BF04FF /* MeetingsViewController.swift in Sources */,
 				651EF80D23C24E7D005FD140 /* FirestoreService.swift in Sources */,
+				656FAACE23D659800090C4EC /* Dictionary.swift in Sources */,
 				65B273D423BCCFE100BF04FF /* RegisterViewController.swift in Sources */,
 				65B273CC23BBAFDC00BF04FF /* AuthService.swift in Sources */,
 				656FAA8823CF21B90090C4EC /* FirestoreProtocol.swift in Sources */,

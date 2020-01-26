@@ -18,6 +18,7 @@ class MeetingsViewController: UIViewController {
     // MARK: - Properties
     
     let authService = AuthService()
+    let firestoreService = FirestoreService<Meeting>()
     
     var meetings: [Meeting] = []
         //[Meeting(id: "12", creatorId: "3", name: "Etang de Commelles", coordinate: Coordinate(latitude: 48.8567, longitude: 2.3508), date: "10/01/2020", time: "09:00", description: "Balade en forêt")]
@@ -28,6 +29,15 @@ class MeetingsViewController: UIViewController {
         super.viewDidLoad()
         
         initTableView()
+        
+        firestoreService.loadData(collection: Constants.Firestore.meetingCollectionName) { result in
+            switch result {
+                case(.failure(_)):
+                    self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                case(.success(let meetings)):
+                    self.meetings = meetings
+            }
+        }
     }
     
     private func initTableView() {
@@ -37,6 +47,9 @@ class MeetingsViewController: UIViewController {
         //tableView.reloadData()
     }
 
+    private func loadMeetings() {
+        
+    }
     
     // MARK: - Navigation
 
@@ -44,7 +57,7 @@ class MeetingsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        guard let email = AuthService.getCurrentUser()?.email  else { return }
+        guard let email = authService.getCurrentUser()?.email  else { return }
         
         if let newMeetingVC = segue.destination as? NewMeetingFirstViewController {
             newMeetingVC.meeting = Meeting(creatorId: email, name: "", street: "", city: "", date: "", time: "", description: "", bikeType: "", latitude: "", longitude: "")
@@ -60,10 +73,13 @@ class MeetingsViewController: UIViewController {
     }
     
     @IBAction func logOutButtonItemPressed(_ sender: UIBarButtonItem) {
-        do {
-            try authService.signOut()
-        } catch let signOutError as NSError {
-            print(signOutError.localizedDescription)
+        authService.signOut { (result) in
+            switch result {
+            case .failure(_):
+                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+            case .success(_):
+                break
+            }
         }
     }
 }

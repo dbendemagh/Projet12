@@ -51,3 +51,8 @@ struct Constants {
         case View
     }
 }
+
+enum FirestoreError : Error {
+    case listenerError
+    case EmailAlreadyExist
+}

@@ -18,19 +18,19 @@ class NewMeetingSecondViewController: UIViewController {
     @IBOutlet weak var meetingTimeDatePicker: UIDatePicker!
     @IBOutlet weak var meetingBikeTypeSegmentedControl: UISegmentedControl!
     
-    let firestoreService = FirestoreService()
+    let firestoreService = FirestoreService<Meeting>()
     
     // coordinate: Coordinate(latitude: "", longitude: ""),
     var meeting: Meeting = Meeting(creatorId: "",
-                          name: "",
-                          street: "",
-                          city: "",
-                          date: "",
-                          time: "",
-                          description: "",
-                          bikeType: "",
-                          latitude: "",
-                          longitude: "")
+                                   name: "",
+                                   street: "",
+                                   city: "",
+                                   date: "",
+                                   time: "",
+                                   description: "",
+                                   bikeType: "",
+                                   latitude: "",
+                                   longitude: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +86,7 @@ class NewMeetingSecondViewController: UIViewController {
     private func saveMeeting(meeting1: Meeting) {
         print(meeting1)
         print(meeting1.dictionary)
-        firestoreService.saveData(collection: Constants.Firestore.meetingCollectionName, data: meeting.dictionary) { [weak self] (error) in
+        firestoreService.addData(collection: Constants.Firestore.meetingCollectionName, data: meeting.dictionary) { [weak self] (error) in
             if let error = error {
                 print("Erreur sauvegarde : \(error.localizedDescription)")
                 self?.displayAlert(title: "Aïe", message: Constants.Alert.databaseError)
