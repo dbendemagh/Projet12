@@ -220,6 +220,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="lT2-pS-Sd2" id="SaS-rD-3yK"/>
+                        <segue destination="CRr-Dx-K0W" kind="show" id="PX0-MC-EI3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LEd-Mk-QuL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -341,6 +342,88 @@
             </objects>
             <point key="canvasLocation" x="2762.3188405797105" y="722.54464285714278"/>
         </scene>
+        <!--Meeting Details View Controller-->
+        <scene sceneID="Wxc-rH-QkE">
+            <objects>
+                <viewController id="CRr-Dx-K0W" customClass="MeetingDetailsViewController" customModule="Bicycle_Ride" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="drI-xD-pMU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="569-4o-5i2">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uOn-oY-2Fp">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="505.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTc-GZ-Yan">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="20.5"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Heure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Fo-aa-d44">
+                                                <rect key="frame" x="0.0" y="25.5" width="414" height="20"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GbG-1w-Z1j">
+                                                <rect key="frame" x="0.0" y="50.5" width="414" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="oim-3n-BQD"/>
+                                                </constraints>
+                                            </mapView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6m-z0-cdC">
+                                                <rect key="frame" x="0.0" y="255.5" width="414" height="20"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ville" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74j-KI-OxC">
+                                                <rect key="frame" x="0.0" y="280.5" width="414" height="20"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHM-LW-bYC">
+                                                <rect key="frame" x="0.0" y="305.5" width="414" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="icl-wR-v2D"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="uOn-oY-2Fp" firstAttribute="leading" secondItem="FJf-FM-bue" secondAttribute="leading" id="3dr-UZ-U4p"/>
+                                    <constraint firstItem="uOn-oY-2Fp" firstAttribute="bottom" secondItem="FJf-FM-bue" secondAttribute="bottom" id="ALy-At-lXc"/>
+                                    <constraint firstItem="uOn-oY-2Fp" firstAttribute="width" secondItem="iAc-dW-L3n" secondAttribute="width" id="Mst-bb-bw9"/>
+                                    <constraint firstItem="uOn-oY-2Fp" firstAttribute="trailing" secondItem="FJf-FM-bue" secondAttribute="trailing" id="TDe-wy-pLd"/>
+                                    <constraint firstItem="uOn-oY-2Fp" firstAttribute="top" secondItem="FJf-FM-bue" secondAttribute="top" id="cz5-cT-xWa"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="FJf-FM-bue"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="iAc-dW-L3n"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="569-4o-5i2" firstAttribute="leading" secondItem="0aV-Fb-okq" secondAttribute="leading" id="c3O-NR-KBZ"/>
+                            <constraint firstItem="569-4o-5i2" firstAttribute="trailing" secondItem="0aV-Fb-okq" secondAttribute="trailing" id="hWU-ae-dvb"/>
+                            <constraint firstItem="569-4o-5i2" firstAttribute="top" secondItem="0aV-Fb-okq" secondAttribute="top" id="qyr-DL-kk8"/>
+                            <constraint firstItem="569-4o-5i2" firstAttribute="bottom" secondItem="0aV-Fb-okq" secondAttribute="bottom" id="vLa-BM-3a2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="0aV-Fb-okq"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="nIA-3t-rcb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i9k-Wc-k5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1734.7826086956522" y="1479.9107142857142"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="qW7-eN-EzU">
             <objects>
@@ -381,11 +464,11 @@
             </objects>
             <point key="canvasLocation" x="2762" y="1414"/>
         </scene>
-        <!--Sorties-->
+        <!--Navigation Controller-->
         <scene sceneID="XHF-NN-Oad">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kfi-uU-tbA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sorties" id="jTU-Fn-Cyk"/>
+                    <tabBarItem key="tabBarItem" title="" image="Riding-bicycle" id="jTU-Fn-Cyk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XGX-4j-w9O">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -403,5 +486,6 @@
     </scenes>
     <resources>
         <image name="Center" width="103" height="101"/>
+        <image name="Riding-bicycle" width="32" height="32"/>
     </resources>
 </document>

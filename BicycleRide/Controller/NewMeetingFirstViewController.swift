@@ -32,8 +32,8 @@ class NewMeetingFirstViewController: UIViewController {
                                    time: "",
                                    description: "",
                                    bikeType: "",
-                                   latitude: "",
-                                   longitude: "")
+                                   latitude: 0,
+                                   longitude: 0)
     
     var displayMode = Constants.DisplayMode.Entry
     
@@ -96,8 +96,8 @@ class NewMeetingFirstViewController: UIViewController {
         for annotation in mapView.annotations {
             if annotation is MeetingAnnotation {
                 print("\(annotation.coordinate.latitude) \(annotation.coordinate.longitude)")
-                meeting.latitude = String(annotation.coordinate.latitude)
-                meeting.longitude = String(annotation.coordinate.longitude)
+                meeting.latitude = annotation.coordinate.latitude
+                meeting.longitude = annotation.coordinate.longitude
             }
         }
     }
@@ -167,8 +167,8 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
         
         let touchPoint = sender.location(in: mapView)
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-        meeting.longitude = String(Double(touchCoordinate.longitude))
-        meeting.latitude = String(Double(touchCoordinate.latitude))
+        meeting.longitude = Double(touchCoordinate.longitude)
+        meeting.latitude = Double(touchCoordinate.latitude)
         
         let annotation = MeetingAnnotation(title: "Point de départ", coordinate: touchCoordinate, bikeType: "")
         mapView.addAnnotation(annotation)

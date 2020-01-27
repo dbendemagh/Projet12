@@ -36,6 +36,7 @@ class MeetingsViewController: UIViewController {
                     self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
                 case(.success(let meetings)):
                     self.meetings = meetings
+                    self.tableView.reloadData()
             }
         }
     }
@@ -60,7 +61,7 @@ class MeetingsViewController: UIViewController {
         guard let email = authService.getCurrentUser()?.email  else { return }
         
         if let newMeetingVC = segue.destination as? NewMeetingFirstViewController {
-            newMeetingVC.meeting = Meeting(creatorId: email, name: "", street: "", city: "", date: "", time: "", description: "", bikeType: "", latitude: "", longitude: "")
+            newMeetingVC.meeting = Meeting(creatorId: email, name: "", street: "", city: "", date: "", time: "", description: "", bikeType: "", latitude: 0, longitude: 0)
             newMeetingVC.displayMode = Constants.DisplayMode.Entry
         }
     }

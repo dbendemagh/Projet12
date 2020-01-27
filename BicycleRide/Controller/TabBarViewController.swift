@@ -22,7 +22,7 @@ class TabBarViewController: UITabBarController {
         authService.addUserConnectionListener { (result) in
             switch result {
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
             case .success(_):
                 break
             }

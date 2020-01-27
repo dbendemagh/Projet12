@@ -25,3 +25,10 @@ protocol AuthProtocol {
 }
 
 
+struct Essai: AuthUserProtocol {
+    var displayName: String?
+    
+    var email: String?
+    
+    
+}

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,36 +26,40 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="leh-A5-txV">
-                        <rect key="frame" x="210" y="10" width="50" height="20"/>
+                        <rect key="frame" x="10" y="38" width="70" height="17.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="pDJ-7e-N8P"/>
+                            <constraint firstAttribute="width" constant="70" id="lY1-DR-5IN"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nUV-S1-jI8">
-                        <rect key="frame" x="271" y="0.0" width="107" height="70"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BicycleVTT" translatesAutoresizingMaskIntoConstraints="NO" id="nUV-S1-jI8">
+                        <rect key="frame" x="308" y="0.0" width="70" height="70"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="70" id="5UM-aQ-nMS"/>
-                            <constraint firstAttribute="width" constant="107" id="J8W-e9-6kL"/>
+                            <constraint firstAttribute="width" constant="70" id="J8W-e9-6kL"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Heure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8F-hq-6S4">
-                        <rect key="frame" x="210" y="37" width="46" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8F-hq-6S4">
+                        <rect key="frame" x="100" y="38" width="50" height="17.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="BRt-CQ-BLQ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="nUV-S1-jI8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Epa-jq-RRX"/>
+                    <constraint firstItem="d8F-hq-6S4" firstAttribute="leading" secondItem="leh-A5-txV" secondAttribute="trailing" constant="20" id="IHD-CD-o5a"/>
                     <constraint firstItem="GSJ-cs-JTg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="L6D-36-v7D"/>
-                    <constraint firstItem="leh-A5-txV" firstAttribute="leading" secondItem="GSJ-cs-JTg" secondAttribute="trailing" constant="10" id="MCI-0Z-vu3"/>
+                    <constraint firstItem="leh-A5-txV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="YKv-sN-dnF"/>
                     <constraint firstAttribute="bottom" secondItem="nUV-S1-jI8" secondAttribute="bottom" id="cfW-E8-kXD"/>
-                    <constraint firstItem="leh-A5-txV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="gcR-uL-eyv"/>
+                    <constraint firstItem="d8F-hq-6S4" firstAttribute="top" secondItem="GSJ-cs-JTg" secondAttribute="bottom" constant="8" id="mtM-jG-X0I"/>
                     <constraint firstItem="GSJ-cs-JTg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="uWM-wn-lFs"/>
+                    <constraint firstItem="leh-A5-txV" firstAttribute="top" secondItem="GSJ-cs-JTg" secondAttribute="bottom" constant="8" id="ukE-qX-xyz"/>
                     <constraint firstAttribute="trailing" secondItem="nUV-S1-jI8" secondAttribute="trailing" constant="20" symbolic="YES" id="xTY-Qn-mB8"/>
                 </constraints>
             </tableViewCellContentView>
@@ -69,4 +73,7 @@
             <point key="canvasLocation" x="188.40579710144928" y="158.70535714285714"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="BicycleVTT" width="32" height="32"/>
+    </resources>
 </document>

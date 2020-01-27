@@ -29,8 +29,8 @@ class NewMeetingSecondViewController: UIViewController {
                                    time: "",
                                    description: "",
                                    bikeType: "",
-                                   latitude: "",
-                                   longitude: "")
+                                   latitude: 0,
+                                   longitude: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()

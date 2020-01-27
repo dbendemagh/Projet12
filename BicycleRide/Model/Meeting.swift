@@ -18,8 +18,8 @@ struct Meeting: Decodable {
     var time: String
     var description: String
     var bikeType: String
-    var latitude: String
-    var longitude: String
+    var latitude: Double
+    var longitude: Double
     
     var dictionary: [String: Any] {
         return [
