@@ -18,15 +18,14 @@ class AuthSession: AuthProtocol {
     var currentUser: AuthUserProtocol? {
         return auth.currentUser
     }
-    
-    func addUserConnectionListener(completion: @escaping (Result<AuthUserProtocol?, Error>) -> Void) {
+        
+    func addUserConnectionListener(completion: @escaping (Bool) -> Void) {
         _ = auth.addStateDidChangeListener { (auth, user) in
-            if let user = user {
-                completion(.success(user))
+            if let _ = user {
+                completion(true)
             } else {
-                completion(.failure(FirestoreError.listenerError))
+                completion(false)
             }
-            
         }
     }
     

@@ -35,7 +35,7 @@ public class FirestoreService<T: Decodable> {
             case .failure(let error):
                 completion(error)
             case .success(_):
-                break
+                completion(nil)
             }
         }
     }

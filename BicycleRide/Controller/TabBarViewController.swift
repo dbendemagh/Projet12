@@ -19,28 +19,36 @@ class TabBarViewController: UITabBarController {
     }
     
     private func setupUserConnectionListener() {
-        authService.addUserConnectionListener { (result) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(_):
-                break
-            }
-        }
-        
-        authService.addUserConnectionListener { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let connected):
-                if connected {
-                    print("Utilisateur connecté")
-                } else {
-                    print("Utilisateur déconnecté")
-                }
+        authService.addUserConnectionListener { (connected) in
+            if !connected {
+                self.showLogginScreen()
             }
         }
     }
+    
+//    private func setupUserConnectionListener() {
+//        authService.addUserConnectionListener { (result) in
+//            switch result {
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            case .success(_):
+//                break
+//            }
+//        }
+        
+//        authService.addUserConnectionListener { result in
+//            switch result {
+//            case .failure(let error):
+//                print(error)
+//            case .success(let connected):
+//                if connected {
+//                    print("Utilisateur connecté")
+//                } else {
+//                    print("Utilisateur déconnecté")
+//                }
+//            }
+//        }
+    //}
     
     private func showLogginScreen() {
         DispatchQueue.main.async {

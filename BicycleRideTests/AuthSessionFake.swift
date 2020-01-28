@@ -7,19 +7,60 @@
 //
 
 import Foundation
-@testable import Bicycle_Ride
+@testable import BicycleRide
 
 class AuthSessionFake: AuthProtocol {
-    private let fakeResponse: FakeAuthDataResponse
+    var currentUser: AuthUserProtocol?
     
-    init(fakeResponse: FakeResponse) {
-        self.fakeResponse = fakeResponse
+    private let fakeAuthResponse: FakeAuthResponse
+    
+    init(fakeAuthResponse: FakeAuthResponse) {
+        self.fakeAuthResponse = fakeAuthResponse
     }
     
-    func createUser(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void) {
-        let authDataResult = FakeAuthDataResponse(currentUser: FakeUser(displayName: "Nom", email: "az@er.com"))
-        let authDataResult1 = FakeAuthDataResponse(currentUser: nil) //fakeResponse.querySnapshot
+    func addUserConnectionListener(completion: @escaping (Bool) -> Void) {
+        let authDataResult = fakeAuthResponse.authData
         
+        if let _ = authDataResult?.user {
+            completion(true)
+        } else {
+            completion(false)
+        }
+    }
+    
+    func createUser(email: String, password: String, completion: (Result<AuthUserProtocol, Error>) -> Void) {
+        let authDataResult = fakeAuthResponse.authData
+        let error = fakeAuthResponse.error
         
+        if let error = error {
+            completion(.failure(error))
+        }
+        
+        if let user = authDataResult?.user {
+            completion(.success(user))
+        }
+    }
+    
+    func signIn(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void) {
+        let authDataResult = fakeAuthResponse.authData
+        let error = fakeAuthResponse.error
+        
+        if let error = error {
+            completion(.failure(error))
+        }
+        
+        if let user = authDataResult?.user {
+            completion(.success(user))
+        }
+    }
+    
+    func signOut(completion: @escaping (Result<Bool, Error>) -> Void) {
+        let error = fakeAuthResponse.error
+        
+        if let error = error {
+            completion(.failure(error))
+        } else {
+            completion(.success(true))
+        }
     }
 }

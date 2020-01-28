@@ -24,7 +24,6 @@ extension Dictionary {
     }
     
     func decoded<T: Decodable>() -> T? {
-    //func decoded() -> Meeting? {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: self, options: [])
             let object = try JSONDecoder().decode(T.self, from: jsonData)

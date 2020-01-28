@@ -25,19 +25,31 @@ public class AuthService {
         }
     }
     
-    func addUserConnectionListener(completion: @escaping (Result<Bool, Error>) -> Void) {
-        authSession.addUserConnectionListener { (result) in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .success(let user):
-                if let _ = user {
-                    // Utilisateur connecté
-                    completion(.success(true))
-                } else {
-                    // Utilisateur non connecté
-                    completion(.success(false))
-                }
+//    func addUserConnectionListener0(completion: @escaping (Result<Bool, Error>) -> Void) {
+//        authSession.addUserConnectionListener { (result) in
+//            switch result {
+//            case .failure(let error):
+//                completion(.failure(error))
+//            case .success(let user):
+//                if let _ = user {
+//                    // Utilisateur connecté
+//                    completion(.success(true))
+//                } else {
+//                    // Utilisateur non connecté
+//                    completion(.success(false))
+//                }
+//            }
+//        }
+//    }
+    
+    func addUserConnectionListener(completion: @escaping (Bool) -> Void) {
+        authSession.addUserConnectionListener { (connected) in
+            if connected {
+                // Utilisateur connecté
+                completion(true)
+            } else {
+                // Utilisateur non connecté
+                completion(false)
             }
         }
     }

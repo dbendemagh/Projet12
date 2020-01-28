@@ -20,9 +20,6 @@ class FirestoreSession: FirestoreProtocol {
                 completion(.failure(error))
             } else {
                 completion(.success(self.getDocuments(querySnapshot: querySnapshot)))
-//                if let firebaseDocuments: [FirestoreDocumentProtocol] = querySnapshot?.documents {
-//                    completion(.success(firebaseDocuments))
-//                }
             }
         }
     }
@@ -42,9 +39,6 @@ class FirestoreSession: FirestoreProtocol {
                 completion(.failure(error))
             } else {
                 completion(.success(self.getDocuments(querySnapshot: querySnapshot)))
-//                if let firebaseDocuments: [FirestoreDocumentProtocol] = querySnapshot?.documents {
-//                    completion(firebaseDocuments)
-//                }
             }
         }
     }
