@@ -7,15 +7,39 @@
 //
 
 import UIKit
+import MapKit
 
 class MeetingDetailsViewController: UIViewController {
-
+    // MARK: - Outlets
+    
+    @IBOutlet weak var meetingNameLabel: UILabel!
+    @IBOutlet weak var meetingDateTimeLabel: UILabel!
+    @IBOutlet weak var meetingStreetLabel: UILabel!
+    @IBOutlet weak var meetingCityLabel: UILabel!
+    @IBOutlet weak var meetingDescriptionLabel: UILabel!
+    @IBOutlet weak var meetingDistanceLabel: UILabel!
+    @IBOutlet weak var mapView: MKMapView!
+    
+    // MARK: - Properties
+    
+    var meeting = Meeting(creatorId: "", name: "", street: "", city: "", date: "", time: "", description: "", bikeType: "", distance: 0, latitude: 0, longitude: 0, participants: [])
+    
+    // MARK: - Init Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        initScreen()
     }
     
+    func initScreen() {
+        meetingNameLabel.text = meeting.name
+        meetingStreetLabel.text = meeting.street
+        meetingCityLabel.text = meeting.city
+        meetingDateTimeLabel.text = ("\(meeting.date) \(meeting.time)")
+        meetingDescriptionLabel.text = meeting.description
+        meetingDistanceLabel.text = String(meeting.distance)
+    }
 
     /*
     // MARK: - Navigation
@@ -27,4 +51,6 @@ class MeetingDetailsViewController: UIViewController {
     }
     */
 
+    @IBAction func participateButtonTapped(_ sender: UIButton) {
+    }
 }

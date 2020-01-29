@@ -8,6 +8,7 @@ target 'BicycleRide' do
   # Pods for BicycleRide
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'CodableFirebase'
 
   target 'BicycleRideTests' do
     inherit! :search_paths

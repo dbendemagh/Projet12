@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CodableFirebase
 
-public class FirestoreService<T: Decodable> {
+public class FirestoreService<T: Codable> {
     
     private var firestoreSession: FirestoreProtocol
     
@@ -22,14 +23,23 @@ public class FirestoreService<T: Decodable> {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let firebaseDocuments):
-                let documents: [T] = firebaseDocuments.compactMap( { $0.data().decoded() })
-                print(documents)
+                for document in firebaseDocuments {
+                    print(document.data())
+                }
+                let documents: [T] = firebaseDocuments.compactMap( { self.decode(data: $0.data())  }) //$0.data().decoded()                //print(documents)
+                for document in documents {
+                    print(document)
+                }
                 completion(.success(documents))
             }
         }
     }
     
-    func addData(collection: String, data: [String: Any], completion: @escaping (Error?) -> Void) {
+    // func addData(collection: String, data: [String: Any], completion: @escaping (Error?) -> Void) {
+    
+    func addData(collection: String, object: T, completion: @escaping (Error?) -> Void) {
+        let data = encode(object: object)
+        
         firestoreSession.addDocument(collection: collection, data: data) { result in
             switch result {
             case .failure(let error):
@@ -51,6 +61,30 @@ public class FirestoreService<T: Decodable> {
                 completion(.success(documents))
             }
         }
+    }
+    
+    func encode(object: T) -> [String: Any] {
+        do {
+            let dictionaryData: [String: Any] = try FirebaseEncoder().encode(object) as! [String: Any]
+            print(dictionaryData)
+            return dictionaryData
+        } catch {
+            print(error)
+        }
+        
+        return [:]
+    }
+    
+    func decode(data: [String: Any]) -> T? {
+        do {
+            let objectData = try FirebaseDecoder().decode(T.self, from: data) // encode(object) as! [String: Any]
+            print(objectData)
+            return objectData
+        } catch {
+            print(error)
+        }
+        
+        return nil
     }
 }
 

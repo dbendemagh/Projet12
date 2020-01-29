@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-extension User : AuthUserProtocol {}
+extension User: AuthUserProtocol {}
 
 class AuthSession: AuthProtocol {
     

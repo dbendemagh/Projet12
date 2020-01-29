@@ -24,12 +24,3 @@ protocol AuthProtocol {
     func signIn(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void)
     func signOut(completion: @escaping (Result<Bool, Error>) -> Void)
 }
-
-
-struct Essai: AuthUserProtocol {
-    var displayName: String?
-    
-    var email: String?
-    
-    
-}

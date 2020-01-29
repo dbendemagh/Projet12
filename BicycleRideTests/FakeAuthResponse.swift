@@ -14,11 +14,13 @@ struct FakeAuthResponse {
     var error: Error?
 }
 
+struct FakeAuthData {
+    var user: FakeUser?
+}
+
 struct FakeUser: AuthUserProtocol {
     var displayName: String?
     var email: String?
 }
 
-struct FakeAuthData {
-    var user: FakeUser?
-}
+

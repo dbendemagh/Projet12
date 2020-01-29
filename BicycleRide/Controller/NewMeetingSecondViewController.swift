@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CodableFirebase
 
 class NewMeetingSecondViewController: UIViewController {
 
@@ -29,8 +30,10 @@ class NewMeetingSecondViewController: UIViewController {
                                    time: "",
                                    description: "",
                                    bikeType: "",
+                                   distance: 0,
                                    latitude: 0,
-                                   longitude: 0)
+                                   longitude: 0,
+                                   participants:[])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,17 +82,37 @@ class NewMeetingSecondViewController: UIViewController {
         print(meeting.time)
         
         meeting.bikeType = meetingBikeTypeSegmentedControl.selectedSegmentIndex == 0 ? Constants.Bike.road : Constants.Bike.vtt
+        //meeting.participants = ["az@er.com", "bill@yahoo.fr"]
+        meeting.participants = [Participant(name: "Bill", email: "bill@free.fr"), Participant(name: "Joe", email: "joe@yahoo.fr")]
         
-        saveMeeting(meeting1: meeting)
+        //let test = meeting.dictionary
+        //print(test)
+        //let test = meeting.participants.map($0.dictionary)
+        
+        //let part: Participant = meeting.participants
+        
+        //meeting.participants["participants"] = p
+        //print(meeting.dictionary)
+        saveMeeting(meeting: meeting)
+        
     }
     
-    private func saveMeeting(meeting1: Meeting) {
-        print(meeting1)
-        print(meeting1.dictionary)
-        firestoreService.addData(collection: Constants.Firestore.meetingCollectionName, data: meeting.dictionary) { [weak self] (error) in
+    private func saveMeeting(meeting: Meeting) { //  meetingData: [String: Any]) {
+        print(meeting)
+        //print(meeting1.dictionary)
+        
+//        do {
+//            let meetingData: [String: Any] = try FirebaseEncoder().encode(meeting) as! [String : Any]
+//            print(meetingData)
+//            //saveMeeting(meetingData: meetingData)
+//        } catch {
+//            print(error)
+//        }
+        
+        firestoreService.addData(collection: Constants.Firestore.meetingCollectionName, object: meeting) { [weak self] (error) in
             if let error = error {
                 print("Erreur sauvegarde : \(error.localizedDescription)")
-                self?.displayAlert(title: "Aïe", message: Constants.Alert.databaseError)
+                self?.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
             } else {
                 print("Meeting sauvegardé")
             }

@@ -36,7 +36,7 @@ class AuthServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testAddUserConnectionListenerShouldShouldUserIsNotConnected() {
+    func testAddUserConnectionListenerShouldUserIsNotConnected() {
         let fakeAuthResponse = FakeAuthResponse(authData: nil, error: nil)
         let authSessionFake = AuthSessionFake(fakeAuthResponse: fakeAuthResponse)
         let authService = AuthService(authSession: authSessionFake)

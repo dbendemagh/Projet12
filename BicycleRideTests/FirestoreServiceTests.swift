@@ -20,7 +20,8 @@ class FirestoreServiceTests: XCTestCase {
                                "longitude": 4,
                                "date": "01/01/2020",
                                "time": "12:00",
-                               "bikeType": "VTT"]
+                               "bikeType": "VTT",
+                               "participants": []]
     
     var fakeFirestoreDocument = FakeFirestoreDocument(documentID: "azerty", datas: [:])
     
@@ -30,8 +31,8 @@ class FirestoreServiceTests: XCTestCase {
     }
 
     func testLoadDataShouldResultSuccess() {
-        let fakequerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
-        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakequerySnapshot, error: nil)
+        let fakeQuerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
+        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakeQuerySnapshot, error: nil)
         
         let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
         let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)

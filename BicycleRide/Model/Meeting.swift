@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Meeting: Decodable {
+struct Meeting: Codable {
     //var id: String?
     var creatorId: String
     var name: String
@@ -18,21 +18,37 @@ struct Meeting: Decodable {
     var time: String
     var description: String
     var bikeType: String
+    var distance: Int
     var latitude: Double
     var longitude: Double
+    var participants: [Participant]
     
-    var dictionary: [String: Any] {
-        return [
-            "creatorId": creatorId,
-            "name": name,
-            "street": street,
-            "city": city,
-            "date": date,
-            "time": time,
-            "description": description,
-            "bikeType": bikeType,
-            "latitude": latitude,
-            "longitude": longitude
-        ]
-    }
+//    var dictionary: [String: Any] {
+//        return [
+//            "creatorId": creatorId,
+//            "name": name,
+//            "street": street,
+//            "city": city,
+//            "date": date,
+//            "time": time,
+//            "description": description,
+//            "bikeType": bikeType,
+//            "distance": distance,
+//            "latitude": latitude,
+//            "longitude": longitude,
+//            //"participants": participants
+//        ]
+//    }
+}
+
+struct Participant: Codable {
+    var name: String
+    var email: String
+    
+//    var dictionary: [String: Any] {
+//        return [
+//            "name": name,
+//            "email": email
+//        ]
+//    }
 }

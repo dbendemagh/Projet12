@@ -21,7 +21,9 @@ class MeetingsViewController: UIViewController {
     let firestoreService = FirestoreService<Meeting>()
     
     var meetings: [Meeting] = []
-        //[Meeting(id: "12", creatorId: "3", name: "Etang de Commelles", coordinate: Coordinate(latitude: 48.8567, longitude: 2.3508), date: "10/01/2020", time: "09:00", description: "Balade en forêt")]
+   
+    
+    var selectedRow: Int = 0
     
     // MARK: - Init Methods
     
@@ -30,6 +32,18 @@ class MeetingsViewController: UIViewController {
         
         initTableView()
         
+        loadMeetings()
+    }
+    
+    private func initTableView() {
+        tableView.register(UINib(nibName: Constants.Cells.meetingCell, bundle: nil), forCellReuseIdentifier: Constants.Cells.meetingCell)
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        //tableView.reloadData()
+    }
+
+    private func loadMeetings() {
         firestoreService.loadData(collection: Constants.Firestore.meetingCollectionName) { result in
             switch result {
                 case(.failure(_)):
@@ -41,17 +55,6 @@ class MeetingsViewController: UIViewController {
         }
     }
     
-    private func initTableView() {
-        tableView.register(UINib(nibName: Constants.Cells.meetingCell, bundle: nil), forCellReuseIdentifier: Constants.Cells.meetingCell)
-        tableView.dataSource = self
-        
-        //tableView.reloadData()
-    }
-
-    private func loadMeetings() {
-        
-    }
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -61,8 +64,10 @@ class MeetingsViewController: UIViewController {
         guard let email = authService.getCurrentUser()?.email  else { return }
         
         if let newMeetingVC = segue.destination as? NewMeetingFirstViewController {
-            newMeetingVC.meeting = Meeting(creatorId: email, name: "", street: "", city: "", date: "", time: "", description: "", bikeType: "", latitude: 0, longitude: 0)
+            newMeetingVC.meeting = Meeting(creatorId: email, name: "", street: "", city: "", date: "", time: "", description: "", bikeType: "", distance: 0, latitude: 0, longitude: 0, participants: [])
             newMeetingVC.displayMode = Constants.DisplayMode.Entry
+        } else if let meetingDetail = segue.destination as? MeetingDetailsViewController {
+            meetingDetail.meeting = meetings[selectedRow]
         }
     }
     
@@ -103,8 +108,9 @@ extension MeetingsViewController: UITableViewDataSource {
     }
 }
 
-//extension MeetingsViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//    }
-//}
+extension MeetingsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedRow = indexPath.row
+        performSegue(withIdentifier: "MeetingDetail", sender: self)
+    }
+}

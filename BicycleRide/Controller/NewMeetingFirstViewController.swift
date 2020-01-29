@@ -32,8 +32,10 @@ class NewMeetingFirstViewController: UIViewController {
                                    time: "",
                                    description: "",
                                    bikeType: "",
+                                   distance: 0,
                                    latitude: 0,
-                                   longitude: 0)
+                                   longitude: 0,
+                                   participants: [])
     
     var displayMode = Constants.DisplayMode.Entry
     
@@ -85,8 +87,10 @@ class NewMeetingFirstViewController: UIViewController {
                                            time: meeting.time,
                                            description: meeting.description,
                                            bikeType: meeting.bikeType,
+                                           distance: meeting.distance,
                                            latitude: meeting.latitude,
-                                           longitude: meeting.longitude)
+                                           longitude: meeting.longitude,
+                                           participants: meeting.participants)
             
             //newMeetingVC.displayMode = Constants.DisplayMode.Entry
         }
@@ -211,7 +215,7 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
                 //self.cityLabel.text = "\(placemark.postalCode) \(placemark.locality)"
             }
             
-            print("\(placemark.subThoroughfare) \(placemark.locality) \(placemark.subAdministrativeArea) \(placemark.subLocality) \(placemark.thoroughfare)")
+            print("\(String(describing: placemark.subThoroughfare)) \(String(describing: placemark.locality)) \(String(describing: placemark.subAdministrativeArea)) \(String(describing: placemark.subLocality)) \(String(describing: placemark.thoroughfare))")
         }
     }
     

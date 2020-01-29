@@ -9,27 +9,14 @@
 import Foundation
 
 extension Dictionary {
-    func dictionaryToObject<T: Decodable>() -> T? {
-        //(data: [[String: Any]]) -> T? {
-    //func dictionaryToObject() -> Meeting? {
-        do {
-            let json = try JSONSerialization.data(withJSONObject: self, options: [])
-            let decoder = JSONDecoder()
-            let object = try decoder.decode(T.self, from: json)
-            return object
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-    
     func decoded<T: Decodable>() -> T? {
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: self, options: [])
             let object = try JSONDecoder().decode(T.self, from: jsonData)
+            print(object)
             return object
         } catch {
-            print(error)
+            print("Erreur Dictionary.decoded : \(error)")
             return nil
         }
     }
