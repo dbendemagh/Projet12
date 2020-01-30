@@ -11,13 +11,13 @@ import CoreLocation
 import MapKit
 
 class NewMeetingFirstViewController: UIViewController {
-
     // MARK: - Outlets
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var streetLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var addressStackView: UIStackView!
     
     // MARK: - Properties
     
@@ -39,8 +39,12 @@ class NewMeetingFirstViewController: UIViewController {
     
     var displayMode = Constants.DisplayMode.Entry
     
+    // MARK: - Init Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initDisplay()
         
         setupLocationManager()
         
@@ -54,7 +58,14 @@ class NewMeetingFirstViewController: UIViewController {
         setupDisplayMode()
     }
     
-    // MARK: - Init Methods
+    func initDisplay() {
+        addressStackView.setBackground()
+        streetLabel.text = " Indiquez le point de départ"
+        cityLabel.text = " "
+    
+    }
+    
+    
     
     func setupLocationManager() {
         locationManager.delegate = self
@@ -73,10 +84,7 @@ class NewMeetingFirstViewController: UIViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         // coordinate: Coordinate(latitude: meeting.coordinate.latitude, longitude: meeting.coordinate.longitude),
         if let newMeetingVC = segue.destination as? NewMeetingSecondViewController {
             newMeetingVC.meeting = Meeting(creatorId: meeting.creatorId,
@@ -95,6 +103,8 @@ class NewMeetingFirstViewController: UIViewController {
             //newMeetingVC.displayMode = Constants.DisplayMode.Entry
         }
     }
+    
+    // MARK: - Methods
     
     private func getCoordinate() {
         for annotation in mapView.annotations {
@@ -209,8 +219,8 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
                 if let city = placemark.locality {
                     self.meeting.city += " \(city)"
                 }
-                self.streetLabel.text = self.meeting.street
-                self.cityLabel.text = self.meeting.city
+                self.streetLabel.text = " \(self.meeting.street)"
+                self.cityLabel.text = " \(self.meeting.city)"
                 
                 //self.cityLabel.text = "\(placemark.postalCode) \(placemark.locality)"
             }

@@ -11,6 +11,8 @@ import Foundation
 
 class FirestoreSessionFake: FirestoreProtocol {
     
+    
+    
     private let fakeFirestoreResponse: FakeFirestoreResponse
     
     init(fakeFirestoreResponse: FakeFirestoreResponse) {
@@ -30,16 +32,26 @@ class FirestoreSessionFake: FirestoreProtocol {
         }
     }
     
-    func addDocument(collection: String, data: [String: Any], completion: @escaping (Result<Bool, Error>) -> Void ) {
-        //let querySnapshot = fakeFirestoreResponse.querySnapshot
+    func addDocument(collection: String, data: [String : Any], completion: @escaping (Error?) -> Void) {
         let error = fakeFirestoreResponse.error
-        
+
         if let error = error {
-            completion(.failure(error))
+            completion(error)
         } else {
-            completion(.success(true))
+            completion(nil)
         }
     }
+    
+//    func addDocument(collection: String, data: [String: Any], completion: @escaping (Result<Bool, Error>) -> Void ) {
+//        //let querySnapshot = fakeFirestoreResponse.querySnapshot
+//
+//
+//        if let error = error {
+//            completion(.failure(error))
+//        } else {
+//            completion(.success(true))
+//        }
+//    }
     
     func searchDocuments(collection: String, field: String, text: String, completion: @escaping (FirestoreResult) -> Void ) {
         let querySnapshot = fakeFirestoreResponse.querySnapshot

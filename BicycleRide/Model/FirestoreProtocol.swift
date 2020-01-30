@@ -17,7 +17,7 @@ typealias FirestoreResult = Result<[FirestoreDocumentProtocol], Error>
 
 protocol FirestoreProtocol {
     func loadDocuments(collection: String, completion: @escaping (FirestoreResult) -> Void )
-    func addDocument(collection: String, data: [String: Any], completion: @escaping (Result<Bool, Error>) -> Void )
+    func addDocument(collection: String, data: [String: Any], completion: @escaping (Error?) -> Void)
     func searchDocuments(collection: String, field: String, text: String, completion: @escaping (FirestoreResult) -> Void )
 }
 

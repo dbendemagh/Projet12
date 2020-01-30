@@ -31,7 +31,9 @@ class MeetingsViewController: UIViewController {
         super.viewDidLoad()
         
         initTableView()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         loadMeetings()
     }
     
@@ -39,10 +41,10 @@ class MeetingsViewController: UIViewController {
         tableView.register(UINib(nibName: Constants.Cells.meetingCell, bundle: nil), forCellReuseIdentifier: Constants.Cells.meetingCell)
         tableView.dataSource = self
         tableView.delegate = self
-        
-        //tableView.reloadData()
     }
 
+    // MARK: - Methods
+    
     private func loadMeetings() {
         firestoreService.loadData(collection: Constants.Firestore.meetingCollectionName) { result in
             switch result {
@@ -57,10 +59,7 @@ class MeetingsViewController: UIViewController {
     
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         guard let email = authService.getCurrentUser()?.email  else { return }
         
         if let newMeetingVC = segue.destination as? NewMeetingFirstViewController {
@@ -107,6 +106,8 @@ extension MeetingsViewController: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: - TableView Delegate
 
 extension MeetingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

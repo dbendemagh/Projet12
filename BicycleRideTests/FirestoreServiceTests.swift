@@ -11,17 +11,20 @@ import XCTest
 
 class FirestoreServiceTests: XCTestCase {
     
-    let fakeData: [String: Any] = ["creatorId": "aa",
-                               "name": "Nom",
-                               "description": "text",
-                               "street": "12 rue des Cocotiers",
-                               "city": "Chantilly",
+    let fakeData: [String: Any] = ["creatorId": "bill@gmail.com",
+                               "name": "Bill",
+                               "description": "description",
+                               "street": "12 rue du Connétable",
+                               "city": "60500 Chantilly",
+                               "distance": 30,
                                "latitude": 12,
                                "longitude": 4,
                                "date": "01/01/2020",
                                "time": "12:00",
                                "bikeType": "VTT",
                                "participants": []]
+    
+    let meeting = Meeting(creatorId: "bill@gmail.com", name: "Bill", street: "12 rue du Connétable", city: "60500 Chantilly", date: "15/02/2020", time: "09:00", description: "description", bikeType: "VTT", distance: 30, latitude: 12, longitude: 4, participants: [Participant(name: "Bill", email: "bill@gmail.com")])
     
     var fakeFirestoreDocument = FakeFirestoreDocument(documentID: "azerty", datas: [:])
     
@@ -51,10 +54,10 @@ class FirestoreServiceTests: XCTestCase {
                 return
             }
             
-            XCTAssertEqual(document.name, "Nom")
+            XCTAssertEqual(document.name, "Bill")
             XCTAssertEqual(document.latitude, 12)
             XCTAssertEqual(document.longitude, 4)
-            XCTAssertEqual(document.description, "text")
+            XCTAssertEqual(document.description, "description")
             
             expectation.fulfill()
         }
@@ -83,15 +86,15 @@ class FirestoreServiceTests: XCTestCase {
     }
     
     func testAddDataShouldResultSuccess() {
-        let fakequerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
-        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakequerySnapshot, error: nil)
+        let fakeQuerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
+        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakeQuerySnapshot, error: nil)
         
         let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
         let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.addData(collection: "Meeting", data: fakeData) { (error) in
+        firestoreService.saveData(collection: "Meeting", object: meeting) { (error) in
             guard error == nil else {
                 XCTFail()
                 return
@@ -112,7 +115,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.addData(collection: "Meeting", data: fakeData) { (error) in
+        firestoreService.saveData(collection: "Meeting", object: meeting) { (error) in
             guard let _ = error else {
                 XCTFail()
                 return
@@ -127,13 +130,12 @@ class FirestoreServiceTests: XCTestCase {
     func testSearchDataShouldResultSuccess() {
         let fakequerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
         let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakequerySnapshot, error: nil)
-        
         let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
         let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.searchData(collection: "", field: "", text: "") { (result) in
+        firestoreService.searchData(collection: "Meeting", field: "email", text: "bill@gmail.com") { (result) in
             guard case .success(let documents) = result else {
                 XCTFail()
                 return
@@ -144,7 +146,8 @@ class FirestoreServiceTests: XCTestCase {
                 return
             }
             
-            XCTAssertEqual(document.name, "Nom")
+            XCTAssertEqual(document.name, "Bill")
+            XCTAssertEqual(document.creatorId, "bill@gmail.com")
             
             expectation.fulfill()
         }

@@ -10,20 +10,20 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    // MARK: - Outlets
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    
+    // MARK: - Properties
     
     let authService = AuthService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-    @IBAction func signInButtonPressed(_ sender: UIButton) {
-        logIn()
-    }
+    // MARK: - Methods
     
     private func logIn() {
         guard let email = emailTextField.text, !email.isEmpty else {
@@ -46,4 +46,12 @@ class LoginViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: - Actions
+    
+    @IBAction func signInButtonPressed(_ sender: UIButton) {
+        logIn()
+    }
+    
+    
 }

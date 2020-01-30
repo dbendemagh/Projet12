@@ -9,14 +9,8 @@
 import Foundation
 
 struct UserProfile: Codable {
-    //let id: String
-    let name: String
-    let email: String
-    
-    var dictionary: [String: Any] {
-        return [
-            "name": name,
-            "email": email
-        ]
-    }
+    var name: String?
+    var email: String
+    var bikeType: String?
+    var experience: String?
 }

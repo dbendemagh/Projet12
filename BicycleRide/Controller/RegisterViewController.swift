@@ -10,18 +10,21 @@ import UIKit
 
 class RegisterViewController: UIViewController {
 
+    // MARK: - Outlets
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    // MARK: - Properties
+    
     let authService = AuthService()
     let firestoreService = FirestoreService<UserProfile>()
     
+    // MARK: - Init Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        //print(AuthService.getCurrentUser() ?? "pas de user")
     }
     
 
@@ -34,13 +37,10 @@ class RegisterViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-    @IBAction func signUpButtonPressed(_ sender: Any) {
-        createUser()
-    }
+    
+    // MARK: - Methods
     
     private func createUser() {
-        
         guard let email = emailTextField.text, !email.isEmpty else {
             displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.noEmail)
             return
@@ -73,8 +73,8 @@ class RegisterViewController: UIViewController {
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
-            case .success(_): //let user):
-                let userProfile = UserProfile(name: name, email: email)
+            case .success(_):
+                let userProfile = UserProfile(name: name, email: email, bikeType: "", experience: "")
                 self.saveUserProfile(userProfile: userProfile)
                 
                 self.dismiss(animated: true, completion: nil)
@@ -84,7 +84,7 @@ class RegisterViewController: UIViewController {
     }
     
     private func saveUserProfile(userProfile: UserProfile) {
-        firestoreService.addData(collection: Constants.Firestore.userCollectionName, object: userProfile) { [weak self] (error) in
+        firestoreService.saveData(collection: Constants.Firestore.userCollectionName, object: userProfile) { [weak self] (error) in
             if let error = error {
                 print("Erreur sauvegarde : \(error.localizedDescription)")
                 self?.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
@@ -92,5 +92,11 @@ class RegisterViewController: UIViewController {
                 print("Profil sauvegardé")
             }
         }
+    }
+
+    // MARK: - Actions
+    
+    @IBAction func signUpButtonPressed(_ sender: Any) {
+        createUser()
     }
 }

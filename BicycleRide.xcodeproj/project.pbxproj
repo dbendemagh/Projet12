@@ -28,6 +28,9 @@
 		6578525F23DF371A009B1A4C /* FirestoreSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578525E23DF371A009B1A4C /* FirestoreSessionFake.swift */; };
 		6578526123DF37AE009B1A4C /* FakeFirestoreResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526023DF37AE009B1A4C /* FakeFirestoreResponse.swift */; };
 		6578526323DF3A3E009B1A4C /* FirestoreServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526223DF3A3E009B1A4C /* FirestoreServiceTests.swift */; };
+		6578526523E20D00009B1A4C /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526423E20D00009B1A4C /* UserProfileViewController.swift */; };
+		6578526723E2E33A009B1A4C /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526623E2E33A009B1A4C /* UIStackView.swift */; };
+		6578526A23E31327009B1A4C /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526923E31327009B1A4C /* RoundButton.swift */; };
 		65B2735223A975C100BF04FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735123A975C100BF04FF /* AppDelegate.swift */; };
 		65B2735423A975C100BF04FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735323A975C100BF04FF /* SceneDelegate.swift */; };
 		65B2735623A975C100BF04FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735523A975C100BF04FF /* ViewController.swift */; };
@@ -78,6 +81,9 @@
 		6578525E23DF371A009B1A4C /* FirestoreSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreSessionFake.swift; sourceTree = "<group>"; };
 		6578526023DF37AE009B1A4C /* FakeFirestoreResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeFirestoreResponse.swift; sourceTree = "<group>"; };
 		6578526223DF3A3E009B1A4C /* FirestoreServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreServiceTests.swift; sourceTree = "<group>"; };
+		6578526423E20D00009B1A4C /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		6578526623E2E33A009B1A4C /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
+		6578526923E31327009B1A4C /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		65B2734E23A975C100BF04FF /* BicycleRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BicycleRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B2735123A975C100BF04FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65B2735323A975C100BF04FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -196,6 +202,7 @@
 				65B273CF23BCBCB600BF04FF /* LoginRegister.storyboard */,
 				651EF80623C100EA005FD140 /* MeetingCell.swift */,
 				651EF80723C100EA005FD140 /* MeetingCell.xib */,
+				6578526923E31327009B1A4C /* RoundButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,6 +218,7 @@
 				651EF80E23C4D180005FD140 /* NewMeetingFirstViewController.swift */,
 				651EF81023C5D8D3005FD140 /* NewMeetingSecondViewController.swift */,
 				6578525A23DEE779009B1A4C /* MeetingDetailsViewController.swift */,
+				6578526423E20D00009B1A4C /* UserProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -231,6 +239,7 @@
 			children = (
 				65B273D523BCF3E700BF04FF /* UIViewController.swift */,
 				656FAACD23D659800090C4EC /* Dictionary.swift */,
+				6578526623E2E33A009B1A4C /* UIStackView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -427,10 +436,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				651EF80B23C24B8F005FD140 /* UserProfile.swift in Sources */,
+				6578526523E20D00009B1A4C /* UserProfileViewController.swift in Sources */,
 				65B273D223BCCFC000BF04FF /* LoginViewController.swift in Sources */,
 				6578525523DA121A009B1A4C /* FirestoreSession.swift in Sources */,
 				656FAA8A23CF251F0090C4EC /* AuthSession.swift in Sources */,
 				651EF80823C100EA005FD140 /* MeetingCell.swift in Sources */,
+				6578526A23E31327009B1A4C /* RoundButton.swift in Sources */,
 				651EF85D23CB8F78005FD140 /* MeetingAnnotation.swift in Sources */,
 				651EF80F23C4D180005FD140 /* NewMeetingFirstViewController.swift in Sources */,
 				65B2735623A975C100BF04FF /* ViewController.swift in Sources */,
@@ -447,6 +458,7 @@
 				656FAA8623CF21A20090C4EC /* AuthProtocol.swift in Sources */,
 				651EF80523C0F850005FD140 /* Meeting.swift in Sources */,
 				651EF81123C5D8D3005FD140 /* NewMeetingSecondViewController.swift in Sources */,
+				6578526723E2E33A009B1A4C /* UIStackView.swift in Sources */,
 				65B273CE23BBB86600BF04FF /* TabBarViewController.swift in Sources */,
 				65B2739823AA2DB700BF04FF /* Constants.swift in Sources */,
 			);

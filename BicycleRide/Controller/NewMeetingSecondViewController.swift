@@ -11,6 +11,8 @@ import CodableFirebase
 
 class NewMeetingSecondViewController: UIViewController {
 
+    // MARK: - Outlets
+    
     @IBOutlet weak var meetingNameTextField: UITextField!
     @IBOutlet weak var meetingStreetTextField: UITextField!
     @IBOutlet weak var meetingCityTextField: UITextField!
@@ -18,6 +20,12 @@ class NewMeetingSecondViewController: UIViewController {
     @IBOutlet weak var meetingDatePicker: UIDatePicker!
     @IBOutlet weak var meetingTimeDatePicker: UIDatePicker!
     @IBOutlet weak var meetingBikeTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var meetingDistanceLabel: UILabel!
+    @IBOutlet weak var meetingDistanceStepper: UIStepper!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var saveButton: UIButton!
+    
+    // MARK: - Properties
     
     let firestoreService = FirestoreService<Meeting>()
     
@@ -35,9 +43,13 @@ class NewMeetingSecondViewController: UIViewController {
                                    longitude: 0,
                                    participants:[])
     
+    var distance: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        toggleActivityIndicator(shown: false)
+        
         meetingStreetTextField.text = meeting.street
         meetingCityTextField.text = meeting.city
         meetingDescriptionTextView.text = ""
@@ -52,6 +64,9 @@ class NewMeetingSecondViewController: UIViewController {
 //        }
     }
     
+    func setDisplay() {
+        
+    }
 
     /*
     // MARK: - Navigation
@@ -63,6 +78,27 @@ class NewMeetingSecondViewController: UIViewController {
     }
     */
 
+    // MARK: - Methods
+    
+    // Display Activity indicator
+    private func toggleActivityIndicator(shown: Bool) {
+        saveButton.isHidden = shown
+        activityIndicator.isHidden = !shown
+    }
+    
+    @IBAction func meetingDistanceStepperTapped(_ sender: UIStepper) {
+        distance = Int(sender.value)
+        meetingDistanceLabel.text = String("\(distance) km")
+    }
+    
+    
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        meetingNameTextField.resignFirstResponder()
+        meetingStreetTextField.resignFirstResponder()
+        meetingCityTextField.resignFirstResponder()
+        meetingDescriptionTextView.resignFirstResponder()
+    }
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         meeting.name = meetingNameTextField.text ?? ""
         meeting.street = meetingStreetTextField.text ?? ""
@@ -80,6 +116,10 @@ class NewMeetingSecondViewController: UIViewController {
         dateFormatter.dateFormat = "HH:mm"
         meeting.time = dateFormatter.string(from: date)
         print(meeting.time)
+        
+        if let textValue = meetingDistanceLabel.text, let value = Int(textValue) {
+            meeting.distance = value
+        }
         
         meeting.bikeType = meetingBikeTypeSegmentedControl.selectedSegmentIndex == 0 ? Constants.Bike.road : Constants.Bike.vtt
         //meeting.participants = ["az@er.com", "bill@yahoo.fr"]
@@ -108,13 +148,16 @@ class NewMeetingSecondViewController: UIViewController {
 //        } catch {
 //            print(error)
 //        }
+        toggleActivityIndicator(shown: true)
         
-        firestoreService.addData(collection: Constants.Firestore.meetingCollectionName, object: meeting) { [weak self] (error) in
+        firestoreService.saveData(collection: Constants.Firestore.meetingCollectionName, object: meeting) { [weak self] (error) in
+            self?.toggleActivityIndicator(shown: false)
             if let error = error {
                 print("Erreur sauvegarde : \(error.localizedDescription)")
                 self?.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
             } else {
                 print("Meeting sauvegardé")
+                self?.navigationController?.popToRootViewController(animated: true)
             }
         }
     }

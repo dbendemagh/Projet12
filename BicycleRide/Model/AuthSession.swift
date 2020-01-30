@@ -29,7 +29,7 @@ class AuthSession: AuthProtocol {
         }
     }
     
-    func createUser(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void ) {
+    func createUser(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void) {
         auth.createUser(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
                 completion(.failure(error))
@@ -37,6 +37,20 @@ class AuthSession: AuthProtocol {
             
             if let user = authDataResult?.user {
                 completion(.success(user))
+            }
+        }
+    }
+    
+    func updateCurrentUser(userProfile: UserProfile, completion: @escaping (Error?) -> Void) {
+        let user = auth.currentUser
+        if let userChange = user?.createProfileChangeRequest() {
+            userChange.displayName = userProfile.name
+            userChange.commitChanges { (error) in
+                //if let _ = error {
+                    completion(error)
+                //} else {
+                //    completion(true)
+                //}
             }
         }
     }

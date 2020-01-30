@@ -9,7 +9,6 @@
 import Foundation
 
 struct Meeting: Codable {
-    //var id: String?
     var creatorId: String
     var name: String
     var street: String
@@ -22,33 +21,9 @@ struct Meeting: Codable {
     var latitude: Double
     var longitude: Double
     var participants: [Participant]
-    
-//    var dictionary: [String: Any] {
-//        return [
-//            "creatorId": creatorId,
-//            "name": name,
-//            "street": street,
-//            "city": city,
-//            "date": date,
-//            "time": time,
-//            "description": description,
-//            "bikeType": bikeType,
-//            "distance": distance,
-//            "latitude": latitude,
-//            "longitude": longitude,
-//            //"participants": participants
-//        ]
-//    }
 }
 
 struct Participant: Codable {
     var name: String
     var email: String
-    
-//    var dictionary: [String: Any] {
-//        return [
-//            "name": name,
-//            "email": email
-//        ]
-//    }
 }

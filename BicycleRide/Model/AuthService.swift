@@ -25,22 +25,7 @@ public class AuthService {
         }
     }
     
-//    func addUserConnectionListener0(completion: @escaping (Result<Bool, Error>) -> Void) {
-//        authSession.addUserConnectionListener { (result) in
-//            switch result {
-//            case .failure(let error):
-//                completion(.failure(error))
-//            case .success(let user):
-//                if let _ = user {
-//                    // Utilisateur connecté
-//                    completion(.success(true))
-//                } else {
-//                    // Utilisateur non connecté
-//                    completion(.success(false))
-//                }
-//            }
-//        }
-//    }
+
     
     func addUserConnectionListener(completion: @escaping (Bool) -> Void) {
         authSession.addUserConnectionListener { (connected) in
@@ -54,7 +39,7 @@ public class AuthService {
         }
     }
     
-    func createUser(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void) {
+    func createUser(email: String, password: String, completion: @escaping (AuthResult) -> Void) {
         authSession.createUser(email: email, password: password) { (result) in
             switch result {
             case .failure(let error):
@@ -62,6 +47,16 @@ public class AuthService {
             case .success(let user):
                 completion(.success(user))
             }
+        }
+    }
+    
+    func updateCurrentUser(userProfile: UserProfile, completion: @escaping (Error?) -> Void) {
+        authSession.updateCurrentUser(userProfile: userProfile) { (error) in
+            //if error != nil {
+                //completion(nil)
+            //} else {
+                completion(error)
+            //}
         }
     }
     

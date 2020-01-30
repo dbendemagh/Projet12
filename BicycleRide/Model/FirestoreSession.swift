@@ -25,10 +25,13 @@ class FirestoreSession: FirestoreProtocol {
     }
     
     /// Create or modify Firestore Document
-    func addDocument(collection: String, data: [String: Any], completion: @escaping (Result<Bool, Error>) -> Void ) {
+    //func addDocument(collection: String, data: [String: Any], completion: @escaping (Result<Bool, Error>) -> Void ) {
+    func addDocument(collection: String, data: [String: Any], completion: @escaping (Error?) -> Void ) {
         db.collection(collection).addDocument(data: data) { (error) in
             if let error = error {
-                completion(.failure(error))
+                completion(error)
+            } else {
+                completion(nil)
             }
         }
     }
