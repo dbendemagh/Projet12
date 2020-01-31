@@ -9,6 +9,7 @@
 import Foundation
 
 struct Meeting: Codable {
+    var id: String
     var creatorId: String
     var name: String
     var street: String

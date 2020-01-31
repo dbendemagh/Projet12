@@ -25,13 +25,25 @@ class UserProfileViewController: UIViewController {
     let authService = AuthService()
     let firestoreService = FirestoreService<UserProfile>()
     
+    var pickerDistances:[String] = ["5-10 km", "10-15 km ", "15-20 km", "20-25 km", "25-30 km", "30-35 km", "35-40 km", "40-45 km", "45-50 km"]
+    
+    // MARK: - Init Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         toggleActivityIndicator(shown: false)
         
         initUserProfile()
+        //initScreen()
     }
+    
+//    func initScreen() {
+//        if let experience = currentUserProfile.experience,
+//            let row = pickerDistances.firstIndex(of: experience) {
+//            userExperiencePickerView.selectRow(row, inComponent: 0, animated: true)
+//        }
+//    }
     
     func initUserProfile() {
         let user = authService.getCurrentUser()
@@ -44,7 +56,10 @@ class UserProfileViewController: UIViewController {
         if let email = user?.email {
             currentUserProfile.email = email
             
+            toggleActivityIndicator(shown: true)
+            
             firestoreService.searchData(collection: Constants.Firestore.userCollectionName, field: "email", text: email) { (result) in
+                self.toggleActivityIndicator(shown: false)
                 switch result {
                 case .failure(_):
                     self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
@@ -60,6 +75,17 @@ class UserProfileViewController: UIViewController {
 
     func displayUserProfile() {
         userNameTextField.text = currentUserProfile.name ?? ""
+        
+        if let experience = currentUserProfile.experience,
+            let row = pickerDistances.firstIndex(of: experience) {
+            userExperiencePickerView.selectRow(row, inComponent: 0, animated: true)
+        }
+        
+        if currentUserProfile.bikeType == "Route" {
+            userBikeTypeSegmentedControl.selectedSegmentIndex = 0
+        } else {
+            userBikeTypeSegmentedControl.selectedSegmentIndex = 1
+        }
     }
     
     /*
@@ -86,9 +112,15 @@ class UserProfileViewController: UIViewController {
         
         currentUserProfile.name = name
         
+        if userBikeTypeSegmentedControl.selectedSegmentIndex == 0 {
+            currentUserProfile.bikeType = Constants.Bike.road
+        } else {
+            currentUserProfile.bikeType = Constants.Bike.vtt
+        }
+        
         toggleActivityIndicator(shown: true)
         
-        firestoreService.saveData(collection: Constants.Firestore.userCollectionName, object: currentUserProfile) { (error) in
+        firestoreService.modifyData(id: currentUserProfile.email, collection: Constants.Firestore.userCollectionName, object: currentUserProfile) { (error) in
             if let _ = error {
                 self.toggleActivityIndicator(shown: false)
                 self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
@@ -97,6 +129,8 @@ class UserProfileViewController: UIViewController {
                     self.toggleActivityIndicator(shown: false)
                     if error != nil {
                         self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                    } else {
+                        self.displayAlert(title: "", message: Constants.Alert.profileSaved)
                     }
                 }
             }
@@ -105,5 +139,23 @@ class UserProfileViewController: UIViewController {
     
     @IBAction func dismissKeyboard(_ sender: Any) {
         userNameTextField.resignFirstResponder()
+    }
+}
+
+extension UserProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerDistances.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerDistances[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        currentUserProfile.experience = pickerDistances[pickerView.selectedRow(inComponent: 0)]
     }
 }

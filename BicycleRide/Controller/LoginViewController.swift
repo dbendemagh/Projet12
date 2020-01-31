@@ -37,12 +37,11 @@ class LoginViewController: UIViewController {
         }
         
         authService.signIn(email: email, password: password) { (result) in
-            self.dismiss(animated: true, completion: nil)
             switch result {
             case .failure(_):
-                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                self.displayAlert(title: "Erreur", message: Constants.Alert.loginError)
             case .success(_):
-                break
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }

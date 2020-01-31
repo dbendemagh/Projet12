@@ -24,7 +24,7 @@ class FirestoreServiceTests: XCTestCase {
                                "bikeType": "VTT",
                                "participants": []]
     
-    let meeting = Meeting(creatorId: "bill@gmail.com", name: "Bill", street: "12 rue du Connétable", city: "60500 Chantilly", date: "15/02/2020", time: "09:00", description: "description", bikeType: "VTT", distance: 30, latitude: 12, longitude: 4, participants: [Participant(name: "Bill", email: "bill@gmail.com")])
+    let meeting = Meeting(id: "bill@gmail.com", creatorId: "bill@gmail.com", name: "Bill", street: "12 rue du Connétable", city: "60500 Chantilly", date: "15/02/2020", time: "09:00", description: "description", bikeType: "VTT", distance: 30, latitude: 12, longitude: 4, participants: [Participant(name: "Bill", email: "bill@gmail.com")])
     
     var fakeFirestoreDocument = FakeFirestoreDocument(documentID: "azerty", datas: [:])
     

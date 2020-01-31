@@ -27,9 +27,11 @@ class NewMeetingSecondViewController: UIViewController {
     
     // MARK: - Properties
     
+    let authService = AuthService()
     let firestoreService = FirestoreService<Meeting>()
     
-    var meeting: Meeting = Meeting(creatorId: "",
+    var meeting: Meeting = Meeting(id: "",
+                                   creatorId: "",
                                    name: "",
                                    street: "",
                                    city: "",
@@ -83,7 +85,6 @@ class NewMeetingSecondViewController: UIViewController {
         meetingDistanceLabel.text = String("\(distance) km")
     }
     
-    
     @IBAction func dismissKeyboard(_ sender: Any) {
         meetingNameTextField.resignFirstResponder()
         meetingStreetTextField.resignFirstResponder()
@@ -95,6 +96,11 @@ class NewMeetingSecondViewController: UIViewController {
         meeting.name = meetingNameTextField.text ?? ""
         meeting.street = meetingStreetTextField.text ?? ""
         meeting.city = meetingCityTextField.text ?? ""
+        meeting.description = meetingDescriptionTextView.text ?? ""
+        meeting.distance = distance
+        
+        let timeStamp = meetingDatePicker.date.timeIntervalSince1970
+        meeting.id = "\(meeting.name)\(timeStamp)"
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.short
@@ -102,19 +108,20 @@ class NewMeetingSecondViewController: UIViewController {
         dateFormatter.dateFormat = "dd/MM/yy"
         meeting.date = dateFormatter.string(from: meetingDatePicker.date)
         
-        print(meeting.date)
-        
         let date = meetingTimeDatePicker.date
         dateFormatter.dateFormat = "HH:mm"
         meeting.time = dateFormatter.string(from: date)
-        print(meeting.time)
         
-        if let textValue = meetingDistanceLabel.text, let value = Int(textValue) {
-            meeting.distance = value
-        }
+        //if let textValue = meetingDistanceLabel.text, let value = Int(textValue) {
+        //    meeting.distance = value
+        //}
         
         meeting.bikeType = meetingBikeTypeSegmentedControl.selectedSegmentIndex == 0 ? Constants.Bike.road : Constants.Bike.vtt
-        meeting.participants = [Participant(name: "Bill", email: "bill@free.fr"), Participant(name: "Joe", email: "joe@yahoo.fr")]
+        
+        if let user = authService.getCurrentUser(),
+            let name = user.displayName, let email = user.email {
+            meeting.participants = [Participant(name: name, email: email)] // [Participant(name: "Bill", email: "bill@free.fr"), Participant(name: "Joe", email: "joe@yahoo.fr")]
+        }
         
         saveMeeting(meeting: meeting)
         
@@ -123,7 +130,7 @@ class NewMeetingSecondViewController: UIViewController {
     private func saveMeeting(meeting: Meeting) {
         toggleActivityIndicator(shown: true)
         
-        firestoreService.saveData(collection: Constants.Firestore.meetingCollectionName, object: meeting) { [weak self] (error) in
+        firestoreService.modifyData(id: meeting.id, collection: Constants.Firestore.meetingCollectionName, object: meeting) { [weak self] (error) in
             self?.toggleActivityIndicator(shown: false)
             if let error = error {
                 print("Erreur sauvegarde : \(error.localizedDescription)")

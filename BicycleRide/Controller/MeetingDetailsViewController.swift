@@ -18,17 +18,18 @@ class MeetingDetailsViewController: UIViewController {
     @IBOutlet weak var meetingDateTimeLabel: UILabel!
     @IBOutlet weak var meetingStreetLabel: UILabel!
     @IBOutlet weak var meetingCityLabel: UILabel!
-    @IBOutlet weak var meetingDescriptionLabel: UILabel!
+    @IBOutlet weak var meetingDescriptionTextField: UITextView!
     @IBOutlet weak var meetingDistanceLabel: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var meetingParticipantsStackView: UIStackView!
     @IBOutlet weak var participateButton: UIButton!
     @IBOutlet weak var participateLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var stackViewLabel: UILabel!
     
     // MARK: - Properties
     
-    var meeting = Meeting(creatorId: "", name: "", street: "", city: "", date: "", time: "", description: "", bikeType: "", distance: 0, latitude: 0, longitude: 0, participants: [])
+    var meeting = Meeting(id: "", creatorId: "", name: "", street: "", city: "", date: "", time: "", description: "", bikeType: "", distance: 0, latitude: 0, longitude: 0, participants: [])
     
     let authService = AuthService()
     let firestoreService = FirestoreService<Meeting>()
@@ -49,10 +50,11 @@ class MeetingDetailsViewController: UIViewController {
         meetingStreetLabel.text = meeting.street
         meetingCityLabel.text = meeting.city
         meetingDateTimeLabel.text = ("\(meeting.date) \(meeting.time)")
-        meetingDescriptionLabel.text = meeting.description
-        meetingDescriptionLabel.layer.borderWidth = 1
-        meetingDescriptionLabel.layer.cornerRadius = 5
+        meetingDescriptionTextField.text = meeting.description
+        meetingDescriptionTextField.layer.borderWidth = 1
+        meetingDescriptionTextField.layer.cornerRadius = 5
         meetingDistanceLabel.text = "Distance : \(meeting.distance) km"
+        stackViewLabel.isHidden = true
         
         displayParticipants()
         setMeetingPosition()
@@ -74,8 +76,8 @@ class MeetingDetailsViewController: UIViewController {
         let coordinate = CLLocationCoordinate2D(latitude: meeting.latitude, longitude: meeting.longitude)
         let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
         mapView.setRegion(coordinateRegion, animated: true)
-            
-        let annotation = MeetingAnnotation(title: "Point de départ", coordinate: coordinate, bikeType: "")
+        
+        let annotation = MeetingAnnotation(title: "Point de départ", coordinate: coordinate)
         mapView.addAnnotation(annotation)
     }
     
@@ -83,15 +85,20 @@ class MeetingDetailsViewController: UIViewController {
         let user = authService.getCurrentUser()
         
         for participant in meeting.participants {
-            let label = UILabel()
-            label.text = participant.name
-            meetingParticipantsStackView.addArrangedSubview(label)
+            
+            addParticipant(name: participant.name)
             
             if participant.name == user?.displayName {
                 participateButton.isHidden = true
                 participateLabel.isHidden = false
             }
         }
+    }
+    
+    func addParticipant(name: String) {
+        let label = UILabel()
+        label.text = name
+        meetingParticipantsStackView.addArrangedSubview(label)
     }
     
     // Display Activity indicator
@@ -107,10 +114,14 @@ class MeetingDetailsViewController: UIViewController {
             
             toggleActivityIndicator(shown: true)
             
-            firestoreService.saveData(collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
+            firestoreService.modifyData(id: meeting.id, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
                 self.toggleActivityIndicator(shown: false)
                 if let _ = error {
                     self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                } else {
+                    self.addParticipant(name: name)
+                    self.participateButton.isHidden = true
+                    self.participateLabel.isHidden = false
                 }
             }
         }

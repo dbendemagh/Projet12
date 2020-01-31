@@ -50,6 +50,10 @@
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRH-u2-MmG">
                                         <rect key="frame" x="0.0" y="216.5" width="374" height="216"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="WXL-4g-P67" id="EsC-Cj-52q"/>
+                                            <outlet property="delegate" destination="WXL-4g-P67" id="mzu-Sq-ud9"/>
+                                        </connections>
                                     </pickerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnV-wo-wVH" customClass="RoundButton" customModule="BicycleRide" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="450.5" width="374" height="50"/>
@@ -161,13 +165,12 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Yuu-bX-9ib">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" translatesAutoresizingMaskIntoConstraints="NO" id="Yuu-bX-9ib">
                                                 <rect key="frame" x="0.0" y="295" width="374" height="170"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="170" id="5ty-Fa-lLC"/>
                                                 </constraints>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -287,7 +290,7 @@
             </objects>
             <point key="canvasLocation" x="3971.0144927536235" y="722.54464285714278"/>
         </scene>
-        <!--Meetings View Controller-->
+        <!--Parcours-->
         <scene sceneID="uvi-k3-HtP">
             <objects>
                 <viewController id="E6i-rz-cf6" customClass="MeetingsViewController" customModule="BicycleRide" customModuleProvider="target" sceneMemberID="viewController">
@@ -309,14 +312,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YhP-Tu-Zw1"/>
                     </view>
-                    <navigationItem key="navigationItem" id="8gx-IB-3iB">
+                    <navigationItem key="navigationItem" title="Parcours" id="8gx-IB-3iB">
                         <rightBarButtonItems>
-                            <barButtonItem title="Log Out" id="jgl-TD-Xxs">
+                            <barButtonItem image="Logout" id="jgl-TD-Xxs">
                                 <connections>
                                     <action selector="logOutButtonItemPressed:" destination="E6i-rz-cf6" id="7dM-bB-Xet"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="+" id="l39-xJ-xQL">
+                            <barButtonItem image="Plus" id="l39-xJ-xQL">
                                 <connections>
                                     <action selector="addMeetingButtonItemPressed:" destination="E6i-rz-cf6" id="WJm-FU-9dG"/>
                                     <segue destination="Rs6-p7-6pg" kind="show" identifier="meetingMapView" id="BKD-eb-q1U"/>
@@ -351,7 +354,7 @@
             </objects>
             <point key="canvasLocation" x="-519" y="723"/>
         </scene>
-        <!--New Meeting First View Controller-->
+        <!--Point de départ-->
         <scene sceneID="SeW-8e-YrM">
             <objects>
                 <viewController id="Rs6-p7-6pg" customClass="NewMeetingFirstViewController" customModule="BicycleRide" customModuleProvider="target" sceneMemberID="viewController">
@@ -424,7 +427,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Snr-O2-xVi"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9Zt-hv-cax"/>
+                    <navigationItem key="navigationItem" title="Point de départ" id="9Zt-hv-cax"/>
                     <connections>
                         <outlet property="addressStackView" destination="0c8-HX-E3H" id="Nih-X3-Uqs"/>
                         <outlet property="cityLabel" destination="NgB-M6-bCR" id="N9q-kM-Zc2"/>
@@ -493,15 +496,17 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHM-LW-bYC">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ln1-ag-van">
                                                 <rect key="frame" x="0.0" y="391.5" width="374" height="200"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="icl-wR-v2D"/>
+                                                    <constraint firstAttribute="height" constant="200" id="MOM-NM-qan"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXN-Nx-LJ2">
                                                 <rect key="frame" x="0.0" y="601.5" width="374" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -578,13 +583,14 @@
                         <outlet property="mapView" destination="GbG-1w-Z1j" id="9Ui-L3-Wey"/>
                         <outlet property="meetingCityLabel" destination="74j-KI-OxC" id="kmL-hJ-usM"/>
                         <outlet property="meetingDateTimeLabel" destination="1Fo-aa-d44" id="NYG-Dn-2U1"/>
-                        <outlet property="meetingDescriptionLabel" destination="YHM-LW-bYC" id="1Ee-dN-f7Z"/>
+                        <outlet property="meetingDescriptionTextField" destination="Ln1-ag-van" id="Eom-18-zpX"/>
                         <outlet property="meetingDistanceLabel" destination="CXN-Nx-LJ2" id="voM-Ju-eqU"/>
                         <outlet property="meetingNameLabel" destination="MTc-GZ-Yan" id="sc0-Ut-FfI"/>
                         <outlet property="meetingParticipantsStackView" destination="nxO-98-TAc" id="tPu-4m-nxW"/>
                         <outlet property="meetingStreetLabel" destination="h6m-z0-cdC" id="LlZ-wO-ekF"/>
                         <outlet property="participateButton" destination="rrB-Ms-8l7" id="H2G-H4-FJc"/>
                         <outlet property="participateLabel" destination="rC8-Vg-xEt" id="iuq-wh-Oqb"/>
+                        <outlet property="stackViewLabel" destination="SJE-YT-H1N" id="nEa-vk-qdE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9k-Wc-k5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -613,6 +619,8 @@
     </scenes>
     <resources>
         <image name="Center" width="103" height="101"/>
+        <image name="Logout" width="16" height="16"/>
+        <image name="Plus" width="16" height="16"/>
         <image name="Riding-bicycle" width="32" height="32"/>
         <image name="User" width="32" height="32"/>
     </resources>

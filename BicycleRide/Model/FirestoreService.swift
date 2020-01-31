@@ -30,15 +30,24 @@ public class FirestoreService<T: Codable> {
                 //for document in documents {
                 //    print(document)
                 //}
+                
                 completion(.success(documents))
             }
         }
     }
     
-    func saveData(collection: String, object: T, completion: @escaping (Error?) -> Void) {
+//    func saveData(collection: String, object: T, completion: @escaping (Error?) -> Void) {
+//        let data = encode(object: object)
+//        
+//        firestoreSession.addDocument(collection: collection, data: data) { error in
+//            completion(error)
+//        }
+//    }
+    
+    func modifyData(id: String, collection: String, object: T, completion: @escaping (Error?) -> Void) {
         let data = encode(object: object)
         
-        firestoreSession.addDocument(collection: collection, data: data) { error in
+        firestoreSession.modifyDocument(id: id, collection: collection, data: data) { error in
             completion(error)
         }
     }

@@ -24,7 +24,8 @@ class NewMeetingFirstViewController: UIViewController {
     let locationManager = CLLocationManager()
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(addAnnotation(sender:)))
     
-    var meeting: Meeting = Meeting(creatorId: "",
+    var meeting: Meeting = Meeting(id: "",
+                                   creatorId: "",
                                    name: "",
                                    street: "",
                                    city: "",
@@ -76,7 +77,8 @@ class NewMeetingFirstViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let newMeetingVC = segue.destination as? NewMeetingSecondViewController {
-            newMeetingVC.meeting = Meeting(creatorId: meeting.creatorId,
+            newMeetingVC.meeting = Meeting(id: "",
+                                           creatorId: meeting.creatorId,
                                            name: meeting.name,
                                            street: meeting.street,
                                            city: meeting.city,
@@ -138,10 +140,10 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
         
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.Annotation.meetingAnnotation)
-            annotationView?.canShowCallout = true
+            annotationView?.canShowCallout = false //true
             
-            let btn = UIButton(type: .detailDisclosure)
-            annotationView?.rightCalloutAccessoryView = btn
+            //let btn = UIButton(type: .detailDisclosure)
+            //annotationView?.rightCalloutAccessoryView = btn
         } else {
             annotationView?.annotation = annotation
         }
@@ -149,11 +151,11 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
         return annotationView
     }
     
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        guard let meetingAnnotation = view.annotation as? MeetingAnnotation else { return }
-        
-        displayAlert(title: "Annotation", message: meetingAnnotation.title!)
-    }
+//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+//        guard let meetingAnnotation = view.annotation as? MeetingAnnotation else { return }
+//
+//        displayAlert(title: "Annotation", message: meetingAnnotation.title!)
+//    }
     
     func centerMapOnUserLocation() {
         locationManager.requestLocation()
@@ -169,8 +171,7 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         meeting.longitude = Double(touchCoordinate.longitude)
         meeting.latitude = Double(touchCoordinate.latitude)
-        
-        let annotation = MeetingAnnotation(title: "Point de départ", coordinate: touchCoordinate, bikeType: "")
+        let annotation = MeetingAnnotation(title: "Point de départ", coordinate: touchCoordinate)
         mapView.addAnnotation(annotation)
         
         let coordinate = CLLocation(latitude: touchCoordinate.latitude, longitude: touchCoordinate.longitude)
@@ -184,7 +185,6 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
             guard let self = self else { return }
             
             if let _ = error {
-                // Erreur
                 return
             }
             
@@ -202,11 +202,7 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
                 }
                 self.streetLabel.text = " \(self.meeting.street)"
                 self.cityLabel.text = " \(self.meeting.city)"
-                
-                //self.cityLabel.text = "\(placemark.postalCode) \(placemark.locality)"
             }
-            
-            print("\(String(describing: placemark.subThoroughfare)) \(String(describing: placemark.locality)) \(String(describing: placemark.subAdministrativeArea)) \(String(describing: placemark.subLocality)) \(String(describing: placemark.thoroughfare))")
         }
     }
     
@@ -223,8 +219,6 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
 
 extension NewMeetingFirstViewController: UIGestureRecognizerDelegate {
     func setupTapGesture() {
-        print("setup tapGesture")
-        //let doubleTap = UITapGestureRecognizer(target: self, action: #selector(addAnnotation(sender:)))
         tapGesture.numberOfTouchesRequired = 1
         tapGesture.delegate = self
         mapView.addGestureRecognizer(tapGesture)

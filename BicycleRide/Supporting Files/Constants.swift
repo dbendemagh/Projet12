@@ -29,6 +29,8 @@ struct Constants {
         static let noEmail = "Entrez votre adresse mail"
         static let noPassword = "Entrez un mot de passe"
         static let databaseError = "Une erreur est survenue pendant la sauvegarde des données"
+        static let loginError = "Login/Mot de passe incorrect"
+        static let profileSaved = "Le profil a été sauvegardé."
     }
     
     struct Firestore {

@@ -33,10 +33,12 @@ class AuthSession: AuthProtocol {
         auth.createUser(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
                 completion(.failure(error))
+                return
             }
             
             if let user = authDataResult?.user {
                 completion(.success(user))
+                return
             }
         }
     }
@@ -59,10 +61,12 @@ class AuthSession: AuthProtocol {
         auth.signIn(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
                 completion(.failure(error))
+                return
             }
             
             if let user = authDataResult?.user {
                 completion(.success(user))
+                return
             }
         }
     }
