@@ -53,5 +53,9 @@ class LoginViewController: UIViewController {
         logIn()
     }
     
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
     
 }

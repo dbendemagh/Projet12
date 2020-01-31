@@ -72,29 +72,11 @@ class MeetingDetailsViewController: UIViewController {
     
     func setMeetingPosition() {
         let coordinate = CLLocationCoordinate2D(latitude: meeting.latitude, longitude: meeting.longitude)
-        //let coordinate = CLLocation(latitude: meeting.latitude, longitude: meeting.longitude)
-        //Coordinate(latitude: meeting.latitude, longitude: meeting.longitude)
-        //locationManager.requestLocation()
-        //guard let coordinate = locationManager.location?.coordinate else { return }
         let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
         mapView.setRegion(coordinateRegion, animated: true)
-        
-            //print("add annotation")
-            //removeAnnotations()
-            
-            //let touchPoint = sender.location(in: mapView)
-            //let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-            //meeting.longitude = Double(touchCoordinate.longitude)
-            //meeting.latitude = Double(touchCoordinate.latitude)
             
         let annotation = MeetingAnnotation(title: "Point de départ", coordinate: coordinate, bikeType: "")
         mapView.addAnnotation(annotation)
-            
-            //let coordinateRegion = MKCoordinateRegion(center: touchCoordinate, latitudinalMeters: Constants.Annotation.regionRadius, longitudinalMeters: Constants.Annotation.regionRadius)
-            //mapView.setRegion(coordinateRegion, animated: true)
-            
-            //doubleTap.isEnabled = false
-        
     }
     
     func displayParticipants() {

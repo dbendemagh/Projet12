@@ -99,4 +99,10 @@ class RegisterViewController: UIViewController {
     @IBAction func signUpButtonPressed(_ sender: Any) {
         createUser()
     }
+    
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        nameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
 }

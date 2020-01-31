@@ -14,6 +14,7 @@ class MeetingCell: UITableViewCell {
     @IBOutlet weak var meetingDate: UILabel!
     @IBOutlet weak var meetingTime: UILabel!
     @IBOutlet weak var meetingImage: UIImageView!
+    @IBOutlet weak var meetingCity: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,5 +31,11 @@ class MeetingCell: UITableViewCell {
         meetingName.text = meeting.name
         meetingDate.text = meeting.date
         meetingTime.text = meeting.time
+        meetingCity.text = meeting.city
+        if meeting.bikeType == "Route" {
+            meetingImage.image = UIImage(named: "BicycleRoad")
+        } else {
+            meetingImage.image = UIImage(named: "BicycleVTT")
+        }
     }
 }

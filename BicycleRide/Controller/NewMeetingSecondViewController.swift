@@ -29,7 +29,6 @@ class NewMeetingSecondViewController: UIViewController {
     
     let firestoreService = FirestoreService<Meeting>()
     
-    // coordinate: Coordinate(latitude: "", longitude: ""),
     var meeting: Meeting = Meeting(creatorId: "",
                                    name: "",
                                    street: "",
@@ -55,13 +54,6 @@ class NewMeetingSecondViewController: UIViewController {
         meetingDescriptionTextView.text = ""
         meetingDescriptionTextView.layer.borderWidth = 1
         meetingDescriptionTextView.layer.cornerRadius = 5
-        
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateStyle = DateFormatter.Style.short
-//        dateFormatter.timeStyle = DateFormatter.Style.short
-//        if let testDate = dateFormatter.date(from: "10/05/20, 7:15 PM") {
-//            meetingDatePicker.date = testDate
-//        }
     }
     
     func setDisplay() {
@@ -122,32 +114,13 @@ class NewMeetingSecondViewController: UIViewController {
         }
         
         meeting.bikeType = meetingBikeTypeSegmentedControl.selectedSegmentIndex == 0 ? Constants.Bike.road : Constants.Bike.vtt
-        //meeting.participants = ["az@er.com", "bill@yahoo.fr"]
         meeting.participants = [Participant(name: "Bill", email: "bill@free.fr"), Participant(name: "Joe", email: "joe@yahoo.fr")]
         
-        //let test = meeting.dictionary
-        //print(test)
-        //let test = meeting.participants.map($0.dictionary)
-        
-        //let part: Participant = meeting.participants
-        
-        //meeting.participants["participants"] = p
-        //print(meeting.dictionary)
         saveMeeting(meeting: meeting)
         
     }
     
-    private func saveMeeting(meeting: Meeting) { //  meetingData: [String: Any]) {
-        print(meeting)
-        //print(meeting1.dictionary)
-        
-//        do {
-//            let meetingData: [String: Any] = try FirebaseEncoder().encode(meeting) as! [String : Any]
-//            print(meetingData)
-//            //saveMeeting(meetingData: meetingData)
-//        } catch {
-//            print(error)
-//        }
+    private func saveMeeting(meeting: Meeting) {
         toggleActivityIndicator(shown: true)
         
         firestoreService.saveData(collection: Constants.Firestore.meetingCollectionName, object: meeting) { [weak self] (error) in

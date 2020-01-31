@@ -48,12 +48,6 @@ class NewMeetingFirstViewController: UIViewController {
         
         setupLocationManager()
         
-        //let meeting = Meeting(id: "", creatorId: "", name: "", coordinate: CLLocationCoordinate2D(latitude: 48.8567, longitude: 2.3508), date: "", time: "", description: "")
-        
-        //let meetingAnnotation = MeetingAnnotation(title: "Ici", coordinate: CLLocationCoordinate2D(latitude: 48.8567, longitude: 2.3508), bikeType: "VTT")
-        
-        //mapView.addAnnotation(meetingAnnotation)
-        
         setupTapGesture()
         setupDisplayMode()
     }
@@ -74,18 +68,13 @@ class NewMeetingFirstViewController: UIViewController {
     }
     
     func setupDisplayMode() {
-        //if displayMode == .Entry {
         nextButton.isHidden = !(displayMode == .Entry)
-        //} else {
-        //    nextButton.isHidden = true
-        //}
     }
     
     
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // coordinate: Coordinate(latitude: meeting.coordinate.latitude, longitude: meeting.coordinate.longitude),
         if let newMeetingVC = segue.destination as? NewMeetingSecondViewController {
             newMeetingVC.meeting = Meeting(creatorId: meeting.creatorId,
                                            name: meeting.name,
@@ -99,8 +88,6 @@ class NewMeetingFirstViewController: UIViewController {
                                            latitude: meeting.latitude,
                                            longitude: meeting.longitude,
                                            participants: meeting.participants)
-            
-            //newMeetingVC.displayMode = Constants.DisplayMode.Entry
         }
     }
     
@@ -176,7 +163,6 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
     }
     
     @objc func addAnnotation(sender: UITapGestureRecognizer) {
-        print("add annotation")
         removeAnnotations()
         
         let touchPoint = sender.location(in: mapView)
@@ -189,11 +175,6 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
         
         let coordinate = CLLocation(latitude: touchCoordinate.latitude, longitude: touchCoordinate.longitude)
         reverseGeo(location: coordinate)
-        
-        //let coordinateRegion = MKCoordinateRegion(center: touchCoordinate, latitudinalMeters: Constants.Annotation.regionRadius, longitudinalMeters: Constants.Annotation.regionRadius)
-        //mapView.setRegion(coordinateRegion, animated: true)
-        
-        //doubleTap.isEnabled = false
     }
     
     private func reverseGeo(location: CLLocation) {
