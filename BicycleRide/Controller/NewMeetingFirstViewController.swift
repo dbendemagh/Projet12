@@ -57,10 +57,7 @@ class NewMeetingFirstViewController: UIViewController {
         addressStackView.setBackground()
         streetLabel.text = " Indiquez le point de départ"
         cityLabel.text = " "
-    
     }
-    
-    
     
     func setupLocationManager() {
         locationManager.delegate = self
@@ -140,22 +137,13 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
         
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.Annotation.meetingAnnotation)
-            annotationView?.canShowCallout = false //true
-            
-            //let btn = UIButton(type: .detailDisclosure)
-            //annotationView?.rightCalloutAccessoryView = btn
+            annotationView?.canShowCallout = false
         } else {
             annotationView?.annotation = annotation
         }
         
         return annotationView
     }
-    
-//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-//        guard let meetingAnnotation = view.annotation as? MeetingAnnotation else { return }
-//
-//        displayAlert(title: "Annotation", message: meetingAnnotation.title!)
-//    }
     
     func centerMapOnUserLocation() {
         locationManager.requestLocation()
@@ -178,6 +166,7 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
         reverseGeo(location: coordinate)
     }
     
+    // Find Address from Geo location
     private func reverseGeo(location: CLLocation) {
         let geoCoder = CLGeocoder()
         
@@ -191,6 +180,7 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
             guard let placemark = placemarks?.first else {
                 return
             }
+            
             DispatchQueue.main.async {
                 self.meeting.street = placemark.name!
                 self.meeting.city = ""

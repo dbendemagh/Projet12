@@ -49,7 +49,7 @@ class FirestoreServiceTests: XCTestCase {
                 return
             }
 
-            guard let document = documents.first else {
+            guard let document = documents.first?.data else {
                 XCTFail()
                 return
             }
@@ -94,14 +94,15 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.saveData(collection: "Meeting", object: meeting) { (error) in
-            guard error == nil else {
-                XCTFail()
-                return
-            }
-            
-            expectation.fulfill()
-        }
+        // a refaire
+//        firestoreService.saveData(collection: "Meeting", object: meeting) { (error) in
+//            guard error == nil else {
+//                XCTFail()
+//                return
+//            }
+//
+//            expectation.fulfill()
+//        }
         
         wait(for: [expectation], timeout: 0.01)
     }
@@ -115,14 +116,15 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.saveData(collection: "Meeting", object: meeting) { (error) in
-            guard let _ = error else {
-                XCTFail()
-                return
-            }
-            
-            expectation.fulfill()
-        }
+        // a refaire
+//        firestoreService.saveData(collection: "Meeting", object: meeting) { (error) in
+//            guard let _ = error else {
+//                XCTFail()
+//                return
+//            }
+//
+//            expectation.fulfill()
+//        }
         
         wait(for: [expectation], timeout: 0.01)
     }

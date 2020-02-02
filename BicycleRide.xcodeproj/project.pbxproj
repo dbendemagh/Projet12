@@ -31,9 +31,9 @@
 		6578526523E20D00009B1A4C /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526423E20D00009B1A4C /* UserProfileViewController.swift */; };
 		6578526723E2E33A009B1A4C /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526623E2E33A009B1A4C /* UIStackView.swift */; };
 		6578526A23E31327009B1A4C /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526923E31327009B1A4C /* RoundButton.swift */; };
+		6578526C23E5E868009B1A4C /* AppDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526B23E5E867009B1A4C /* AppDocument.swift */; };
 		65B2735223A975C100BF04FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735123A975C100BF04FF /* AppDelegate.swift */; };
 		65B2735423A975C100BF04FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735323A975C100BF04FF /* SceneDelegate.swift */; };
-		65B2735623A975C100BF04FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735523A975C100BF04FF /* ViewController.swift */; };
 		65B2735923A975C100BF04FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65B2735723A975C100BF04FF /* Main.storyboard */; };
 		65B2735B23A975C300BF04FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65B2735A23A975C300BF04FF /* Assets.xcassets */; };
 		65B2735E23A975C300BF04FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65B2735C23A975C300BF04FF /* LaunchScreen.storyboard */; };
@@ -84,10 +84,10 @@
 		6578526423E20D00009B1A4C /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		6578526623E2E33A009B1A4C /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		6578526923E31327009B1A4C /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		6578526B23E5E867009B1A4C /* AppDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDocument.swift; sourceTree = "<group>"; };
 		65B2734E23A975C100BF04FF /* BicycleRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BicycleRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B2735123A975C100BF04FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65B2735323A975C100BF04FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		65B2735523A975C100BF04FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		65B2735823A975C100BF04FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65B2735A23A975C300BF04FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65B2735D23A975C300BF04FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -130,6 +130,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6578526D23E5E98F009B1A4C /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				656FAA8523CF21A20090C4EC /* AuthProtocol.swift */,
+				656FAA8923CF251F0090C4EC /* AuthSession.swift */,
+				65B273CB23BBAFDC00BF04FF /* AuthService.swift */,
+				656FAA8723CF21B90090C4EC /* FirestoreProtocol.swift */,
+				6578525423DA121A009B1A4C /* FirestoreSession.swift */,
+				651EF80C23C24E7D005FD140 /* FirestoreService.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		65B2734523A975C100BF04FF = {
 			isa = PBXGroup;
 			children = (
@@ -181,15 +194,11 @@
 		65B2739323AA2CCF00BF04FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				656FAA8523CF21A20090C4EC /* AuthProtocol.swift */,
-				656FAA8923CF251F0090C4EC /* AuthSession.swift */,
-				65B273CB23BBAFDC00BF04FF /* AuthService.swift */,
+				6578526D23E5E98F009B1A4C /* Firebase */,
 				651EF80423C0F850005FD140 /* Meeting.swift */,
-				651EF85C23CB8F78005FD140 /* MeetingAnnotation.swift */,
 				651EF80A23C24B8F005FD140 /* UserProfile.swift */,
-				656FAA8723CF21B90090C4EC /* FirestoreProtocol.swift */,
-				6578525423DA121A009B1A4C /* FirestoreSession.swift */,
-				651EF80C23C24E7D005FD140 /* FirestoreService.swift */,
+				6578526B23E5E867009B1A4C /* AppDocument.swift */,
+				651EF85C23CB8F78005FD140 /* MeetingAnnotation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -210,7 +219,6 @@
 		65B2739523AA2CEC00BF04FF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				65B2735523A975C100BF04FF /* ViewController.swift */,
 				65B273CD23BBB86600BF04FF /* TabBarViewController.swift */,
 				65B273D123BCCFC000BF04FF /* LoginViewController.swift */,
 				65B273D323BCCFE100BF04FF /* RegisterViewController.swift */,
@@ -437,6 +445,7 @@
 			files = (
 				651EF80B23C24B8F005FD140 /* UserProfile.swift in Sources */,
 				6578526523E20D00009B1A4C /* UserProfileViewController.swift in Sources */,
+				6578526C23E5E868009B1A4C /* AppDocument.swift in Sources */,
 				65B273D223BCCFC000BF04FF /* LoginViewController.swift in Sources */,
 				6578525523DA121A009B1A4C /* FirestoreSession.swift in Sources */,
 				656FAA8A23CF251F0090C4EC /* AuthSession.swift in Sources */,
@@ -444,7 +453,6 @@
 				6578526A23E31327009B1A4C /* RoundButton.swift in Sources */,
 				651EF85D23CB8F78005FD140 /* MeetingAnnotation.swift in Sources */,
 				651EF80F23C4D180005FD140 /* NewMeetingFirstViewController.swift in Sources */,
-				65B2735623A975C100BF04FF /* ViewController.swift in Sources */,
 				65B273D623BCF3E700BF04FF /* UIViewController.swift in Sources */,
 				65B2735223A975C100BF04FF /* AppDelegate.swift in Sources */,
 				65B273D823BE704300BF04FF /* MeetingsViewController.swift in Sources */,

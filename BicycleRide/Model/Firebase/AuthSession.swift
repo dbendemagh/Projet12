@@ -18,7 +18,7 @@ class AuthSession: AuthProtocol {
     var currentUser: AuthUserProtocol? {
         return auth.currentUser
     }
-        
+    
     func addUserConnectionListener(completion: @escaping (Bool) -> Void) {
         _ = auth.addStateDidChangeListener { (auth, user) in
             if let _ = user {

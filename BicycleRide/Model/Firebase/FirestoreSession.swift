@@ -24,9 +24,8 @@ class FirestoreSession: FirestoreProtocol {
         }
     }
     
-    /// Create or modify Firestore Document
-    //func addDocument(collection: String, data: [String: Any], completion: @escaping (Result<Bool, Error>) -> Void ) {
-    func addDocument0(collection: String, data: [String: Any], completion: @escaping (Error?) -> Void ) {
+    // Create new  document
+    func addDocument(collection: String, data: [String: Any], completion: @escaping (Error?) -> Void ) {
         db.collection(collection).addDocument(data: data) { (error) in
             if let error = error {
                 completion(error)
@@ -36,6 +35,7 @@ class FirestoreSession: FirestoreProtocol {
         }
     }
     
+    // Create or modify a document with specific Id
     func modifyDocument(id: String, collection: String, data: [String: Any], completion: @escaping (Error?) -> Void ) {
         db.collection(collection).document(id).setData(data) { (error) in
             if let error = error {

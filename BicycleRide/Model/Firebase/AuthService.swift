@@ -25,8 +25,6 @@ public class AuthService {
         }
     }
     
-
-    
     func addUserConnectionListener(completion: @escaping (Bool) -> Void) {
         authSession.addUserConnectionListener { (connected) in
             if connected {
@@ -52,11 +50,7 @@ public class AuthService {
     
     func updateCurrentUser(userProfile: UserProfile, completion: @escaping (Error?) -> Void) {
         authSession.updateCurrentUser(userProfile: userProfile) { (error) in
-            //if error != nil {
-                //completion(nil)
-            //} else {
-                completion(error)
-            //}
+            completion(error)
         }
     }
     

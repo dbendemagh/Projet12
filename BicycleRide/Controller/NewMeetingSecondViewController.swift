@@ -112,25 +112,20 @@ class NewMeetingSecondViewController: UIViewController {
         dateFormatter.dateFormat = "HH:mm"
         meeting.time = dateFormatter.string(from: date)
         
-        //if let textValue = meetingDistanceLabel.text, let value = Int(textValue) {
-        //    meeting.distance = value
-        //}
-        
         meeting.bikeType = meetingBikeTypeSegmentedControl.selectedSegmentIndex == 0 ? Constants.Bike.road : Constants.Bike.vtt
         
         if let user = authService.getCurrentUser(),
             let name = user.displayName, let email = user.email {
-            meeting.participants = [Participant(name: name, email: email)] // [Participant(name: "Bill", email: "bill@free.fr"), Participant(name: "Joe", email: "joe@yahoo.fr")]
+            meeting.participants = [Participant(name: name, email: email)]
         }
         
         saveMeeting(meeting: meeting)
-        
     }
     
     private func saveMeeting(meeting: Meeting) {
         toggleActivityIndicator(shown: true)
         
-        firestoreService.modifyData(id: meeting.id, collection: Constants.Firestore.meetingCollectionName, object: meeting) { [weak self] (error) in
+        firestoreService.saveData(collection: Constants.Firestore.meetingCollectionName, object: meeting) { [weak self] (error) in
             self?.toggleActivityIndicator(shown: false)
             if let error = error {
                 print("Erreur sauvegarde : \(error.localizedDescription)")

@@ -17,32 +17,26 @@ public class FirestoreService<T: Codable> {
         self.firestoreSession = firestoreSession
     }
     
-    func loadData(collection: String, completion: @escaping (Result<[T], Error>) -> Void) {
+    func loadData(collection: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
         firestoreSession.loadDocuments(collection: collection) { result in
             switch result {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let firebaseDocuments):
-//                for document in firebaseDocuments {
-//                    print(document.data())
-//                }
-                let documents: [T] = firebaseDocuments.compactMap( { self.decode(data: $0.data()) }) //$0.data().decoded()                //print(documents)
-                //for document in documents {
-                //    print(document)
-                //}
-                
-                completion(.success(documents))
+                let appDocuments = self.getAppDocuments(firebaseDocuments: firebaseDocuments)
+                                
+                completion(.success(appDocuments))
             }
         }
     }
     
-//    func saveData(collection: String, object: T, completion: @escaping (Error?) -> Void) {
-//        let data = encode(object: object)
-//        
-//        firestoreSession.addDocument(collection: collection, data: data) { error in
-//            completion(error)
-//        }
-//    }
+    func saveData(collection: String, object: T, completion: @escaping (Error?) -> Void) {
+        let data = encode(object: object)
+        
+        firestoreSession.addDocument(collection: collection, data: data) { error in
+            completion(error)
+        }
+    }
     
     func modifyData(id: String, collection: String, object: T, completion: @escaping (Error?) -> Void) {
         let data = encode(object: object)
@@ -52,20 +46,19 @@ public class FirestoreService<T: Codable> {
         }
     }
     
-    func searchData(collection: String, field: String, text: String, completion: @escaping (Result<[T], Error>) -> Void) {
+    func searchData(collection: String, field: String, text: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
         firestoreSession.searchDocuments(collection: collection, field: field, text: text) { (result) in
             switch result {
             case .failure(let error):
                 completion(.failure(error))
             case .success(let firebaseDocuments):
-                let documents: [T] = firebaseDocuments.compactMap( { self.decode(data: $0.data()) }) // $0.data().decoded()
-                print(documents)
-                completion(.success(documents))
+                let appDocuments = self.getAppDocuments(firebaseDocuments: firebaseDocuments)
+                completion(.success(appDocuments))
             }
         }
     }
     
-    func encode(object: T) -> [String: Any] {
+    private func encode(object: T) -> [String: Any] {
         do {
             let dictionaryData: [String: Any] = try FirebaseEncoder().encode(object) as! [String: Any]
             print(dictionaryData)
@@ -77,7 +70,7 @@ public class FirestoreService<T: Codable> {
         return [:]
     }
     
-    func decode(data: [String: Any]) -> T? {
+    private func decode(data: [String: Any]) -> T? {
         do {
             let objectData = try FirebaseDecoder().decode(T.self, from: data) // encode(object) as! [String: Any]
             print(objectData)
@@ -87,6 +80,19 @@ public class FirestoreService<T: Codable> {
         }
         
         return nil
+    }
+    
+    private func getAppDocuments(firebaseDocuments: [FirestoreDocumentProtocol]) -> [AppDocument<T>]{
+        var appDocuments: [AppDocument<T>] = []
+        
+        for firebaseDocument in firebaseDocuments {
+            var appDocument = AppDocument<T>()
+            appDocument.documentId = firebaseDocument.documentID
+            appDocument.data = self.decode(data: firebaseDocument.data())
+            appDocuments.append(appDocument)
+        }
+        
+        return appDocuments
     }
 }
 

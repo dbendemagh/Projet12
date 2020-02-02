@@ -74,7 +74,7 @@ class RegisterViewController: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription)
             case .success(_):
-                let userProfile = UserProfile(name: name, email: email, bikeType: "", experience: "")
+                let userProfile = UserProfile( name: name, email: email, bikeType: "", experience: "")
                 self.saveUserProfile(userProfile: userProfile)
                 
                 self.dismiss(animated: true, completion: nil)

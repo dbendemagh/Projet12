@@ -20,7 +20,7 @@ class MeetingsViewController: UIViewController {
     let authService = AuthService()
     let firestoreService = FirestoreService<Meeting>()
     
-    var meetings: [Meeting] = []
+    var meetings: [AppDocument<Meeting>] = []
     var selectedRow: Int = 0
     
     // MARK: - Init Methods
@@ -64,7 +64,9 @@ class MeetingsViewController: UIViewController {
             newMeetingVC.meeting = Meeting(id: "", creatorId: email, name: "", street: "", city: "", date: "", time: "", description: "", bikeType: "", distance: 0, latitude: 0, longitude: 0, participants: [])
             newMeetingVC.displayMode = Constants.DisplayMode.Entry
         } else if let meetingDetail = segue.destination as? MeetingDetailsViewController {
-            meetingDetail.meeting = meetings[selectedRow]
+            if let meeting = meetings[selectedRow].data {
+                meetingDetail.meeting = meeting
+            }
         }
     }
     
@@ -98,8 +100,9 @@ extension MeetingsViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Cells.meetingCell, for: indexPath) as? MeetingCell else {
             return UITableViewCell()
         }
-        
-        cell.configure(meeting: meetings[indexPath.row])
+        if let meeting = meetings[indexPath.row].data {
+            cell.configure(meeting: meeting)
+        }
 
         return cell
     }
