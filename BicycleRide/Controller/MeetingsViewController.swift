@@ -61,7 +61,7 @@ class MeetingsViewController: UIViewController {
         guard let email = authService.getCurrentUser()?.email  else { return }
         
         if let newMeetingVC = segue.destination as? NewMeetingFirstViewController {
-            newMeetingVC.meeting = Meeting(id: "", creatorId: email, name: "", street: "", city: "", date: "", time: "", description: "", bikeType: "", distance: 0, latitude: 0, longitude: 0, participants: [])
+            newMeetingVC.meeting = Meeting(id: "", creatorId: email, name: "", street: "", city: "", timeStamp: 0, description: "", bikeType: "", distance: 0, latitude: 0, longitude: 0, participants: [])
             newMeetingVC.displayMode = Constants.DisplayMode.Entry
         } else if let meetingDetail = segue.destination as? MeetingDetailsViewController {
             if let meeting = meetings[selectedRow].data {

@@ -14,8 +14,9 @@ struct Meeting: Codable {
     var name: String
     var street: String
     var city: String
-    var date: String
-    var time: String
+    //var date: String
+    //var time: String
+    var timeStamp: Double
     var description: String
     var bikeType: String
     var distance: Int

@@ -29,8 +29,9 @@ class MeetingCell: UITableViewCell {
     
     func configure(meeting: Meeting) {
         meetingName.text = meeting.name
-        meetingDate.text = meeting.date
-        meetingTime.text = meeting.time
+        //let dateTime = meeting.timeStamp.date()
+        meetingDate.text = meeting.timeStamp.date()
+        //meetingTime.text = meeting.time
         meetingCity.text = meeting.city
         if meeting.bikeType == "Route" {
             meetingImage.image = UIImage(named: "BicycleRoad")

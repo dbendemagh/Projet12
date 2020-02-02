@@ -35,8 +35,7 @@ class NewMeetingSecondViewController: UIViewController {
                                    name: "",
                                    street: "",
                                    city: "",
-                                   date: "",
-                                   time: "",
+                                   timeStamp: 0,
                                    description: "",
                                    bikeType: "",
                                    distance: 0,
@@ -99,18 +98,18 @@ class NewMeetingSecondViewController: UIViewController {
         meeting.description = meetingDescriptionTextView.text ?? ""
         meeting.distance = distance
         
-        let timeStamp = meetingDatePicker.date.timeIntervalSince1970
-        meeting.id = "\(meeting.name)\(timeStamp)"
+        meeting.timeStamp = meetingDatePicker.date.timeIntervalSince1970
+        //meeting.id = "\(meeting.name)\(timeStamp)"
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        dateFormatter.timeStyle = DateFormatter.Style.short
-        dateFormatter.dateFormat = "dd/MM/yy"
-        meeting.date = dateFormatter.string(from: meetingDatePicker.date)
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateStyle = DateFormatter.Style.short
+//        dateFormatter.timeStyle = DateFormatter.Style.short
+//        dateFormatter.dateFormat = "dd/MM/yy"
+        //meeting.date = dateFormatter.string(from: meetingDatePicker.date)
         
-        let date = meetingTimeDatePicker.date
-        dateFormatter.dateFormat = "HH:mm"
-        meeting.time = dateFormatter.string(from: date)
+//        let date = meetingTimeDatePicker.date
+//        dateFormatter.dateFormat = "HH:mm"
+//        meeting.time = dateFormatter.string(from: date)
         
         meeting.bikeType = meetingBikeTypeSegmentedControl.selectedSegmentIndex == 0 ? Constants.Bike.road : Constants.Bike.vtt
         

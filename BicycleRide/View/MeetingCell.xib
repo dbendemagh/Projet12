@@ -23,16 +23,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="leh-A5-txV">
-                        <rect key="frame" x="20" y="36" width="70" height="15.5"/>
+                        <rect key="frame" x="20" y="36" width="200" height="15.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="lY1-DR-5IN"/>
+                            <constraint firstAttribute="width" constant="200" id="lY1-DR-5IN"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d8F-hq-6S4">
-                        <rect key="frame" x="110" y="36" width="50" height="15.5"/>
+                        <rect key="frame" x="230" y="36" width="50" height="15.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="BRt-CQ-BLQ"/>
                         </constraints>
@@ -66,7 +66,7 @@
                     <constraint firstAttribute="trailing" secondItem="nUV-S1-jI8" secondAttribute="trailing" constant="15" id="hg4-a4-UUd"/>
                     <constraint firstItem="GSJ-cs-JTg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="uWM-wn-lFs"/>
                     <constraint firstItem="leh-A5-txV" firstAttribute="top" secondItem="GSJ-cs-JTg" secondAttribute="bottom" constant="8" id="ukE-qX-xyz"/>
-                    <constraint firstItem="d8F-hq-6S4" firstAttribute="leading" secondItem="leh-A5-txV" secondAttribute="trailing" constant="20" id="vyz-lg-wQd"/>
+                    <constraint firstItem="d8F-hq-6S4" firstAttribute="leading" secondItem="leh-A5-txV" secondAttribute="trailing" constant="10" id="vyz-lg-wQd"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

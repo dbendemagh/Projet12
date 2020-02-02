@@ -29,7 +29,7 @@ class MeetingDetailsViewController: UIViewController {
     
     // MARK: - Properties
     
-    var meeting = Meeting(id: "", creatorId: "", name: "", street: "", city: "", date: "", time: "", description: "", bikeType: "", distance: 0, latitude: 0, longitude: 0, participants: [])
+    var meeting = Meeting(id: "", creatorId: "", name: "", street: "", city: "", timeStamp: 0, description: "", bikeType: "", distance: 0, latitude: 0, longitude: 0, participants: [])
     
     let authService = AuthService()
     let firestoreService = FirestoreService<Meeting>()
@@ -49,7 +49,7 @@ class MeetingDetailsViewController: UIViewController {
         meetingNameLabel.text = meeting.name
         meetingStreetLabel.text = meeting.street
         meetingCityLabel.text = meeting.city
-        meetingDateTimeLabel.text = ("\(meeting.date) \(meeting.time)")
+        meetingDateTimeLabel.text =  meeting.timeStamp.date()  //("\(meeting.date) \(meeting.time)")
         meetingDescriptionTextField.text = meeting.description
         meetingDescriptionTextField.layer.borderWidth = 1
         meetingDescriptionTextField.layer.cornerRadius = 5
