@@ -24,8 +24,7 @@ class NewMeetingFirstViewController: UIViewController {
     let locationManager = CLLocationManager()
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(addAnnotation(sender:)))
     
-    var meeting: Meeting = Meeting(id: "",
-                                   creatorId: "",
+    var meeting: Meeting = Meeting(creatorId: "",
                                    name: "",
                                    street: "",
                                    city: "",
@@ -72,8 +71,7 @@ class NewMeetingFirstViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let newMeetingVC = segue.destination as? NewMeetingSecondViewController {
-            newMeetingVC.meeting = Meeting(id: "",
-                                           creatorId: meeting.creatorId,
+            newMeetingVC.meeting = Meeting(creatorId: meeting.creatorId,
                                            name: meeting.name,
                                            street: meeting.street,
                                            city: meeting.city,

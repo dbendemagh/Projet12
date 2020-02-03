@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -37,6 +37,7 @@
 		6578527323E75A47009B1A4C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578527223E75A47009B1A4C /* ChatViewController.swift */; };
 		6578527823E7638D009B1A4C /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578527623E7638D009B1A4C /* MessageCell.swift */; };
 		6578527923E7638D009B1A4C /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6578527723E7638D009B1A4C /* MessageCell.xib */; };
+		6578527C23E85063009B1A4C /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 6578527B23E85063009B1A4C /* IQKeyboardManagerSwift */; };
 		65B2735223A975C100BF04FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735123A975C100BF04FF /* AppDelegate.swift */; };
 		65B2735423A975C100BF04FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2735323A975C100BF04FF /* SceneDelegate.swift */; };
 		65B2735923A975C100BF04FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65B2735723A975C100BF04FF /* Main.storyboard */; };
@@ -126,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3188139FD272384B6DBC4926 /* Pods_BicycleRide.framework in Frameworks */,
+				6578527C23E85063009B1A4C /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,9 +224,9 @@
 				65B273CF23BCBCB600BF04FF /* LoginRegister.storyboard */,
 				651EF80623C100EA005FD140 /* MeetingCell.swift */,
 				651EF80723C100EA005FD140 /* MeetingCell.xib */,
-				6578526923E31327009B1A4C /* RoundButton.swift */,
 				6578527623E7638D009B1A4C /* MessageCell.swift */,
 				6578527723E7638D009B1A4C /* MessageCell.xib */,
+				6578526923E31327009B1A4C /* RoundButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -305,6 +307,9 @@
 			dependencies = (
 			);
 			name = BicycleRide;
+			packageProductDependencies = (
+				6578527B23E85063009B1A4C /* IQKeyboardManagerSwift */,
+			);
 			productName = BicycleRide;
 			productReference = 65B2734E23A975C100BF04FF /* BicycleRide.app */;
 			productType = "com.apple.product-type.application";
@@ -356,6 +361,9 @@
 				Base,
 			);
 			mainGroup = 65B2734523A975C100BF04FF;
+			packageReferences = (
+				6578527A23E85063009B1A4C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = 65B2734F23A975C100BF04FF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -764,6 +772,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6578527A23E85063009B1A4C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6578527B23E85063009B1A4C /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6578527A23E85063009B1A4C /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 65B2734623A975C100BF04FF /* Project object */;
 }

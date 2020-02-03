@@ -29,8 +29,7 @@ class MeetingDetailsViewController: UIViewController {
     
     // MARK: - Properties
     
-    var meeting = Meeting(id: "",
-                          creatorId: "",
+    var meeting = Meeting(creatorId: "",
                           name: "",
                           street: "",
                           city: "",
@@ -41,6 +40,8 @@ class MeetingDetailsViewController: UIViewController {
                           latitude: 0,
                           longitude: 0,
                           participants: [])
+    
+    var meetingDocument = AppDocument<Meeting>()
     
     let authService = AuthService()
     let firestoreService = FirestoreService<Meeting>()
@@ -74,7 +75,7 @@ class MeetingDetailsViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let chatVC = segue.destination as? ChatViewController {
-            chatVC.meetingId = meeting.id
+            chatVC.meetingId = meetingDocument.documentId
         }
     }
     
@@ -123,7 +124,7 @@ class MeetingDetailsViewController: UIViewController {
             
             toggleActivityIndicator(shown: true)
             
-            firestoreService.modifyData(id: meeting.id, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
+            firestoreService.modifyData(id: meetingDocument.documentId, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
                 self.toggleActivityIndicator(shown: false)
                 if let _ = error {
                     self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)

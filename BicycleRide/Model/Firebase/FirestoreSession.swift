@@ -16,7 +16,7 @@ class FirestoreSession: FirestoreProtocol {
     
     func addSnapshotListener(collection: String, field: String, text: String, completion: @escaping (FirestoreResult) -> Void ) {
         db.collection(collection)
-            .whereField("meetingId", isEqualTo: text)
+            .whereField(field, isEqualTo: text)
             .order(by: "timeStamp")
             .addSnapshotListener { (querySnapshot, error) in
             if let error = error {

@@ -30,8 +30,7 @@ class NewMeetingSecondViewController: UIViewController {
     let authService = AuthService()
     let firestoreService = FirestoreService<Meeting>()
     
-    var meeting: Meeting = Meeting(id: "",
-                                   creatorId: "",
+    var meeting: Meeting = Meeting(creatorId: "",
                                    name: "",
                                    street: "",
                                    city: "",
