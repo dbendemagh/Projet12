@@ -14,8 +14,11 @@ extension QueryDocumentSnapshot : FirestoreDocumentProtocol {}
 class FirestoreSession: FirestoreProtocol {
     let db = Firestore.firestore()
     
-    func addSnapshotListener(collection: String, completion: @escaping (FirestoreResult) -> Void ) {
-        db.collection(collection).order(by: "timeStamp").addSnapshotListener { (querySnapshot, error) in
+    func addSnapshotListener(collection: String, field: String, text: String, completion: @escaping (FirestoreResult) -> Void ) {
+        db.collection(collection)
+            .whereField("meetingId", isEqualTo: text)
+            .order(by: "timeStamp")
+            .addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else {

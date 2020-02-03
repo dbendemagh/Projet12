@@ -74,7 +74,6 @@ class MeetingsViewController: UIViewController {
 
     @IBAction func addMeetingButtonItemPressed(_ sender: UIBarButtonItem) {
         
-        
     }
     
     @IBAction func logOutButtonItemPressed(_ sender: UIBarButtonItem) {

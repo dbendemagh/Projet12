@@ -52,22 +52,21 @@ class NewMeetingFirstViewController: UIViewController {
         setupDisplayMode()
     }
     
-    func initDisplay() {
+    private func initDisplay() {
         addressStackView.setBackground()
         streetLabel.text = " Indiquez le point de départ"
         cityLabel.text = " "
     }
     
-    func setupLocationManager() {
+    private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
     }
     
-    func setupDisplayMode() {
+    private func setupDisplayMode() {
         nextButton.isHidden = !(displayMode == .Entry)
     }
-    
     
     // MARK: - Navigation
 
@@ -143,7 +142,7 @@ extension NewMeetingFirstViewController: MKMapViewDelegate {
         return annotationView
     }
     
-    func centerMapOnUserLocation() {
+    private func centerMapOnUserLocation() {
         locationManager.requestLocation()
         guard let coordinate = locationManager.location?.coordinate else { return }
         let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: Constants.Annotation.regionRadius, longitudinalMeters: Constants.Annotation.regionRadius)
@@ -211,5 +210,4 @@ extension NewMeetingFirstViewController: UIGestureRecognizerDelegate {
         tapGesture.delegate = self
         mapView.addGestureRecognizer(tapGesture)
     }
-    
 }

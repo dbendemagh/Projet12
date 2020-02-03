@@ -48,11 +48,7 @@ class AuthSession: AuthProtocol {
         if let userChange = user?.createProfileChangeRequest() {
             userChange.displayName = userProfile.name
             userChange.commitChanges { (error) in
-                //if let _ = error {
-                    completion(error)
-                //} else {
-                //    completion(true)
-                //}
+                completion(error)
             }
         }
     }

@@ -20,7 +20,7 @@ struct Constants {
     
     struct Cells {
         static let meetingCell = "MeetingCell"
-        static let chatCell = "ChatCell"
+        static let messageCell = "MessageCell"
     }
     
     struct Alert {
@@ -36,6 +36,7 @@ struct Constants {
     struct Firestore {
         static let userCollectionName = "user"
         static let meetingCollectionName = "meeting"
+        static let messageCollectionName = "message"
     }
     
     struct Annotation {

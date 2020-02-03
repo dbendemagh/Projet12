@@ -17,6 +17,18 @@ public class FirestoreService<T: Codable> {
         self.firestoreSession = firestoreSession
     }
     
+    func addSnapshotListener(collection: String, field: String, text: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
+        firestoreSession.addSnapshotListener(collection: collection, field: field, text: text) { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .success(let firebaseDocuments):
+                let appDocuments = self.getAppDocuments(firebaseDocuments: firebaseDocuments)
+                completion(.success(appDocuments))
+            }
+        }
+    }
+    
     func loadData(collection: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
         firestoreSession.loadDocuments(collection: collection) { result in
             switch result {
@@ -24,7 +36,6 @@ public class FirestoreService<T: Codable> {
                 completion(.failure(error))
             case .success(let firebaseDocuments):
                 let appDocuments = self.getAppDocuments(firebaseDocuments: firebaseDocuments)
-                                
                 completion(.success(appDocuments))
             }
         }
@@ -61,10 +72,9 @@ public class FirestoreService<T: Codable> {
     private func encode(object: T) -> [String: Any] {
         do {
             let dictionaryData: [String: Any] = try FirebaseEncoder().encode(object) as! [String: Any]
-            print(dictionaryData)
             return dictionaryData
         } catch {
-            print(error)
+            print("Erreur codage : \(error)")
         }
         
         return [:]
@@ -72,11 +82,10 @@ public class FirestoreService<T: Codable> {
     
     private func decode(data: [String: Any]) -> T? {
         do {
-            let objectData = try FirebaseDecoder().decode(T.self, from: data) // encode(object) as! [String: Any]
-            print(objectData)
+            let objectData = try FirebaseDecoder().decode(T.self, from: data)
             return objectData
         } catch {
-            print(error)
+            print("Erreur décodage : \(error)")
         }
         
         return nil

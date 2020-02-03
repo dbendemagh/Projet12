@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  UserProfile.swift
 //  BicycleRide
 //
 //  Created by Daniel BENDEMAGH on 05/01/2020.

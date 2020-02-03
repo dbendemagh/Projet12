@@ -50,26 +50,16 @@ class NewMeetingSecondViewController: UIViewController {
 
         toggleActivityIndicator(shown: false)
         
+        initScreen()
+    }
+    
+    private func initScreen() {
         meetingStreetTextField.text = meeting.street
         meetingCityTextField.text = meeting.city
         meetingDescriptionTextView.text = ""
         meetingDescriptionTextView.layer.borderWidth = 1
         meetingDescriptionTextView.layer.cornerRadius = 5
     }
-    
-    func setDisplay() {
-        
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: - Methods
     
@@ -99,17 +89,6 @@ class NewMeetingSecondViewController: UIViewController {
         meeting.distance = distance
         
         meeting.timeStamp = meetingDatePicker.date.timeIntervalSince1970
-        //meeting.id = "\(meeting.name)\(timeStamp)"
-        
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateStyle = DateFormatter.Style.short
-//        dateFormatter.timeStyle = DateFormatter.Style.short
-//        dateFormatter.dateFormat = "dd/MM/yy"
-        //meeting.date = dateFormatter.string(from: meetingDatePicker.date)
-        
-//        let date = meetingTimeDatePicker.date
-//        dateFormatter.dateFormat = "HH:mm"
-//        meeting.time = dateFormatter.string(from: date)
         
         meeting.bikeType = meetingBikeTypeSegmentedControl.selectedSegmentIndex == 0 ? Constants.Bike.road : Constants.Bike.vtt
         

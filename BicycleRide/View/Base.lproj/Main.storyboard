@@ -290,7 +290,7 @@
             </objects>
             <point key="canvasLocation" x="3971.0144927536235" y="722.54464285714278"/>
         </scene>
-        <!--Parcours-->
+        <!--Bicycle Ride-->
         <scene sceneID="uvi-k3-HtP">
             <objects>
                 <viewController id="E6i-rz-cf6" customClass="MeetingsViewController" customModule="BicycleRide" customModuleProvider="target" sceneMemberID="viewController">
@@ -312,7 +312,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YhP-Tu-Zw1"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Parcours" id="8gx-IB-3iB">
+                    <navigationItem key="navigationItem" title="Bicycle Ride" id="8gx-IB-3iB">
                         <rightBarButtonItems>
                             <barButtonItem image="Logout" id="jgl-TD-Xxs">
                                 <connections>
@@ -440,7 +440,7 @@
             </objects>
             <point key="canvasLocation" x="2762.3188405797105" y="722.54464285714278"/>
         </scene>
-        <!--Meeting Details View Controller-->
+        <!--Sortie-->
         <scene sceneID="Wxc-rH-QkE">
             <objects>
                 <viewController id="CRr-Dx-K0W" customClass="MeetingDetailsViewController" customModule="BicycleRide" customModuleProvider="target" sceneMemberID="viewController">
@@ -449,7 +449,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="569-4o-5i2">
-                                <rect key="frame" x="0.0" y="88" width="414" height="789"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="740"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uOn-oY-2Fp">
                                         <rect key="frame" x="20" y="20" width="374" height="830"/>
@@ -576,7 +576,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0aV-Fb-okq"/>
                     </view>
-                    <navigationItem key="navigationItem" id="nIA-3t-rcb"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Sortie" id="nIA-3t-rcb">
+                        <barButtonItem key="rightBarButtonItem" image="Chat" id="rf5-98-0C0">
+                            <connections>
+                                <segue destination="4ea-Wp-Mm1" kind="show" id="HyK-2X-oGm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="414" height="960"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Kaf-M3-WAk" id="8ph-fb-uep"/>
@@ -596,6 +604,75 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9k-Wc-k5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1734.7826086956522" y="1479.9107142857142"/>
+        </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="jEw-7h-JH2">
+            <objects>
+                <viewController id="4ea-Wp-Mm1" customClass="ChatViewController" customModule="BicycleRide" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FKY-1b-pdB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="U6q-Y3-jaA">
+                                <rect key="frame" x="0.0" y="88" width="414" height="546"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xy-oN-2fd">
+                                <rect key="frame" x="0.0" y="664" width="414" height="100"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ecrivez un message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O3R-vd-q9t">
+                                        <rect key="frame" x="20" y="33" width="314" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="LB1-el-VgB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJm-vr-ziO">
+                                        <rect key="frame" x="354" y="30" width="40" height="40"/>
+                                        <color key="backgroundColor" red="0.96470588239999999" green="0.65098039220000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="67I-gB-aab"/>
+                                            <constraint firstAttribute="height" constant="40" id="WhM-B3-iiG"/>
+                                        </constraints>
+                                        <state key="normal" image="Send"/>
+                                        <connections>
+                                            <action selector="sendButtonTapped:" destination="4ea-Wp-Mm1" eventType="touchUpInside" id="mnq-NA-1b5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="O3R-vd-q9t" firstAttribute="top" secondItem="1xy-oN-2fd" secondAttribute="top" constant="33" id="37r-wl-pri"/>
+                                    <constraint firstAttribute="height" constant="100" id="F6l-H3-Via"/>
+                                    <constraint firstAttribute="trailing" secondItem="cJm-vr-ziO" secondAttribute="trailing" constant="20" id="L6o-rA-6jd"/>
+                                    <constraint firstItem="cJm-vr-ziO" firstAttribute="leading" secondItem="O3R-vd-q9t" secondAttribute="trailing" constant="20" id="WAN-wL-Wh7"/>
+                                    <constraint firstAttribute="bottom" secondItem="cJm-vr-ziO" secondAttribute="bottom" constant="30" id="f7y-dj-V9i"/>
+                                    <constraint firstItem="O3R-vd-q9t" firstAttribute="leading" secondItem="1xy-oN-2fd" secondAttribute="leading" constant="20" id="uas-SZ-kcB"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="1xy-oN-2fd" firstAttribute="trailing" secondItem="QSd-DF-qDt" secondAttribute="trailing" id="7k0-ue-9k3"/>
+                            <constraint firstItem="1xy-oN-2fd" firstAttribute="top" secondItem="U6q-Y3-jaA" secondAttribute="bottom" constant="30" id="JRa-SI-yp3"/>
+                            <constraint firstItem="1xy-oN-2fd" firstAttribute="leading" secondItem="QSd-DF-qDt" secondAttribute="leading" id="Wae-Mc-LVB"/>
+                            <constraint firstItem="U6q-Y3-jaA" firstAttribute="top" secondItem="QSd-DF-qDt" secondAttribute="top" id="Z6w-nH-LpF"/>
+                            <constraint firstItem="1xy-oN-2fd" firstAttribute="bottom" secondItem="QSd-DF-qDt" secondAttribute="bottom" id="qbn-NA-qR4"/>
+                            <constraint firstItem="U6q-Y3-jaA" firstAttribute="trailing" secondItem="QSd-DF-qDt" secondAttribute="trailing" id="sgt-na-n1N"/>
+                            <constraint firstItem="U6q-Y3-jaA" firstAttribute="leading" secondItem="QSd-DF-qDt" secondAttribute="leading" id="waw-T8-BIW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QSd-DF-qDt"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="XaV-th-LZi"/>
+                    <connections>
+                        <outlet property="messageTextField" destination="O3R-vd-q9t" id="Mq6-VY-upl"/>
+                        <outlet property="tableView" destination="U6q-Y3-jaA" id="WEo-ap-y8j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Etn-er-xjw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2762.3188405797105" y="1463.8392857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XHF-NN-Oad">
@@ -619,9 +696,11 @@
     </scenes>
     <resources>
         <image name="Center" width="103" height="101"/>
+        <image name="Chat" width="16" height="16"/>
         <image name="Logout" width="16" height="16"/>
         <image name="Plus" width="16" height="16"/>
         <image name="Riding-bicycle" width="32" height="32"/>
+        <image name="Send" width="32" height="32"/>
         <image name="User" width="32" height="32"/>
     </resources>
 </document>

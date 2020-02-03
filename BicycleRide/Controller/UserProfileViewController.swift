@@ -23,7 +23,7 @@ class UserProfileViewController: UIViewController {
     let authService = AuthService()
     let firestoreService = FirestoreService<UserProfile>()
     
-    var userProfile = AppDocument<UserProfile>() //UserProfile(name: "", email: "", bikeType: "", experience: "")
+    var userProfile = AppDocument<UserProfile>()
     var distances:[String] = ["5-10 km", "10-15 km", "15-20 km", "20-25 km", "25-30 km", "30-35 km", "35-40 km", "40-45 km", "45-50 km"]
     var selectedDistance: Int = 0
     
@@ -44,10 +44,9 @@ class UserProfileViewController: UIViewController {
                 initScreen()
             }
         }
-        
     }
     
-    func initScreen() {
+    private func initScreen() {
         userNameTextField.text = ""
         userBikeTypeSegmentedControl.selectedSegmentIndex = 0
         userExperiencePickerView.selectRow(0, inComponent: 0, animated: true)
@@ -66,7 +65,7 @@ class UserProfileViewController: UIViewController {
     
     // MARK: - Methods
     
-    func loadUserProfile(email: String) {
+    private func loadUserProfile(email: String) {
         toggleActivityIndicator(shown: true)
         
         firestoreService.searchData(collection: Constants.Firestore.userCollectionName, field: "email", text: email) { (result) in
@@ -83,7 +82,7 @@ class UserProfileViewController: UIViewController {
         }
     }
     
-    func saveUserProfile() {
+    private func saveUserProfile() {
         guard let name = userNameTextField.text else {
             displayAlert(title: "", message: Constants.Alert.noName)
             return
@@ -116,7 +115,7 @@ class UserProfileViewController: UIViewController {
         }
     }
     
-    func displayUserProfile() {
+    private func displayUserProfile() {
         guard let userProfile = userProfile.data else {
             return
         }

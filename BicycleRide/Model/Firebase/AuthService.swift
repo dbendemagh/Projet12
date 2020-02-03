@@ -28,10 +28,8 @@ public class AuthService {
     func addUserConnectionListener(completion: @escaping (Bool) -> Void) {
         authSession.addUserConnectionListener { (connected) in
             if connected {
-                // Utilisateur connecté
                 completion(true)
             } else {
-                // Utilisateur non connecté
                 completion(false)
             }
         }

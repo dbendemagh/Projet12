@@ -18,20 +18,15 @@ class MeetingCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func configure(meeting: Meeting) {
         meetingName.text = meeting.name
-        //let dateTime = meeting.timeStamp.date()
         meetingDate.text = meeting.timeStamp.date()
-        //meetingTime.text = meeting.time
         meetingCity.text = meeting.city
         if meeting.bikeType == "Route" {
             meetingImage.image = UIImage(named: "BicycleRoad")

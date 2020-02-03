@@ -18,7 +18,6 @@ typealias AuthResult = Result<AuthUserProtocol, Error>
 protocol AuthProtocol {
     var currentUser: AuthUserProtocol? { get }
     
-    //func addUserConnectionListener(completion: @escaping (Result<AuthUserProtocol?, Error>) -> Void)
     func addUserConnectionListener(completion: @escaping (Bool) -> Void)
     func createUser(email: String, password: String, completion: @escaping (AuthResult) -> Void)
     func updateCurrentUser(userProfile: UserProfile,completion: @escaping (Error?) -> Void)
