@@ -39,6 +39,7 @@ public class AuthService {
         authSession.createUser(email: email, password: password) { (result) in
             switch result {
             case .failure(let error):
+                print(error.localizedDescription.formatedError(path: #file, functionName: #function))
                 completion(.failure(error))
             case .success(let user):
                 completion(.success(user))
@@ -56,6 +57,7 @@ public class AuthService {
         authSession.signIn(email: email, password: password) { (result) in
         switch result {
             case .failure(let error):
+                print(error.localizedDescription.formatedError(path: #file, functionName: #function))
                 completion(.failure(error))
             case .success(let user):
                 completion(.success(user))

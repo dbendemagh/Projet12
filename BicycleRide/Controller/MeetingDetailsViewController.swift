@@ -29,18 +29,6 @@ class MeetingDetailsViewController: UIViewController {
     
     // MARK: - Properties
     
-    var meeting = Meeting(creatorId: "",
-                          name: "",
-                          street: "",
-                          city: "",
-                          timeStamp: 0,
-                          description: "",
-                          bikeType: "",
-                          distance: 0,
-                          latitude: 0,
-                          longitude: 0,
-                          participants: [])
-    
     var meetingDocument = AppDocument<Meeting>()
     
     let authService = AuthService()
@@ -57,14 +45,19 @@ class MeetingDetailsViewController: UIViewController {
     private func initScreen() {
         participateButton.isHidden = false
         participateLabel.isHidden = true
-        meetingNameLabel.text = meeting.name
-        meetingStreetLabel.text = meeting.street
-        meetingCityLabel.text = meeting.city
-        meetingDateTimeLabel.text =  meeting.timeStamp.date()
-        meetingDescriptionTextField.text = meeting.description
+        
+        if let data = meetingDocument.data {
+            meetingNameLabel.text = data.name
+            meetingStreetLabel.text = data.street
+            meetingCityLabel.text = data.city
+            meetingDateTimeLabel.text =  data.timeStamp.date()
+            meetingDescriptionTextField.text = data.description
+            
+            meetingDistanceLabel.text = "Distance : \(data.distance) km"
+        }
+        
         meetingDescriptionTextField.layer.borderWidth = 1
         meetingDescriptionTextField.layer.cornerRadius = 5
-        meetingDistanceLabel.text = "Distance : \(meeting.distance) km"
         stackViewLabel.isHidden = true
         
         displayParticipants()
@@ -83,24 +76,28 @@ class MeetingDetailsViewController: UIViewController {
     // MARK: - Methods
     
     private func setMeetingPosition() {
-        let coordinate = CLLocationCoordinate2D(latitude: meeting.latitude, longitude: meeting.longitude)
-        let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
-        mapView.setRegion(coordinateRegion, animated: true)
-        
-        let annotation = MeetingAnnotation(title: "Point de départ", coordinate: coordinate)
-        mapView.addAnnotation(annotation)
+        if let data = meetingDocument.data {
+            let coordinate = CLLocationCoordinate2D(latitude: data.latitude, longitude: data.longitude)
+            let coordinateRegion = MKCoordinateRegion(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
+            mapView.setRegion(coordinateRegion, animated: true)
+            
+            let annotation = MeetingAnnotation(title: "Point de départ", coordinate: coordinate)
+            mapView.addAnnotation(annotation)
+        }
     }
     
     private func displayParticipants() {
         let user = authService.getCurrentUser()
         
-        for participant in meeting.participants {
-            
-            addParticipant(name: participant.name)
-            
-            if participant.name == user?.displayName {
-                participateButton.isHidden = true
-                participateLabel.isHidden = false
+        if let data = meetingDocument.data {
+            for participant in data.participants {
+                
+                addParticipant(name: participant.name)
+                
+                if participant.name == user?.displayName {
+                    participateButton.isHidden = true
+                    participateLabel.isHidden = false
+                }
             }
         }
     }
@@ -119,20 +116,21 @@ class MeetingDetailsViewController: UIViewController {
     
     private func participate() {
         if let user = authService.getCurrentUser(),
-            let name = user.displayName, let email = user.email {
-            meeting.participants.append(Participant(name: name, email: email))
+            let name = user.displayName, let email = user.email,
+            var meeting = meetingDocument.data {
+                meeting.participants.append(Participant(name: name, email: email))
             
-            toggleActivityIndicator(shown: true)
+                toggleActivityIndicator(shown: true)
             
-            firestoreService.modifyData(id: meetingDocument.documentId, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
-                self.toggleActivityIndicator(shown: false)
-                if let _ = error {
-                    self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
-                } else {
-                    self.addParticipant(name: name)
-                    self.participateButton.isHidden = true
-                    self.participateLabel.isHidden = false
-                }
+                firestoreService.modifyData(id: meetingDocument.documentId, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
+                    self.toggleActivityIndicator(shown: false)
+                    if let _ = error {
+                        self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                    } else {
+                        self.addParticipant(name: name)
+                        self.participateButton.isHidden = true
+                        self.participateLabel.isHidden = false
+                    }
             }
         }
     }

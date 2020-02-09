@@ -21,6 +21,7 @@ public class FirestoreService<T: Codable> {
         firestoreSession.addSnapshotListener(collection: collection, field: field, text: text) { result in
             switch result {
             case .failure(let error):
+                print(error.localizedDescription.formatedError(path: #file, functionName: #function))
                 completion(.failure(error))
             case .success(let firebaseDocuments):
                 let appDocuments = self.getAppDocuments(firebaseDocuments: firebaseDocuments)
@@ -33,6 +34,7 @@ public class FirestoreService<T: Codable> {
         firestoreSession.loadDocuments(collection: collection) { result in
             switch result {
             case .failure(let error):
+                print(error.localizedDescription.formatedError(path: #file, functionName: #function))
                 completion(.failure(error))
             case .success(let firebaseDocuments):
                 let appDocuments = self.getAppDocuments(firebaseDocuments: firebaseDocuments)
@@ -61,6 +63,7 @@ public class FirestoreService<T: Codable> {
         firestoreSession.searchDocuments(collection: collection, field: field, text: text) { (result) in
             switch result {
             case .failure(let error):
+                print(error.localizedDescription.formatedError(path: #file, functionName: #function))
                 completion(.failure(error))
             case .success(let firebaseDocuments):
                 let appDocuments = self.getAppDocuments(firebaseDocuments: firebaseDocuments)
@@ -74,7 +77,8 @@ public class FirestoreService<T: Codable> {
             let dictionaryData: [String: Any] = try FirebaseEncoder().encode(object) as! [String: Any]
             return dictionaryData
         } catch {
-            print("Erreur codage : \(error)")
+            print(error.localizedDescription.formatedError(path: #file, functionName: #function))
+            //print("Erreur codage : \(error)")
         }
         
         return [:]
@@ -85,7 +89,8 @@ public class FirestoreService<T: Codable> {
             let objectData = try FirebaseDecoder().decode(T.self, from: data)
             return objectData
         } catch {
-            print("Erreur décodage : \(error)")
+            print(error.localizedDescription.formatedError(path: #file, functionName: #function))
+            //print("Erreur décodage : \(error)")
         }
         
         return nil

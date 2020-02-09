@@ -27,24 +27,24 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tjb-1I-ctK">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.87058823529999996" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="PrQ-HE-Jw4"/>
                                     <constraint firstAttribute="width" constant="50" id="iya-mI-Tie"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xP2-qW-diG">
-                                <rect key="frame" x="60" y="0.0" width="300" height="119.5"/>
+                                <rect key="frame" x="60" y="0.0" width="300" height="136.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBM-eW-yx1">
-                                        <rect key="frame" x="10" y="10" width="280" height="99.5"/>
+                                        <rect key="frame" x="10" y="10" width="280" height="116.5"/>
                                         <string key="text">Message  dgds gdgd gdf g dg  gds gds gd fg dsg dsg dfg sdf gsd g sdg sdg sdg ds gds gsd g dsg sdg dsgdf hfghfgd hfg hfgd hfg h dfh dfh fgh fd hf</string>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.1803921568627451" green="0.3529411764705882" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="vBM-eW-yx1" firstAttribute="leading" secondItem="xP2-qW-diG" secondAttribute="leading" constant="10" id="EgV-0P-CML"/>
                                     <constraint firstItem="vBM-eW-yx1" firstAttribute="top" secondItem="xP2-qW-diG" secondAttribute="top" constant="10" id="QEl-tK-09q"/>
@@ -54,7 +54,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vS-Og-RTa">
                                 <rect key="frame" x="370" y="0.0" width="50" height="50"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.87058823529999996" blue="0.63921568630000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="5cp-vF-mvo"/>
                                     <constraint firstAttribute="width" constant="50" id="q6f-cB-6vy"/>
@@ -62,8 +62,8 @@
                             </view>
                         </subviews>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RA7-ZK-nKF">
-                        <rect key="frame" x="400" y="10" width="20" height="16.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RA7-ZK-nKF">
+                        <rect key="frame" x="342" y="10" width="78" height="16.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>

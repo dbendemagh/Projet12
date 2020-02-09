@@ -38,6 +38,8 @@ class UserProfileViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         if let currentUser = authService.getCurrentUser(),
             let userProfile = userProfile.data {
             if currentUser.email != userProfile.email {
@@ -95,7 +97,7 @@ class UserProfileViewController: UIViewController {
         userProfileData.name = name
         userProfileData.bikeType = userBikeTypeSegmentedControl.selectedSegmentIndex == 0 ? Constants.Bike.road : Constants.Bike.vtt
         userProfileData.experience = distances[selectedDistance]
-            
+        
         toggleActivityIndicator(shown: true)
         
         firestoreService.modifyData(id: userProfile.documentId, collection: Constants.Firestore.userCollectionName, object: userProfileData) { (error) in
@@ -145,6 +147,8 @@ class UserProfileViewController: UIViewController {
         userNameTextField.resignFirstResponder()
     }
 }
+
+// MARK: - UIPickerView Delegate and Datasource
 
 extension UserProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

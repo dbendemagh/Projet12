@@ -29,7 +29,7 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
 
         initTableView()
-        initListener()
+        initSnapshotListener()
         
     }
     
@@ -38,7 +38,7 @@ class ChatViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    private func initListener() {
+    private func initSnapshotListener() {
         firestoreService.addSnapshotListener(collection: Constants.Firestore.messageCollectionName, field: "meetingId", text: meetingId) { (result) in
             switch result {
                 case(.failure(let error)):
@@ -59,7 +59,12 @@ class ChatViewController: UIViewController {
     
     func sendMessage(text: String) {
         if let user = authService.getCurrentUser(), let name = user.displayName, let email = user.email {
-            let message = Message(senderName: name, senderEmail: email, meetingId: meetingId, text: text, timeStamp: Date().timeIntervalSince1970)
+            let message = Message(senderName: name,
+                                  senderEmail: email,
+                                  meetingId: meetingId,
+                                  text: text,
+                                  timeStamp: Date().timeIntervalSince1970)
+            
             firestoreService.saveData(collection: Constants.Firestore.messageCollectionName, object: message) { [weak self] (error) in
                 if let error = error {
                     print("Erreur envoi : \(error.localizedDescription)")
@@ -67,6 +72,7 @@ class ChatViewController: UIViewController {
                 } else {
                     DispatchQueue.main.async {
                         self?.messageTextField.text = ""
+                        self?.messageTextField.resignFirstResponder()
                     }
                 }
             }
@@ -74,7 +80,7 @@ class ChatViewController: UIViewController {
     }
     
     @IBAction func sendButtonTapped(_ sender: UIButton) {
-        if let text = messageTextField.text {
+        if let text = messageTextField.text, !text.isEmpty {
             sendMessage(text: text)
         }
     }
@@ -108,14 +114,18 @@ extension ChatViewController: UITableViewDataSource {
                 // This is a message from the current user
                 cell.leftView.isHidden = false
                 cell.rightView.isHidden = true
-                cell.messageView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+                cell.messageLabel.textColor = UIColor.white
+                //cell.messageView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+                cell.messageView.backgroundColor = #colorLiteral(red: 0.1803921569, green: 0.3529411765, blue: 0.1098039216, alpha: 1)
             } else {
                 // This is a message from another user
                 cell.senderName.text = messageDocument.data?.senderName
                 cell.currentUserName.text = ""
                 cell.leftView.isHidden = true
                 cell.rightView.isHidden = false
-                cell.messageView.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+                cell.messageLabel.textColor = UIColor.black
+                //cell.messageView.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+                cell.messageView.backgroundColor = #colorLiteral(red: 0.9294117647, green: 0.9411764706, blue: 0.7803921569, alpha: 1)
             }
         }
         return cell
