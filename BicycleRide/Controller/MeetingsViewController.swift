@@ -29,12 +29,13 @@ class MeetingsViewController: UIViewController {
         super.viewDidLoad()
         
         initTableView()
+        initSnapshotListener()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadMeetings()
-    }
+    //override func viewWillAppear(_ animated: Bool) {
+    //    super.viewWillAppear(animated)
+        
+    //}
     
     private func initTableView() {
         tableView.register(UINib(nibName: Constants.Cells.meetingCell, bundle: nil), forCellReuseIdentifier: Constants.Cells.meetingCell)
@@ -42,13 +43,29 @@ class MeetingsViewController: UIViewController {
         tableView.delegate = self
     }
 
+    private func initSnapshotListener() {
+        firestoreService.addSnapshotListenerForAllDocuments(collection: Constants.Firestore.meetingCollectionName) { (result) in
+            switch result {
+                case(.failure(let error)):
+                    print("Erreur listener : \(error.localizedDescription)")
+                case(.success(let meetings)):
+                    self.meetings = meetings
+                    self.tableView.reloadData()
+                    if meetings.count > 0 {
+                        let indexPath = IndexPath(row: self.meetings.count - 1, section: 0)
+                        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    }
+            }
+        }
+    }
+    
     // MARK: - Methods
     
     private func loadMeetings() {
-        firestoreService.loadData(collection: Constants.Firestore.meetingCollectionName) { result in
+        firestoreService.loadDocuments(collection: Constants.Firestore.meetingCollectionName) { result in
             switch result {
                 case(.failure(_)):
-                    self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                    self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.getDocumentError)
                 case(.success(let meetings)):
                     self.meetings = meetings
                     self.tableView.reloadData()
@@ -66,7 +83,6 @@ class MeetingsViewController: UIViewController {
             newMeetingVC.displayMode = Constants.DisplayMode.Entry
         } else if let meetingDetail = segue.destination as? MeetingDetailsViewController {
             let meeting = meetings[selectedRow]
-            //meetingDetail.meeting = meeting
             meetingDetail.meetingDocument = meeting
         }
     }
@@ -81,7 +97,7 @@ class MeetingsViewController: UIViewController {
         authService.signOut { (result) in
             switch result {
             case .failure(_):
-                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.logoutError)
             case .success(_):
                 break
             }

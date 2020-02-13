@@ -194,12 +194,9 @@
 		65B2736723A975C300BF04FF /* BicycleRideTests */ = {
 			isa = PBXGroup;
 			children = (
+				65CBA16623F43584003E49EE /* Helpers */,
 				65B2736A23A975C300BF04FF /* Info.plist */,
-				6578525623DDFC70009B1A4C /* AuthSessionFake.swift */,
-				6578525823DDFD85009B1A4C /* FakeAuthResponse.swift */,
 				6578525C23DEE9E3009B1A4C /* AuthServiceTests.swift */,
-				6578526023DF37AE009B1A4C /* FakeFirestoreResponse.swift */,
-				6578525E23DF371A009B1A4C /* FirestoreSessionFake.swift */,
 				6578526223DF3A3E009B1A4C /* FirestoreServiceTests.swift */,
 			);
 			path = BicycleRideTests;
@@ -270,6 +267,17 @@
 				65CBA16423EEED06003E49EE /* String.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		65CBA16623F43584003E49EE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6578525623DDFC70009B1A4C /* AuthSessionFake.swift */,
+				6578525E23DF371A009B1A4C /* FirestoreSessionFake.swift */,
+				6578525823DDFD85009B1A4C /* FakeAuthResponse.swift */,
+				6578526023DF37AE009B1A4C /* FakeFirestoreResponse.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		F1692977B12EE18BD6B96799 /* Pods */ = {

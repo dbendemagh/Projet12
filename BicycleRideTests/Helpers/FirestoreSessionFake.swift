@@ -16,7 +16,20 @@ class FirestoreSessionFake: FirestoreProtocol {
         self.fakeFirestoreResponse = fakeFirestoreResponse
     }
     
-    func addSnapshotListener(collection: String, field: String, text: String, completion: @escaping (FirestoreResult) -> Void) {
+    func addSnapshotListenerForAllDocuments(collection: String, completion: @escaping (FirestoreResult) -> Void) {
+        let querySnapshot = fakeFirestoreResponse.querySnapshot
+        let error = fakeFirestoreResponse.error
+        
+        if let error = error {
+            completion(.failure(error))
+        } else {
+            if let querySnapshot = querySnapshot {
+                completion(.success(querySnapshot.documents))
+            }
+        }
+    }
+    
+    func addSnapshotListenerForSelectedDocuments(collection: String, fieldName: String, text: String, completion: @escaping (FirestoreResult) -> Void) {
         let querySnapshot = fakeFirestoreResponse.querySnapshot
         let error = fakeFirestoreResponse.error
         
@@ -45,32 +58,21 @@ class FirestoreSessionFake: FirestoreProtocol {
     func addDocument(collection: String, data: [String : Any], completion: @escaping (Error?) -> Void) {
         let error = fakeFirestoreResponse.error
 
-        if let error = error {
+        //if let error = error {
             completion(error)
-        } else {
-            completion(nil)
-        }
+        //} else {
+        //    completion(nil)
+        //}
     }
-    
-//    func addDocument(collection: String, data: [String: Any], completion: @escaping (Result<Bool, Error>) -> Void ) {
-//        //let querySnapshot = fakeFirestoreResponse.querySnapshot
-//
-//
-//        if let error = error {
-//            completion(.failure(error))
-//        } else {
-//            completion(.success(true))
-//        }
-//    }
     
     func modifyDocument(id: String, collection: String, data: [String : Any], completion: @escaping (Error?) -> Void) {
         let error = fakeFirestoreResponse.error
 
-        if let error = error {
+        //if let error = error {
             completion(error)
-        } else {
-            completion(nil)
-        }
+        //} else {
+        //    completion(nil)
+        //}
     }
     
     func searchDocuments(collection: String, field: String, text: String, completion: @escaping (FirestoreResult) -> Void ) {

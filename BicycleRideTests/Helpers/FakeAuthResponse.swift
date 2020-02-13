@@ -10,11 +10,11 @@ import Foundation
 @testable import BicycleRide
 
 struct FakeAuthResponse {
-    var authData: FakeAuthData?
+    var authDataResult: FakeAuthDataResult?
     var error: Error?
 }
 
-struct FakeAuthData {
+struct FakeAuthDataResult {
     var user: FakeUser?
 }
 

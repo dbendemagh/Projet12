@@ -17,11 +17,11 @@ class AuthSessionFake: AuthProtocol {
     
     init(fakeAuthResponse: FakeAuthResponse) {
         self.fakeAuthResponse = fakeAuthResponse
-        currentUser = fakeAuthResponse.authData?.user
+        currentUser = fakeAuthResponse.authDataResult?.user
     }
     
     func addUserConnectionListener(completion: @escaping (Bool) -> Void) {
-        let authDataResult = fakeAuthResponse.authData
+        let authDataResult = fakeAuthResponse.authDataResult
         
         if let _ = authDataResult?.user {
             completion(true)
@@ -31,7 +31,7 @@ class AuthSessionFake: AuthProtocol {
     }
     
     func createUser(email: String, password: String, completion: (AuthResult) -> Void) {
-        let authDataResult = fakeAuthResponse.authData
+        let authDataResult = fakeAuthResponse.authDataResult
         let error = fakeAuthResponse.error
         
         if let error = error {
@@ -43,9 +43,6 @@ class AuthSessionFake: AuthProtocol {
         }
     }
     
-//    func updateCurrentUser(userProfile: UserProfile, completion: @escaping (Error?) -> Void) {
-//        
-//    }
     func updateCurrentUser(userProfile: UserProfile, completion: @escaping (Error?) -> Void) {
         let error = fakeAuthResponse.error
         
@@ -53,7 +50,7 @@ class AuthSessionFake: AuthProtocol {
     }
     
     func signIn(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void) {
-        let authDataResult = fakeAuthResponse.authData
+        let authDataResult = fakeAuthResponse.authDataResult
         let error = fakeAuthResponse.error
         
         if let error = error {

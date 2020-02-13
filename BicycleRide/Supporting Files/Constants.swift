@@ -28,15 +28,19 @@ struct Constants {
         static let noName = "Entrez votre nom"
         static let noEmail = "Entrez votre adresse mail"
         static let noPassword = "Entrez un mot de passe"
-        static let databaseError = "Une erreur est survenue pendant la sauvegarde des données"
+        static let getDocumentError = "Une erreur est survenue pendant l'accès aux données."
+        static let saveDocumentError = "Une erreur est survenue pendant la sauvegarde des données"
+        static let emailAlreadyExist = "L'adresse mail existe déjà"
         static let loginError = "Login/Mot de passe incorrect"
         static let profileSaved = "Le profil a été sauvegardé."
+        static let logoutError = "Une erreur est survenue lors de la déconnexion."
     }
     
     struct Firestore {
         static let userCollectionName = "user"
         static let meetingCollectionName = "meeting"
         static let messageCollectionName = "message"
+        static let timeStamp = "timeStamp"
     }
     
     struct Annotation {

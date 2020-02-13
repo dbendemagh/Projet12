@@ -16,7 +16,8 @@ protocol FirestoreDocumentProtocol {
 typealias FirestoreResult = Result<[FirestoreDocumentProtocol], Error>
 
 protocol FirestoreProtocol {
-    func addSnapshotListener(collection: String, field: String, text: String, completion: @escaping (FirestoreResult)-> Void )
+    func addSnapshotListenerForAllDocuments(collection: String, completion: @escaping (FirestoreResult)-> Void )
+    func addSnapshotListenerForSelectedDocuments(collection: String, fieldName: String, text: String, completion: @escaping (FirestoreResult)-> Void)
     func loadDocuments(collection: String, completion: @escaping (FirestoreResult) -> Void )
     func addDocument(collection: String, data: [String: Any], completion: @escaping (Error?) -> Void)
     func modifyDocument(id: String, collection: String, data: [String: Any], completion: @escaping (Error?) -> Void)

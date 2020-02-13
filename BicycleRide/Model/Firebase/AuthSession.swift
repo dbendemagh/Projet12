@@ -29,7 +29,7 @@ class AuthSession: AuthProtocol {
         }
     }
     
-    func createUser(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void) {
+    func createUser(email: String, password: String, completion: @escaping (AuthResult) -> Void) {
         auth.createUser(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
                 completion(.failure(error))
@@ -53,7 +53,7 @@ class AuthSession: AuthProtocol {
         }
     }
     
-    func signIn(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void) {
+    func signIn(email: String, password: String, completion: @escaping (AuthResult) -> Void) {
         auth.signIn(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
                 completion(.failure(error))

@@ -16,13 +16,7 @@ public class AuthService {
     }
     
     func getCurrentUser() -> AuthUserProtocol? {
-        let currentUser = authSession.currentUser
-    
-        if let currentUser = currentUser {
-            return currentUser
-        } else {
-            return nil
-        }
+        return authSession.currentUser
     }
     
     func addUserConnectionListener(completion: @escaping (Bool) -> Void) {

@@ -11,15 +11,15 @@ import XCTest
 
 class FirestoreServiceTests: XCTestCase {
 
-    let fakeEmail = "bill@gmail.com"
-    let fakeName = "Bill"
+    let fakeEmail = "test@gmail.com"
+    let fakeName = "Test"
     let fakeDescription = ""
-    let fakeStreet = "12 rue du Connétable"
-    let fakeCity = "60500 Chantilly"
+    let fakeStreet = "Place de la Gare"
+    let fakeCity = "60500 Vineuil-Saint-Firmin"
     let fakeTimeStamp = 1580687917.557203
     let fakeDistance = 30
-    let fakeLatitude = 48.812067467454426
-    let fakeLongitude = 2.5108430149408605
+    let fakeLatitude = 49.202012
+    let fakeLongitude = 2.490793
     let fakeBikeType = "VTT"
     
     var fakeMeetingData: [String: Any] = [:]
@@ -36,12 +36,14 @@ class FirestoreServiceTests: XCTestCase {
                           longitude: 0,
                           participants: [])
     
+    struct incorrectMeeting {
+        var planet: String
+    }
+    
     let id = "xhyAOHONTRtgWjYpgiun"
     var fakeFirestoreDocument = FakeFirestoreDocument(documentID: "", datas: [:])
     
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        //fakeFirestoreDocument = FakeFirestoreDocument(documentID: "azerty", datas: fakeData)
         fakeMeetingData = ["creatorId": fakeEmail,
                     "name": fakeName,
                     "description": fakeDescription,
@@ -70,26 +72,27 @@ class FirestoreServiceTests: XCTestCase {
         fakeFirestoreDocument.datas = fakeMeetingData
     }
     
-    func testAddSnapshotListenerShouldResultSuccess() {
+    func testAddSnapshotListenerForAllDocuments_NewDocumentsAvailable_ShouldReturnSuccess() {
         let fakequerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
         let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakequerySnapshot, error: nil)
+        
         let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
         let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.addSnapshotListener(collection: Constants.Firestore.messageCollectionName, field: "VTT", text: fakeBikeType) { (result) in
-            guard case .success(let documents) = result else {
+        firestoreService.addSnapshotListenerForAllDocuments(collection: Constants.Firestore.messageCollectionName) { (result) in
+            guard case .success(let appDocuments) = result else {
                 XCTFail()
                 return
             }
 
-            guard let document = documents.first else {
+            guard let appDocument = appDocuments.first else {
                 XCTFail()
                 return
             }
             
-            if let data = document.data {
+            if let data = appDocument.data {
                 XCTAssertEqual(data.name, self.fakeName)
                 XCTAssertEqual(data.creatorId, self.fakeEmail)
                 expectation.fulfill()
@@ -99,7 +102,7 @@ class FirestoreServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testAddSnapshotListenerShouldResultFailure() {
+    func testAddSnapshotListenerForAllDocuments_NetworkErrorOccured_ShouldReturnFailure() {
         let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: nil, error: FakeNetworkResponse.networkError)
         
         let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
@@ -107,7 +110,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.addSnapshotListener(collection: Constants.Firestore.messageCollectionName, field: "VTT", text: fakeBikeType)  { (result) in
+        firestoreService.addSnapshotListenerForAllDocuments(collection: Constants.Firestore.messageCollectionName)  { (result) in
             guard case .failure(_) = result else {
                 XCTFail()
                 return
@@ -119,7 +122,57 @@ class FirestoreServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testLoadDataShouldResultSuccess() {
+    func testAddSnapshotListenerForSelectedDocuments_NewDocumentsAvailable_ShouldReturnSuccess() {
+        let fakequerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
+        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakequerySnapshot, error: nil)
+        
+        let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
+        let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        
+        firestoreService.addSnapshotListenerForSelectedDocuments(collection: Constants.Firestore.messageCollectionName, field: "VTT", text: fakeBikeType) { (result) in
+            guard case .success(let appDocuments) = result else {
+                XCTFail()
+                return
+            }
+
+            guard let appDocument = appDocuments.first else {
+                XCTFail()
+                return
+            }
+            
+            if let data = appDocument.data {
+                XCTAssertEqual(data.name, self.fakeName)
+                XCTAssertEqual(data.creatorId, self.fakeEmail)
+                expectation.fulfill()
+            }
+        }
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testAddSnapshotListenerForSelectedDocuments_ErrorOccured_ShouldReturnFailure() {
+        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: nil, error: FakeNetworkResponse.networkError)
+        
+        let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
+        let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        
+        firestoreService.addSnapshotListenerForSelectedDocuments(collection: Constants.Firestore.messageCollectionName, field: "VTT", text: fakeBikeType)  { (result) in
+            guard case .failure(_) = result else {
+                XCTFail()
+                return
+            }
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testLoadDocuments_ErrorIsNil_ShouldReturnSuccess() {
         let fakeQuerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
         let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakeQuerySnapshot, error: nil)
         
@@ -128,21 +181,21 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.loadData(collection: Constants.Firestore.meetingCollectionName) { (result) in
+        firestoreService.loadDocuments(collection: Constants.Firestore.meetingCollectionName) { (result) in
             
-            guard case .success(let documents) = result else {
+            guard case .success(let appDocuments) = result else {
                 XCTFail()
                 return
             }
 
-            guard let document = documents.first else {
+            guard let appDocument = appDocuments.first else {
                 XCTFail()
                 return
             }
             
-            XCTAssertEqual(document.documentId, "xhyAOHONTRtgWjYpgiun")
+            XCTAssertEqual(appDocument.documentId, "xhyAOHONTRtgWjYpgiun")
             
-            if let data = document.data {
+            if let data = appDocument.data {
                 XCTAssertEqual(data.name, self.fakeName)
                 XCTAssertEqual(data.latitude, self.fakeLatitude)
                 XCTAssertEqual(data.longitude, self.fakeLongitude)
@@ -155,7 +208,7 @@ class FirestoreServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
 
-    func testLoadDataShouldResultFailure() {
+    func testLoadDocuments_ErrorOccured_ShouldReturnFailure() {
         let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: nil, error: FakeNetworkResponse.networkError)
         
         let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
@@ -163,7 +216,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.loadData(collection: Constants.Firestore.meetingCollectionName) { (result) in
+        firestoreService.loadDocuments(collection: Constants.Firestore.meetingCollectionName) { (result) in
             guard case .failure(_) = result else {
                 XCTFail()
                 return
@@ -175,109 +228,142 @@ class FirestoreServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testAddDataShouldResultSuccess() {
-        let fakeQuerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
-        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakeQuerySnapshot, error: nil)
-        
-        let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
-        let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
-        
-        let expectation = XCTestExpectation(description: "Wait for queue change.")
-        
-        firestoreService.saveData(collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
-            guard error == nil else {
-                XCTFail()
-                return
-            }
-
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 0.01)
-    }
-    
-    func testAddDataShouldResultFailure() {
-        let fakequerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
-        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakequerySnapshot, error: FakeNetworkResponse.networkError)
-        
-        let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
-        let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
-        
-        let expectation = XCTestExpectation(description: "Wait for queue change.")
-        
-        firestoreService.saveData(collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
-            guard let _ = error else {
-                XCTFail()
-                return
-            }
-
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 0.01)
-    }
-    
-    func testModifyDataShouldResultSuccess() {
-        let fakeQuerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
-        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakeQuerySnapshot, error: nil)
-        
-        let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
-        let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
-        
-        let expectation = XCTestExpectation(description: "Wait for queue change.")
-        
-        firestoreService.modifyData(id: id, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
-            guard error == nil else {
-                XCTFail()
-                return
-            }
-
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 0.01)
-    }
-    
-    func testModifyDataShouldResultFailure() {
-        let fakequerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
-        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakequerySnapshot, error: FakeNetworkResponse.networkError)
-        
-        let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
-        let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
-        
-        let expectation = XCTestExpectation(description: "Wait for queue change.")
-        
-        firestoreService.modifyData(id: id, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
-            guard let _ = error else {
-                XCTFail()
-                return
-            }
-
-            expectation.fulfill()
-        }
-        
-        wait(for: [expectation], timeout: 0.01)
-    }
-    func testSearchDataShouldResultSuccess() {
-        let fakequerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
+    func testLoadDocuments_DocumentWithIncorrectData_ShouldReturnEmptyObject() {
+        var incorrectFirestoreDocument = fakeFirestoreDocument
+        incorrectFirestoreDocument.datas = [:]
+        let fakequerySnapshot = FakeQuerySnapshot(documents: [incorrectFirestoreDocument])
         let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakequerySnapshot, error: nil)
+        
         let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
         let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.searchData(collection: Constants.Firestore.meetingCollectionName, field: "email", text: fakeEmail) { (result) in
-            guard case .success(let documents) = result else {
-                XCTFail()
-                return
-            }
-
-            guard let document = documents.first else {
+        firestoreService.loadDocuments(collection: Constants.Firestore.messageCollectionName) { (result) in
+            guard case .success(let appDocuments) = result else {
                 XCTFail()
                 return
             }
             
-            if let data = document.data {
+            guard let appDocument = appDocuments.first else {
+                XCTFail()
+                return
+            }
+            
+            if appDocument.data == nil {
+                expectation.fulfill()
+            }
+        }
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testAddDocument_ErrorIsNil_ShouldReturnSuccess() {
+        let fakeQuerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
+        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakeQuerySnapshot, error: nil)
+        
+        let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
+        let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        
+        firestoreService.addDocument(collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
+            guard error == nil else {
+                XCTFail()
+                return
+            }
+
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    
+    func testAddDocument_ErrorOccured_ShouldReturnFailure() {
+        let fakequerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
+        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakequerySnapshot, error: FakeNetworkResponse.networkError)
+        
+        let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
+        let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        
+        firestoreService.addDocument(collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
+            guard let _ = error else {
+                XCTFail()
+                return
+            }
+
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testModifyDocument_ErrorIsNil_ShouldReturnSuccess() {
+        let fakeQuerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
+        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakeQuerySnapshot, error: nil)
+        
+        let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
+        let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        
+        firestoreService.modifyDocument(id: id, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
+            guard error == nil else {
+                XCTFail()
+                return
+            }
+
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testModifyDocument_ErrorOccured_ShouldReturnFailure() {
+        let fakequerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
+        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakequerySnapshot, error: FakeNetworkResponse.networkError)
+        
+        let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
+        let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        
+        firestoreService.modifyDocument(id: id, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
+            guard let _ = error else {
+                XCTFail()
+                return
+            }
+
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testSearchDocument_DocumentFound_ShouldReturnSuccess() {
+        let fakequerySnapshot = FakeQuerySnapshot(documents: [fakeFirestoreDocument])
+        let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: fakequerySnapshot, error: nil)
+        
+        let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
+        let firestoreService = FirestoreService<Meeting>(firestoreSession: firestoreSessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        
+        firestoreService.searchDocuments(collection: Constants.Firestore.meetingCollectionName, field: "email", text: fakeEmail) { (result) in
+            guard case .success(let appDocuments) = result else {
+                XCTFail()
+                return
+            }
+
+            guard let appDocument = appDocuments.first else {
+                XCTFail()
+                return
+            }
+            
+            if let data = appDocument.data {
                 XCTAssertEqual(data.name, self.fakeName)
                 XCTAssertEqual(data.creatorId, self.fakeEmail)
                 expectation.fulfill()
@@ -287,7 +373,7 @@ class FirestoreServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testSearchDataShouldResultFailure() {
+    func testSearchData_ErrorOccured_ShouldResultFailure() {
         let fakeFirestoreResponse = FakeFirestoreResponse(querySnapshot: nil, error: FakeNetworkResponse.networkError)
         
         let firestoreSessionFake = FirestoreSessionFake(fakeFirestoreResponse: fakeFirestoreResponse)
@@ -295,7 +381,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.searchData(collection: "", field: "", text: "")  { (result) in
+        firestoreService.searchDocuments(collection: "", field: "", text: "")  { (result) in
             guard case .failure(_) = result else {
                 XCTFail()
                 return

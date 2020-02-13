@@ -90,7 +90,6 @@ class NewMeetingFirstViewController: UIViewController {
     private func getCoordinate() {
         for annotation in mapView.annotations {
             if annotation is MeetingAnnotation {
-                print("\(annotation.coordinate.latitude) \(annotation.coordinate.longitude)")
                 meeting.latitude = annotation.coordinate.latitude
                 meeting.longitude = annotation.coordinate.longitude
             }

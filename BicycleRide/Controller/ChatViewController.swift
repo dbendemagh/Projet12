@@ -39,10 +39,9 @@ class ChatViewController: UIViewController {
     }
     
     private func initSnapshotListener() {
-        firestoreService.addSnapshotListener(collection: Constants.Firestore.messageCollectionName, field: "meetingId", text: meetingId) { (result) in
+        firestoreService.addSnapshotListenerForSelectedDocuments(collection: Constants.Firestore.messageCollectionName, field: "meetingId", text: meetingId) { (result) in
             switch result {
                 case(.failure(let error)):
-                    //self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
                     print("Erreur listener : \(error.localizedDescription)")
                 case(.success(let messages)):
                     self.messages = messages
@@ -65,10 +64,10 @@ class ChatViewController: UIViewController {
                                   text: text,
                                   timeStamp: Date().timeIntervalSince1970)
             
-            firestoreService.saveData(collection: Constants.Firestore.messageCollectionName, object: message) { [weak self] (error) in
+            firestoreService.addDocument(collection: Constants.Firestore.messageCollectionName, object: message) { [weak self] (error) in
                 if let error = error {
                     print("Erreur envoi : \(error.localizedDescription)")
-                    self?.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                    self?.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)
                 } else {
                     DispatchQueue.main.async {
                         self?.messageTextField.text = ""
@@ -111,14 +110,14 @@ extension ChatViewController: UITableViewDataSource {
             cell.senderName.text = ""
             cell.currentUserName.text = user.displayName
             if messageDocument.data?.senderEmail == user.email {
-                // This is a message from the current user
+                // Message from the current user
                 cell.leftView.isHidden = false
                 cell.rightView.isHidden = true
                 cell.messageLabel.textColor = UIColor.white
                 //cell.messageView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
                 cell.messageView.backgroundColor = #colorLiteral(red: 0.1803921569, green: 0.3529411765, blue: 0.1098039216, alpha: 1)
             } else {
-                // This is a message from another user
+                // Message from another user
                 cell.senderName.text = messageDocument.data?.senderName
                 cell.currentUserName.text = ""
                 cell.leftView.isHidden = true

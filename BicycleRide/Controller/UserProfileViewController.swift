@@ -70,11 +70,11 @@ class UserProfileViewController: UIViewController {
     private func loadUserProfile(email: String) {
         toggleActivityIndicator(shown: true)
         
-        firestoreService.searchData(collection: Constants.Firestore.userCollectionName, field: "email", text: email) { (result) in
+        firestoreService.searchDocuments(collection: Constants.Firestore.userCollectionName, field: "email", text: email) { (result) in
             self.toggleActivityIndicator(shown: false)
             switch result {
             case .failure(_):
-                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.getDocumentError)
             case .success(let userProfiles):
                 if let userProfile = userProfiles.first {
                     self.userProfile = userProfile
@@ -100,15 +100,15 @@ class UserProfileViewController: UIViewController {
         
         toggleActivityIndicator(shown: true)
         
-        firestoreService.modifyData(id: userProfile.documentId, collection: Constants.Firestore.userCollectionName, object: userProfileData) { (error) in
+        firestoreService.modifyDocument(id: userProfile.documentId, collection: Constants.Firestore.userCollectionName, object: userProfileData) { (error) in
             if let _ = error {
                 self.toggleActivityIndicator(shown: false)
-                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)
             } else {
                 self.authService.updateCurrentUser(userProfile: userProfileData) { (error) in
                     self.toggleActivityIndicator(shown: false)
                     if error != nil {
-                        self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                        self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)
                     } else {
                         self.displayAlert(title: "", message: Constants.Alert.profileSaved)
                     }

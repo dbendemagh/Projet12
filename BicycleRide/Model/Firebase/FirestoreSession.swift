@@ -14,10 +14,22 @@ extension QueryDocumentSnapshot : FirestoreDocumentProtocol {}
 class FirestoreSession: FirestoreProtocol {
     let db = Firestore.firestore()
     
-    func addSnapshotListener(collection: String, field: String, text: String, completion: @escaping (FirestoreResult) -> Void ) {
+    func addSnapshotListenerForAllDocuments(collection: String, completion: @escaping (FirestoreResult) -> Void ) {
         db.collection(collection)
-            .whereField(field, isEqualTo: text)
-            .order(by: "timeStamp")
+            .order(by: Constants.Firestore.timeStamp)
+            .addSnapshotListener { (querySnapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(self.getDocuments(querySnapshot: querySnapshot)))
+            }
+        }
+    }
+    
+    func addSnapshotListenerForSelectedDocuments(collection: String, fieldName: String, text: String, completion: @escaping (FirestoreResult) -> Void ) {
+        db.collection(collection)
+            .whereField(fieldName, isEqualTo: text)
+            .order(by: Constants.Firestore.timeStamp)
             .addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 completion(.failure(error))
@@ -40,22 +52,14 @@ class FirestoreSession: FirestoreProtocol {
     // Create new  document
     func addDocument(collection: String, data: [String: Any], completion: @escaping (Error?) -> Void ) {
         db.collection(collection).addDocument(data: data) { (error) in
-            if let error = error {
-                completion(error)
-            } else {
-                completion(nil)
-            }
+            completion(error)
         }
     }
     
-    // Create or modify a document with specific Id
+    // Create or modify a document with specific id
     func modifyDocument(id: String, collection: String, data: [String: Any], completion: @escaping (Error?) -> Void ) {
         db.collection(collection).document(id).setData(data) { (error) in
-            if let error = error {
-                completion(error)
-            } else {
-                completion(nil)
-            }
+            completion(error)
         }
     }
     

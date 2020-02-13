@@ -28,7 +28,7 @@ class MeetingCell: UITableViewCell {
         meetingName.text = meeting.name
         meetingDate.text = meeting.timeStamp.date()
         meetingCity.text = meeting.city
-        if meeting.bikeType == "Route" {
+        if meeting.bikeType == Constants.Bike.road {
             meetingImage.image = UIImage(named: "BicycleRoad")
         } else {
             meetingImage.image = UIImage(named: "BicycleVTT")

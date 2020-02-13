@@ -17,8 +17,9 @@ public class FirestoreService<T: Codable> {
         self.firestoreSession = firestoreSession
     }
     
-    func addSnapshotListener(collection: String, field: String, text: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
-        firestoreSession.addSnapshotListener(collection: collection, field: field, text: text) { result in
+    // Listener to retrieve all documents
+    func addSnapshotListenerForAllDocuments(collection: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
+        firestoreSession.addSnapshotListenerForAllDocuments(collection: collection) { result in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription.formatedError(path: #file, functionName: #function))
@@ -30,7 +31,21 @@ public class FirestoreService<T: Codable> {
         }
     }
     
-    func loadData(collection: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
+    // Listener to retrieve selected documents
+    func addSnapshotListenerForSelectedDocuments(collection: String, field: String, text: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
+        firestoreSession.addSnapshotListenerForSelectedDocuments(collection: collection, fieldName: field, text: text) { result in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription.formatedError(path: #file, functionName: #function))
+                completion(.failure(error))
+            case .success(let firebaseDocuments):
+                let appDocuments = self.getAppDocuments(firebaseDocuments: firebaseDocuments)
+                completion(.success(appDocuments))
+            }
+        }
+    }
+    
+    func loadDocuments(collection: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
         firestoreSession.loadDocuments(collection: collection) { result in
             switch result {
             case .failure(let error):
@@ -43,7 +58,7 @@ public class FirestoreService<T: Codable> {
         }
     }
     
-    func saveData(collection: String, object: T, completion: @escaping (Error?) -> Void) {
+    func addDocument(collection: String, object: T, completion: @escaping (Error?) -> Void) {
         let data = encode(object: object)
         
         firestoreSession.addDocument(collection: collection, data: data) { error in
@@ -51,7 +66,7 @@ public class FirestoreService<T: Codable> {
         }
     }
     
-    func modifyData(id: String, collection: String, object: T, completion: @escaping (Error?) -> Void) {
+    func modifyDocument(id: String, collection: String, object: T, completion: @escaping (Error?) -> Void) {
         let data = encode(object: object)
         
         firestoreSession.modifyDocument(id: id, collection: collection, data: data) { error in
@@ -59,7 +74,7 @@ public class FirestoreService<T: Codable> {
         }
     }
     
-    func searchData(collection: String, field: String, text: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
+    func searchDocuments(collection: String, field: String, text: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
         firestoreSession.searchDocuments(collection: collection, field: field, text: text) { (result) in
             switch result {
             case .failure(let error):
@@ -78,7 +93,6 @@ public class FirestoreService<T: Codable> {
             return dictionaryData
         } catch {
             print(error.localizedDescription.formatedError(path: #file, functionName: #function))
-            //print("Erreur codage : \(error)")
         }
         
         return [:]
@@ -90,7 +104,6 @@ public class FirestoreService<T: Codable> {
             return objectData
         } catch {
             print(error.localizedDescription.formatedError(path: #file, functionName: #function))
-            //print("Erreur décodage : \(error)")
         }
         
         return nil

@@ -11,18 +11,18 @@ import XCTest
 
 class AuthServiceTests: XCTestCase {
     
-    let nameTest = "Bill"
-    let emailTest = "bill@gmail.com"
-    let fakeAuthData =  FakeAuthData(user: FakeUser(displayName: "Bill", email: "bill@gmail.com"))
+    let fakeName = "Test"
+    let fakeEmail = "test@gmail.com"
     
-    let userProfile = UserProfile(name: "", email: "", bikeType: "", experience: "")
+    var fakeAuthDataResult = FakeAuthDataResult(user: FakeUser(displayName: "", email: ""))
     
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        fakeAuthDataResult.user?.displayName = fakeName
+        fakeAuthDataResult.user?.email = fakeEmail
     }
 
-    func testGetCurrentUserShouldReturnUser() {
-        let fakeAuthResponse = FakeAuthResponse(authData: fakeAuthData, error: nil)
+    func testGetCurrentUser_UserIsNotNil_ShouldReturnUser() {
+        let fakeAuthResponse = FakeAuthResponse(authDataResult: fakeAuthDataResult, error: nil)
         let authSessionFake = AuthSessionFake(fakeAuthResponse: fakeAuthResponse)
         let authService = AuthService(authSession: authSessionFake)
         
@@ -33,16 +33,16 @@ class AuthServiceTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual(user.displayName, self.nameTest)
-        XCTAssertEqual(user.email, self.emailTest)
+        XCTAssertEqual(user.displayName, self.fakeName)
+        XCTAssertEqual(user.email, self.fakeEmail)
             
         expectation.fulfill()
         
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testGetCurrentUserShouldReturnNil() {
-        let fakeAuthResponse = FakeAuthResponse(authData: nil, error: nil)
+    func testGetCurrentUser_UserIsNil_ShouldReturnNil() {
+        let fakeAuthResponse = FakeAuthResponse(authDataResult: nil, error: nil)
         let authSessionFake = AuthSessionFake(fakeAuthResponse: fakeAuthResponse)
         let authService = AuthService(authSession: authSessionFake)
         
@@ -58,8 +58,8 @@ class AuthServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testAddUserConnectionListenerShouldUserIsConnected() {
-        let fakeAuthResponse = FakeAuthResponse(authData: fakeAuthData, error: nil)
+    func testAddUserConnectionListener_UserIsConnected_ShouldReturnTrue() {
+        let fakeAuthResponse = FakeAuthResponse(authDataResult: fakeAuthDataResult, error: nil)
         let authSessionFake = AuthSessionFake(fakeAuthResponse: fakeAuthResponse)
         let authService = AuthService(authSession: authSessionFake)
         
@@ -77,8 +77,8 @@ class AuthServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testAddUserConnectionListenerShouldUserIsNotConnected() {
-        let fakeAuthResponse = FakeAuthResponse(authData: nil, error: nil)
+    func testAddUserConnectionListener_UserIsNotConnected_ShouldReturnFalse() {
+        let fakeAuthResponse = FakeAuthResponse(authDataResult: nil, error: nil)
         let authSessionFake = AuthSessionFake(fakeAuthResponse: fakeAuthResponse)
         let authService = AuthService(authSession: authSessionFake)
         
@@ -96,8 +96,8 @@ class AuthServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testCreateUserShouldResultSuccess() {
-        let fakeAuthResponse = FakeAuthResponse(authData: fakeAuthData, error: nil)
+    func testCreateUser_CreationSucced_ShouldReturnUser() {
+        let fakeAuthResponse = FakeAuthResponse(authDataResult: fakeAuthDataResult, error: nil)
         let authSessionFake = AuthSessionFake(fakeAuthResponse: fakeAuthResponse)
         let authService = AuthService(authSession: authSessionFake)
         
@@ -109,8 +109,8 @@ class AuthServiceTests: XCTestCase {
                 return
             }
             
-            XCTAssertEqual(user.displayName, self.nameTest)
-            XCTAssertEqual(user.email, self.emailTest)
+            XCTAssertEqual(user.displayName, self.fakeName)
+            XCTAssertEqual(user.email, self.fakeEmail)
             
             expectation.fulfill()
         }
@@ -118,14 +118,14 @@ class AuthServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
 
-    func testCreateUserShouldResultFailure() {
-        let fakeAuthResponse = FakeAuthResponse(authData: nil, error: FakeNetworkResponse.networkError)
+    func testCreateUser_CreationFailed_ShouldReturnFailure() {
+        let fakeAuthResponse = FakeAuthResponse(authDataResult: nil, error: FakeNetworkResponse.networkError)
         let authSessionFake = AuthSessionFake(fakeAuthResponse: fakeAuthResponse)
         let authService = AuthService(authSession: authSessionFake)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        authService.createUser(email: "Nom", password: "123456") { (result) in
+        authService.createUser(email: fakeEmail, password: "123456") { (result) in
             guard case .failure(_) = result else {
                 XCTFail()
                 return
@@ -137,11 +137,12 @@ class AuthServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
 
-    func testUpdateCurrentUserShouldReturnNoError() {
-        let fakeAuthResponse = FakeAuthResponse(authData: fakeAuthData, error: nil)
+    func testUpdateCurrentUser_UpdateSucced_ShouldReturnNoError() {
+        let fakeAuthResponse = FakeAuthResponse(authDataResult: fakeAuthDataResult, error: nil)
         let authSessionFake = AuthSessionFake(fakeAuthResponse: fakeAuthResponse)
         let authService = AuthService(authSession: authSessionFake)
-        
+        let userProfile = UserProfile(name: fakeName, email: fakeEmail, bikeType: "VTT", experience: "20-25")
+
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
         authService.updateCurrentUser(userProfile: userProfile) { (error) in
@@ -156,21 +157,19 @@ class AuthServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testSignInShouldResultSuccess() {
-        let fakeAuthResponse = FakeAuthResponse(authData: fakeAuthData, error: nil)
+    func testUpdateCurrentUser_UpdateFailed_ShouldReturnError() {
+        let fakeAuthResponse = FakeAuthResponse(authDataResult: nil, error: FakeNetworkResponse.networkError)
         let authSessionFake = AuthSessionFake(fakeAuthResponse: fakeAuthResponse)
         let authService = AuthService(authSession: authSessionFake)
-        
+        let userProfile = UserProfile(name: fakeName, email: fakeEmail, bikeType: "VTT", experience: "20-25")
+
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        authService.signIn(email: "Nom", password: "123456") { (result) in
-            guard case .success(let user) = result else {
+        authService.updateCurrentUser(userProfile: userProfile) { (error) in
+            guard error != nil else {
                 XCTFail()
                 return
             }
-            
-            XCTAssertEqual(user.displayName, self.nameTest)
-            XCTAssertEqual(user.email, self.emailTest)
             
             expectation.fulfill()
         }
@@ -178,14 +177,36 @@ class AuthServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testSignInShouldResultFailure() {
-        let fakeAuthResponse = FakeAuthResponse(authData: nil, error: FakeNetworkResponse.networkError)
+    func testSignIn_UserOk_ShouldReturnUser() {
+        let fakeAuthResponse = FakeAuthResponse(authDataResult: fakeAuthDataResult, error: nil)
         let authSessionFake = AuthSessionFake(fakeAuthResponse: fakeAuthResponse)
         let authService = AuthService(authSession: authSessionFake)
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        authService.signIn(email: "Nom", password: "123456") { (result) in
+        authService.signIn(email: fakeEmail, password: "123456") { (result) in
+            guard case .success(let user) = result else {
+                XCTFail()
+                return
+            }
+            
+            XCTAssertEqual(user.displayName, self.fakeName)
+            XCTAssertEqual(user.email, self.fakeEmail)
+            
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testSignIn_UserIsNil_ShouldReturnFailure() {
+        let fakeAuthResponse = FakeAuthResponse(authDataResult: nil, error: FakeNetworkResponse.networkError)
+        let authSessionFake = AuthSessionFake(fakeAuthResponse: fakeAuthResponse)
+        let authService = AuthService(authSession: authSessionFake)
+        
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        
+        authService.signIn(email: fakeEmail, password: "123456") { (result) in
             guard case .failure(_) = result else {
                 XCTFail()
                 return
@@ -197,8 +218,8 @@ class AuthServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testSignOutShouldResultSuccess() {
-        let fakeAuthResponse = FakeAuthResponse(authData: fakeAuthData, error: nil)
+    func testSignOut_SignOutOk_ShouldReturnSuccess() {
+        let fakeAuthResponse = FakeAuthResponse(authDataResult: fakeAuthDataResult, error: nil)
         let authSessionFake = AuthSessionFake(fakeAuthResponse: fakeAuthResponse)
         let authService = AuthService(authSession: authSessionFake)
         
@@ -216,8 +237,8 @@ class AuthServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testSignOutShouldResultFailure() {
-        let fakeAuthResponse = FakeAuthResponse(authData: nil, error: FakeNetworkResponse.networkError)
+    func testSignOut_SignOutFailed_ShouldReturnFailure() {
+        let fakeAuthResponse = FakeAuthResponse(authDataResult: nil, error: FakeNetworkResponse.networkError)
         let authSessionFake = AuthSessionFake(fakeAuthResponse: fakeAuthResponse)
         let authService = AuthService(authSession: authSessionFake)
         

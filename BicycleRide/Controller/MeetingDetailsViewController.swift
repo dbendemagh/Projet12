@@ -122,10 +122,10 @@ class MeetingDetailsViewController: UIViewController {
             
                 toggleActivityIndicator(shown: true)
             
-                firestoreService.modifyData(id: meetingDocument.documentId, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
+                firestoreService.modifyDocument(id: meetingDocument.documentId, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
                     self.toggleActivityIndicator(shown: false)
                     if let _ = error {
-                        self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                        self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)
                     } else {
                         self.addParticipant(name: name)
                         self.participateButton.isHidden = true

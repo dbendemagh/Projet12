@@ -102,11 +102,11 @@ class NewMeetingSecondViewController: UIViewController {
     private func saveMeeting(meeting: Meeting) {
         toggleActivityIndicator(shown: true)
         
-        firestoreService.saveData(collection: Constants.Firestore.meetingCollectionName, object: meeting) { [weak self] (error) in
+        firestoreService.addDocument(collection: Constants.Firestore.meetingCollectionName, object: meeting) { [weak self] (error) in
             self?.toggleActivityIndicator(shown: false)
             if let error = error {
                 print("Erreur sauvegarde : \(error.localizedDescription)")
-                self?.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.databaseError)
+                self?.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)
             } else {
                 print("Meeting sauvegardé")
                 self?.navigationController?.popToRootViewController(animated: true)

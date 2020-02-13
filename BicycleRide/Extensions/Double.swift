@@ -15,7 +15,6 @@ extension Double {
         //dateFormatter.dateFormat = "EEEE dd/MM/yy"
         dateFormatter.dateFormat = "E d MMM yyyy HH:mm"
         let test = dateFormatter.string(from: Date(timeIntervalSince1970: self))
-        print(test)
         return test
     }
     
@@ -23,7 +22,6 @@ extension Double {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         let test = dateFormatter.string(from: Date(timeIntervalSince1970: self))
-        print(test)
         return test
     }
 }
