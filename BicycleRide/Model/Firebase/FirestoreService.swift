@@ -17,7 +17,7 @@ public class FirestoreService<T: Codable> {
         self.firestoreSession = firestoreSession
     }
     
-    // Listener to retrieve all documents
+    // Listener for all documents
     func addSnapshotListenerForAllDocuments(collection: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
         firestoreSession.addSnapshotListenerForAllDocuments(collection: collection) { result in
             switch result {
@@ -31,7 +31,7 @@ public class FirestoreService<T: Codable> {
         }
     }
     
-    // Listener to retrieve selected documents
+    // Listener for selected documents
     func addSnapshotListenerForSelectedDocuments(collection: String, field: String, text: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
         firestoreSession.addSnapshotListenerForSelectedDocuments(collection: collection, fieldName: field, text: text) { result in
             switch result {
@@ -109,7 +109,7 @@ public class FirestoreService<T: Codable> {
         return nil
     }
     
-    private func getAppDocuments(firebaseDocuments: [FirestoreDocumentProtocol]) -> [AppDocument<T>]{
+    private func getAppDocuments(firebaseDocuments: [DocumentSnapshotProtocol]) -> [AppDocument<T>]{
         var appDocuments: [AppDocument<T>] = []
         
         for firebaseDocument in firebaseDocuments {

@@ -108,23 +108,23 @@ extension ChatViewController: UITableViewDataSource {
         
         if let user = authService.getCurrentUser() {
             cell.senderName.text = ""
-            cell.currentUserName.text = user.displayName
+            let name = user.displayName ?? ""
+            let date = message?.timeStamp.date() ?? ""
+            cell.currentUserName.text = "\(name) - \(date)"
             if messageDocument.data?.senderEmail == user.email {
-                // Message from the current user
+                // Message from current user
                 cell.leftView.isHidden = false
                 cell.rightView.isHidden = true
-                cell.messageLabel.textColor = UIColor.white
-                //cell.messageView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-                cell.messageView.backgroundColor = #colorLiteral(red: 0.1803921569, green: 0.3529411765, blue: 0.1098039216, alpha: 1)
+                cell.messageLabel.textColor = UIColor.black
+                cell.messageView.backgroundColor = #colorLiteral(red: 0.7019607843, green: 0.8862745098, blue: 1, alpha: 1)
             } else {
                 // Message from another user
                 cell.senderName.text = messageDocument.data?.senderName
                 cell.currentUserName.text = ""
                 cell.leftView.isHidden = true
                 cell.rightView.isHidden = false
-                cell.messageLabel.textColor = UIColor.black
-                //cell.messageView.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
-                cell.messageView.backgroundColor = #colorLiteral(red: 0.9294117647, green: 0.9411764706, blue: 0.7803921569, alpha: 1)
+                cell.messageLabel.textColor = UIColor.white
+                cell.messageView.backgroundColor = #colorLiteral(red: 0.4896329641, green: 0.5528916717, blue: 1, alpha: 1)
             }
         }
         return cell

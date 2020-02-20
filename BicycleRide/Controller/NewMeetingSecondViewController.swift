@@ -17,6 +17,7 @@ class NewMeetingSecondViewController: UIViewController {
     @IBOutlet weak var meetingStreetTextField: UITextField!
     @IBOutlet weak var meetingCityTextField: UITextField!
     @IBOutlet weak var meetingDescriptionTextView: UITextView!
+    @IBOutlet weak var meetingDayLabel: UILabel!
     @IBOutlet weak var meetingDatePicker: UIDatePicker!
     @IBOutlet weak var meetingTimeDatePicker: UIDatePicker!
     @IBOutlet weak var meetingBikeTypeSegmentedControl: UISegmentedControl!
@@ -58,15 +59,27 @@ class NewMeetingSecondViewController: UIViewController {
         meetingDescriptionTextView.text = ""
         meetingDescriptionTextView.layer.borderWidth = 1
         meetingDescriptionTextView.layer.cornerRadius = 5
+        meetingDayLabel.text = ""
+        meetingDatePicker.addTarget(self, action: #selector(meetingDatePickerValueChanged(sender:)), for: .valueChanged)
+        meetingDatePickerValueChanged(sender: meetingDatePicker)
     }
 
     // MARK: - Methods
+    
+    @objc func meetingDatePickerValueChanged(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        dateFormatter.locale = Locale(identifier: "fr_FR")
+        meetingDayLabel.text = dateFormatter.string(from: sender.date)
+    }
     
     // Display Activity indicator
     private func toggleActivityIndicator(shown: Bool) {
         saveButton.isHidden = shown
         activityIndicator.isHidden = !shown
     }
+    
+    // MARK: - Action buttons
     
     @IBAction func meetingDistanceStepperTapped(_ sender: UIStepper) {
         distance = Int(sender.value)

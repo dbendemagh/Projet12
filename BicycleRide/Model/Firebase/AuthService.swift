@@ -15,7 +15,7 @@ public class AuthService {
         self.authSession = authSession
     }
     
-    func getCurrentUser() -> AuthUserProtocol? {
+    func getCurrentUser() -> UserProtocol? {
         return authSession.currentUser
     }
     
@@ -47,7 +47,7 @@ public class AuthService {
         }
     }
     
-    func signIn(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void) {
+    func signIn(email: String, password: String, completion: @escaping (Result<UserProtocol, Error>) -> Void) {
         authSession.signIn(email: email, password: password) { (result) in
         switch result {
             case .failure(let error):

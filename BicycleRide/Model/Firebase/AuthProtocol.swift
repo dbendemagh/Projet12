@@ -8,15 +8,15 @@
 
 import Foundation
 
-protocol AuthUserProtocol {
+protocol UserProtocol {
     var displayName: String? { get }
     var email: String? { get }
 }
 
-typealias AuthResult = Result<AuthUserProtocol, Error>
+typealias AuthResult = Result<UserProtocol, Error>
 
 protocol AuthProtocol {
-    var currentUser: AuthUserProtocol? { get }
+    var currentUser: UserProtocol? { get }
     
     func addUserConnectionListener(completion: @escaping (Bool) -> Void)
     func createUser(email: String, password: String, completion: @escaping (AuthResult) -> Void)

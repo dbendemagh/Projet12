@@ -9,13 +9,13 @@
 import Foundation
 import Firebase
 
-extension User: AuthUserProtocol {}
+extension User: UserProtocol {}
 
 class AuthSession: AuthProtocol {
     
     let auth = Auth.auth()
     
-    var currentUser: AuthUserProtocol? {
+    var currentUser: UserProtocol? {
         return auth.currentUser
     }
     

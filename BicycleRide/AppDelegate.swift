@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
-        if let font = UIFont(name: "HelveticaNeue-Bold", size: 18) {
-            let attrs = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor : UIColor.black]
+        if let font = UIFont(name: "SFProDisplay-Semibold", size: 20) {
+            let attrs = [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor : UIColor.white]
             UINavigationBar.appearance().titleTextAttributes = attrs
         }
         

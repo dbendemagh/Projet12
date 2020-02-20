@@ -15,6 +15,7 @@ class MeetingCell: UITableViewCell {
     @IBOutlet weak var meetingTime: UILabel!
     @IBOutlet weak var meetingImage: UIImageView!
     @IBOutlet weak var meetingCity: UILabel!
+    @IBOutlet weak var meetingDistance: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,8 +27,9 @@ class MeetingCell: UITableViewCell {
     
     func configure(meeting: Meeting) {
         meetingName.text = meeting.name
-        meetingDate.text = meeting.timeStamp.date()
-        meetingCity.text = meeting.city
+        meetingDate.text = "\(meeting.timeStamp.date()) \(meeting.timeStamp.time())"
+        meetingCity.text = meeting.city.components(separatedBy: " ").last
+        meetingDistance.text = " \(meeting.distance) km"
         if meeting.bikeType == Constants.Bike.road {
             meetingImage.image = UIImage(named: "BicycleRoad")
         } else {

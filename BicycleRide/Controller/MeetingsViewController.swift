@@ -130,5 +130,6 @@ extension MeetingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedRow = indexPath.row
         performSegue(withIdentifier: "MeetingDetail", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

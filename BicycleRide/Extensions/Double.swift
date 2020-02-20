@@ -11,17 +11,16 @@ import Foundation
 extension Double {
     func date() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        //dateFormatter.dateFormat = "EEEE dd/MM/yy"
-        dateFormatter.dateFormat = "E d MMM yyyy HH:mm"
-        let test = dateFormatter.string(from: Date(timeIntervalSince1970: self))
-        return test
+        dateFormatter.dateFormat = "E d MMM yyyy"
+        dateFormatter.locale = Locale(identifier: "fr_FR")
+        let dateTime = dateFormatter.string(from: Date(timeIntervalSince1970: self))
+        return dateTime
     }
     
     func time() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        let test = dateFormatter.string(from: Date(timeIntervalSince1970: self))
-        return test
+        let time = dateFormatter.string(from: Date(timeIntervalSince1970: self))
+        return time
     }
 }

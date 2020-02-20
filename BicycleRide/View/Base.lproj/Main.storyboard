@@ -6,71 +6,80 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+        <array key="SF-Pro-Display-Semibold.otf">
+            <string>SFProDisplay-Semibold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--User Profile View Controller-->
         <scene sceneID="W5E-e9-vOc">
             <objects>
                 <viewController id="WXL-4g-P67" customClass="UserProfileViewController" customModule="BicycleRide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X6w-Zn-eyn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="br2-1a-vwN">
-                                <rect key="frame" x="20" y="64" width="374" height="555.5"/>
+                                <rect key="frame" x="20" y="64" width="374" height="558.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L26-Kl-34l">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="21.5"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bhg-xX-lli">
-                                        <rect key="frame" x="0.0" y="38.5" width="374" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="0.0" y="39.5" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type de vélo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsO-E6-8ir">
-                                        <rect key="frame" x="0.0" y="90.5" width="374" height="20.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="91.5" width="374" height="21.5"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nff-W8-m5e">
-                                        <rect key="frame" x="0.0" y="129" width="374" height="32"/>
+                                        <rect key="frame" x="0.0" y="131" width="374" height="32"/>
                                         <segments>
                                             <segment title="Route"/>
                                             <segment title="VTT"/>
                                         </segments>
+                                        <color key="selectedSegmentTintColor" red="0.90980392156862744" green="0.83529411764705885" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expérience" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wP-nX-6nN">
-                                        <rect key="frame" x="0.0" y="178" width="374" height="20.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="180" width="374" height="21.5"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRH-u2-MmG">
-                                        <rect key="frame" x="0.0" y="216.5" width="374" height="216"/>
+                                        <rect key="frame" x="0.0" y="219.5" width="374" height="216"/>
                                         <connections>
                                             <outlet property="dataSource" destination="WXL-4g-P67" id="EsC-Cj-52q"/>
                                             <outlet property="delegate" destination="WXL-4g-P67" id="mzu-Sq-ud9"/>
                                         </connections>
                                     </pickerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mnV-wo-wVH" customClass="RoundButton" customModule="BicycleRide" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="450.5" width="374" height="50"/>
-                                        <color key="backgroundColor" red="0.30588235294117649" green="0.58431372549019611" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="453.5" width="374" height="50"/>
+                                        <color key="backgroundColor" red="0.90980392156862744" green="0.83529411764705885" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Nrb-pX-eGL"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="22"/>
                                         <state key="normal" title="Enregistrer">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="saveButtonTapped:" destination="WXL-4g-P67" eventType="touchUpInside" id="Jaa-Sa-9Ny"/>
                                         </connections>
                                     </button>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="smz-JE-voz">
-                                        <rect key="frame" x="0.0" y="518.5" width="374" height="37"/>
+                                        <rect key="frame" x="0.0" y="521.5" width="374" height="37"/>
                                     </activityIndicatorView>
                                 </subviews>
                             </stackView>
@@ -110,89 +119,90 @@
             <objects>
                 <viewController id="6h6-hj-9jj" customClass="NewMeetingSecondViewController" customModule="BicycleRide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hVx-Ki-4Ai">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1275"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1217"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mMx-mk-5wy">
-                                <rect key="frame" x="0.0" y="88" width="414" height="1104"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="1129"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RV0-US-Lrh">
-                                        <rect key="frame" x="20" y="10" width="374" height="1091.5"/>
+                                        <rect key="frame" x="20" y="10" width="374" height="1132"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parcours" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiE-WK-RZr">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="23"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nom" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V9u-m3-Ptd">
-                                                <rect key="frame" x="0.0" y="30.5" width="374" height="34"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="33" width="374" height="34"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Point de rendez-vous" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dot-9o-V7W">
-                                                <rect key="frame" x="0.0" y="74.5" width="374" height="20.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="77" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rue" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8XZ-8m-TGN">
-                                                <rect key="frame" x="0.0" y="105" width="374" height="34"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="108.5" width="374" height="34"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ville" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w8h-QZ-seX">
-                                                <rect key="frame" x="0.0" y="149" width="374" height="34"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="152.5" width="374" height="34"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type de vélo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0z-SZ-cIQ">
-                                                <rect key="frame" x="0.0" y="193" width="374" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="196.5" width="374" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Mfh-Oa-XJ9">
-                                                <rect key="frame" x="0.0" y="223.5" width="374" height="32"/>
+                                                <rect key="frame" x="0.0" y="227" width="374" height="32"/>
                                                 <segments>
                                                     <segment title="Route"/>
                                                     <segment title="VTT"/>
                                                 </segments>
-                                                <color key="selectedSegmentTintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="selectedSegmentTintColor" red="0.90980392160000001" green="0.83529411760000005" blue="0.63529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1h-JE-kaQ">
-                                                <rect key="frame" x="0.0" y="264.5" width="374" height="20.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="268" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" translatesAutoresizingMaskIntoConstraints="NO" id="Yuu-bX-9ib">
-                                                <rect key="frame" x="0.0" y="295" width="374" height="170"/>
+                                                <rect key="frame" x="0.0" y="299.5" width="374" height="170"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="170" id="5ty-Fa-lLC"/>
                                                 </constraints>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uo2-a2-s4W">
-                                                <rect key="frame" x="0.0" y="475" width="374" height="20.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="479.5" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtZ-gX-hYr">
-                                                <rect key="frame" x="0.0" y="505.5" width="374" height="32"/>
+                                                <rect key="frame" x="0.0" y="511" width="374" height="32"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rZ-Jp-6Ko">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="32"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="4zx-Bk-U7m">
                                                         <rect key="frame" x="280" y="0.0" width="94" height="32"/>
+                                                        <color key="backgroundColor" red="0.90980392160000001" green="0.83529411760000005" blue="0.63529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <connections>
                                                             <action selector="meetingDistanceStepperTapped:" destination="6h6-hj-9jj" eventType="valueChanged" id="dc8-xx-AOP"/>
                                                         </connections>
@@ -200,44 +210,50 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AUi-8m-vRl">
-                                                <rect key="frame" x="0.0" y="547.5" width="374" height="20.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="553" width="374" height="23"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="19"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jour" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2NP-dY-KOj">
+                                                <rect key="frame" x="0.0" y="586" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="jWE-hz-pyz">
-                                                <rect key="frame" x="0.0" y="578" width="374" height="150"/>
+                                                <rect key="frame" x="0.0" y="617.5" width="374" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="YYZ-0a-BJz"/>
                                                 </constraints>
                                                 <locale key="locale" localeIdentifier="fr"/>
                                             </datePicker>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVT-8E-PM0">
-                                                <rect key="frame" x="0.0" y="738" width="374" height="20.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="777.5" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="3JA-yl-gAf">
-                                                <rect key="frame" x="0.0" y="768.5" width="374" height="216"/>
+                                                <rect key="frame" x="0.0" y="809" width="374" height="216"/>
                                                 <locale key="locale" localeIdentifier="fr"/>
                                             </datePicker>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2M-ed-3Wk" customClass="RoundButton" customModule="BicycleRide" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="994.5" width="374" height="50"/>
-                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="0.0" y="1035" width="374" height="50"/>
+                                                <color key="backgroundColor" red="0.90980392160000001" green="0.83529411760000005" blue="0.63529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="wGd-q3-gm6"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="22"/>
                                                 <state key="normal" title="Valider">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="saveButtonTapped:" destination="6h6-hj-9jj" eventType="touchUpInside" id="DTu-a2-tiG"/>
                                                 </connections>
                                             </button>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="OcW-t5-5K9">
-                                                <rect key="frame" x="0.0" y="1054.5" width="374" height="37"/>
+                                                <rect key="frame" x="0.0" y="1095" width="374" height="37"/>
                                             </activityIndicatorView>
                                         </subviews>
                                     </stackView>
@@ -267,12 +283,13 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="ZZe-Yn-UZ8"/>
-                    <size key="freeformSize" width="414" height="1275"/>
+                    <size key="freeformSize" width="414" height="1300"/>
                     <connections>
                         <outlet property="activityIndicator" destination="OcW-t5-5K9" id="eIo-nC-Yns"/>
                         <outlet property="meetingBikeTypeSegmentedControl" destination="Mfh-Oa-XJ9" id="NGf-MR-K2v"/>
                         <outlet property="meetingCityTextField" destination="w8h-QZ-seX" id="FaM-ah-Dch"/>
                         <outlet property="meetingDatePicker" destination="jWE-hz-pyz" id="k0l-Wv-uxF"/>
+                        <outlet property="meetingDayLabel" destination="2NP-dY-KOj" id="K4h-5i-bq3"/>
                         <outlet property="meetingDescriptionTextView" destination="Yuu-bX-9ib" id="Ew8-BI-J7g"/>
                         <outlet property="meetingDistanceLabel" destination="9rZ-Jp-6Ko" id="jrU-Ho-oWe"/>
                         <outlet property="meetingDistanceStepper" destination="4zx-Bk-U7m" id="1j0-QO-5ew"/>
@@ -291,12 +308,12 @@
             </objects>
             <point key="canvasLocation" x="3971.0144927536235" y="722.54464285714278"/>
         </scene>
-        <!--Bicycle Ride-->
+        <!--🚵‍♂️ Bicycle Ride 🚴‍♂️-->
         <scene sceneID="uvi-k3-HtP">
             <objects>
                 <viewController id="E6i-rz-cf6" customClass="MeetingsViewController" customModule="BicycleRide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z6b-NS-2n1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lT2-pS-Sd2">
@@ -313,7 +330,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YhP-Tu-Zw1"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Bicycle Ride" id="8gx-IB-3iB">
+                    <navigationItem key="navigationItem" title="🚵‍♂️ Bicycle Ride 🚴‍♂️" id="8gx-IB-3iB">
                         <rightBarButtonItems>
                             <barButtonItem image="Logout" id="jgl-TD-Xxs">
                                 <connections>
@@ -341,10 +358,11 @@
         <scene sceneID="K99-yX-BUM">
             <objects>
                 <tabBarController id="Ozi-FI-E1l" customClass="TabBarViewController" customModule="BicycleRide" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ifg-y4-XVY">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="ifg-y4-XVY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="selectedImageTintColor" red="0.30588235294117649" green="0.58431372549019611" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.17254901960784313" green="0.34509803921568627" blue="0.047058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="kfi-uU-tbA" kind="relationship" relationship="viewControllers" id="IWP-E9-0Zs"/>
@@ -360,7 +378,7 @@
             <objects>
                 <viewController id="Rs6-p7-6pg" customClass="NewMeetingFirstViewController" customModule="BicycleRide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aer-CQ-NoW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Si-dC-nQk">
@@ -369,15 +387,15 @@
                                     <outlet property="delegate" destination="Rs6-p7-6pg" id="qVq-vb-dtN"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXs-bL-9Ze" customClass="RoundButton" customModule="BicycleRide" customModuleProvider="target">
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXs-bL-9Ze" customClass="RoundButton" customModule="BicycleRide" customModuleProvider="target">
                                 <rect key="frame" x="20" y="743" width="374" height="50"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.90980392160000001" green="0.83529411760000005" blue="0.63529411759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="H1L-Xi-nCM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="22"/>
                                 <state key="normal" title="Suivant">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="nextButtonPressed:" destination="Rs6-p7-6pg" eventType="touchUpInside" id="Dr2-R7-9Yl"/>
@@ -389,13 +407,13 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJd-Ke-5Ld">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="20"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ville" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NgB-M6-bCR">
                                         <rect key="frame" x="0.0" y="20" width="374" height="20"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -431,7 +449,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Snr-O2-xVi"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Point de départ" id="9Zt-hv-cax"/>
+                    <navigationItem key="navigationItem" title="Point de départ" id="9Zt-hv-cax">
+                        <barButtonItem key="backBarButtonItem" title="Sorties" id="JKX-P5-jWm"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="addressStackView" destination="0c8-HX-E3H" id="Nih-X3-Uqs"/>
                         <outlet property="cityLabel" destination="NgB-M6-bCR" id="N9q-kM-Zc2"/>
@@ -449,99 +469,99 @@
             <objects>
                 <viewController id="CRr-Dx-K0W" customClass="MeetingDetailsViewController" customModule="BicycleRide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="drI-xD-pMU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="960"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="892"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="569-4o-5i2">
-                                <rect key="frame" x="0.0" y="88" width="414" height="740"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="755"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uOn-oY-2Fp">
-                                        <rect key="frame" x="20" y="20" width="374" height="830"/>
+                                        <rect key="frame" x="20" y="20" width="374" height="840.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTc-GZ-Yan">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Heure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Fo-aa-d44">
-                                                <rect key="frame" x="0.0" y="30.5" width="374" height="20"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="31.5" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adresse" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zgp-RL-pMi">
-                                                <rect key="frame" x="0.0" y="60.5" width="374" height="20.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="63" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6m-z0-cdC">
-                                                <rect key="frame" x="0.0" y="91" width="374" height="20"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="94.5" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ville" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74j-KI-OxC">
-                                                <rect key="frame" x="0.0" y="121" width="374" height="20"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="126" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GbG-1w-Z1j">
-                                                <rect key="frame" x="0.0" y="151" width="374" height="200"/>
+                                                <rect key="frame" x="0.0" y="157.5" width="374" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="oim-3n-BQD"/>
                                                 </constraints>
                                             </mapView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4d-TB-8Vn">
-                                                <rect key="frame" x="0.0" y="361" width="374" height="20.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="367.5" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ln1-ag-van">
-                                                <rect key="frame" x="0.0" y="391.5" width="374" height="200"/>
+                                                <rect key="frame" x="0.0" y="399" width="374" height="200"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="MOM-NM-qan"/>
                                                 </constraints>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CXN-Nx-LJ2">
-                                                <rect key="frame" x="0.0" y="601.5" width="374" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="609" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Participants" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CqS-T1-7VS">
-                                                <rect key="frame" x="0.0" y="632" width="374" height="20.5"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="640.5" width="374" height="21.5"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nxO-98-TAc">
-                                                <rect key="frame" x="0.0" y="662.5" width="374" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="672" width="374" height="21.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SJE-YT-H1N">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="21.5"/>
+                                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="J'y vais !" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rC8-Vg-xEt">
-                                                <rect key="frame" x="0.0" y="693" width="374" height="30"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="25"/>
+                                                <rect key="frame" x="0.0" y="703.5" width="374" height="30"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="25"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rrB-Ms-8l7" customClass="RoundButton" customModule="BicycleRide" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="733" width="374" height="50"/>
+                                                <rect key="frame" x="0.0" y="743.5" width="374" height="50"/>
                                                 <color key="backgroundColor" red="0.25098039220000001" green="0.43921568630000002" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="GKI-oa-oWT"/>
@@ -555,7 +575,7 @@
                                                 </connections>
                                             </button>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Kaf-M3-WAk">
-                                                <rect key="frame" x="0.0" y="793" width="374" height="37"/>
+                                                <rect key="frame" x="0.0" y="803.5" width="374" height="37"/>
                                             </activityIndicatorView>
                                         </subviews>
                                     </stackView>
@@ -589,7 +609,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <size key="freeformSize" width="414" height="960"/>
+                    <size key="freeformSize" width="414" height="975"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Kaf-M3-WAk" id="8ph-fb-uep"/>
                         <outlet property="mapView" destination="GbG-1w-Z1j" id="9Ui-L3-Wey"/>
@@ -607,33 +627,34 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9k-Wc-k5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1734.7826086956522" y="1479.9107142857142"/>
+            <point key="canvasLocation" x="1736" y="1503"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="jEw-7h-JH2">
             <objects>
                 <viewController id="4ea-Wp-Mm1" customClass="ChatViewController" customModule="BicycleRide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FKY-1b-pdB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="U6q-Y3-jaA">
-                                <rect key="frame" x="0.0" y="88" width="414" height="546"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="576"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1xy-oN-2fd">
-                                <rect key="frame" x="0.0" y="664" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="694" width="414" height="70"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ecrivez un message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O3R-vd-q9t">
-                                        <rect key="frame" x="20" y="33" width="314" height="34"/>
+                                        <rect key="frame" x="20" y="20" width="314" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="LB1-el-VgB"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJm-vr-ziO">
-                                        <rect key="frame" x="354" y="30" width="40" height="40"/>
+                                        <rect key="frame" x="354" y="20" width="40" height="40"/>
+                                        <color key="backgroundColor" red="0.17059034109999999" green="0.34452027079999997" blue="0.04696495086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="67I-gB-aab"/>
                                             <constraint firstAttribute="height" constant="40" id="WhM-B3-iiG"/>
@@ -644,13 +665,13 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" red="0.17254901960784313" green="0.34509803921568627" blue="0.047058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="O3R-vd-q9t" firstAttribute="top" secondItem="1xy-oN-2fd" secondAttribute="top" constant="33" id="37r-wl-pri"/>
-                                    <constraint firstAttribute="height" constant="100" id="F6l-H3-Via"/>
+                                    <constraint firstItem="O3R-vd-q9t" firstAttribute="top" secondItem="1xy-oN-2fd" secondAttribute="top" constant="20" id="37r-wl-pri"/>
+                                    <constraint firstAttribute="height" constant="70" id="F6l-H3-Via"/>
                                     <constraint firstAttribute="trailing" secondItem="cJm-vr-ziO" secondAttribute="trailing" constant="20" id="L6o-rA-6jd"/>
+                                    <constraint firstItem="cJm-vr-ziO" firstAttribute="top" secondItem="1xy-oN-2fd" secondAttribute="top" constant="20" id="O0O-f6-VXY"/>
                                     <constraint firstItem="cJm-vr-ziO" firstAttribute="leading" secondItem="O3R-vd-q9t" secondAttribute="trailing" constant="20" id="WAN-wL-Wh7"/>
-                                    <constraint firstAttribute="bottom" secondItem="cJm-vr-ziO" secondAttribute="bottom" constant="30" id="f7y-dj-V9i"/>
                                     <constraint firstItem="O3R-vd-q9t" firstAttribute="leading" secondItem="1xy-oN-2fd" secondAttribute="leading" constant="20" id="uas-SZ-kcB"/>
                                 </constraints>
                             </view>
@@ -661,6 +682,7 @@
                             <constraint firstItem="1xy-oN-2fd" firstAttribute="top" secondItem="U6q-Y3-jaA" secondAttribute="bottom" constant="30" id="JRa-SI-yp3"/>
                             <constraint firstItem="1xy-oN-2fd" firstAttribute="leading" secondItem="QSd-DF-qDt" secondAttribute="leading" id="Wae-Mc-LVB"/>
                             <constraint firstItem="U6q-Y3-jaA" firstAttribute="top" secondItem="QSd-DF-qDt" secondAttribute="top" id="Z6w-nH-LpF"/>
+                            <constraint firstItem="1xy-oN-2fd" firstAttribute="bottom" secondItem="QSd-DF-qDt" secondAttribute="bottom" id="gM3-U7-DAh"/>
                             <constraint firstItem="1xy-oN-2fd" firstAttribute="bottom" secondItem="QSd-DF-qDt" secondAttribute="bottom" id="qbn-NA-qR4"/>
                             <constraint firstItem="U6q-Y3-jaA" firstAttribute="trailing" secondItem="QSd-DF-qDt" secondAttribute="trailing" id="sgt-na-n1N"/>
                             <constraint firstItem="U6q-Y3-jaA" firstAttribute="leading" secondItem="QSd-DF-qDt" secondAttribute="leading" id="waw-T8-BIW"/>
@@ -675,7 +697,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Etn-er-xjw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2762.3188405797105" y="1463.8392857142856"/>
+            <point key="canvasLocation" x="2762" y="1503"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XHF-NN-Oad">
@@ -686,7 +708,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XGX-4j-w9O">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.30588235294117649" green="0.58431372549019611" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.17059034109999999" green="0.34452027079999997" blue="0.04696495086" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -704,7 +727,7 @@
         <image name="Logout" width="16" height="16"/>
         <image name="Plus" width="16" height="16"/>
         <image name="Riding-bicycle" width="32" height="32"/>
-        <image name="Send" width="32" height="32"/>
+        <image name="Send" width="16" height="16"/>
         <image name="User" width="32" height="32"/>
     </resources>
 </document>

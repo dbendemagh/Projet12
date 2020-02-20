@@ -9,11 +9,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="178" id="KGk-i7-Jjw" customClass="MessageCell" customModule="BicycleRide" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="440" height="178"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="91" id="KGk-i7-Jjw" customClass="MessageCell" customModule="BicycleRide" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="440" height="91"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="440" height="178"/>
+                <rect key="frame" x="0.0" y="0.0" width="440" height="91"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czl-IV-lq8">
@@ -23,7 +23,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4Wk-gb-IR5">
-                        <rect key="frame" x="10" y="30" width="420" height="138"/>
+                        <rect key="frame" x="10" y="30" width="420" height="51"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tjb-1I-ctK">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -34,11 +34,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xP2-qW-diG">
-                                <rect key="frame" x="60" y="0.0" width="300" height="136.5"/>
+                                <rect key="frame" x="60" y="0.0" width="300" height="51"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBM-eW-yx1">
-                                        <rect key="frame" x="10" y="10" width="280" height="116.5"/>
-                                        <string key="text">Message  dgds gdgd gdf g dg  gds gds gd fg dsg dsg dfg sdf gsd g sdg sdg sdg ds gds gsd g dsg sdg dsgdf hfghfgd hfg hfgd hfg h dfh dfh fgh fd hf</string>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBM-eW-yx1">
+                                        <rect key="frame" x="10" y="10" width="280" height="31"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -89,7 +88,7 @@
                 <outlet property="rightView" destination="6vS-Og-RTa" id="gs9-e0-ZVa"/>
                 <outlet property="senderName" destination="czl-IV-lq8" id="Z3y-3H-UTU"/>
             </connections>
-            <point key="canvasLocation" x="218.84057971014494" y="188.16964285714286"/>
+            <point key="canvasLocation" x="218.84057971014494" y="158.37053571428569"/>
         </tableViewCell>
     </objects>
 </document>
