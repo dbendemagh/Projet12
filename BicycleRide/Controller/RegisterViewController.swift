@@ -47,7 +47,7 @@ class RegisterViewController: UIViewController {
         }
         
         // Check if email already exist
-        firestoreService.searchDocuments(collection: Constants.Firestore.userCollectionName, field: "email", text: email) { (result) in
+        firestoreService.searchDocuments(collection: Constants.Firestore.userProfilesCollection, field: "email", text: email) { (result) in
             switch result {
             case .failure(_):
                 self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.getDocumentError)
@@ -85,7 +85,7 @@ class RegisterViewController: UIViewController {
     }
     
     private func saveUserProfile(userProfile: UserProfile) {
-        firestoreService.modifyDocument(id: userProfile.email, collection: Constants.Firestore.userCollectionName, object: userProfile) { [weak self] (error) in
+        firestoreService.modifyDocument(id: userProfile.email, collection: Constants.Firestore.userProfilesCollection, object: userProfile) { [weak self] (error) in
             if let error = error {
                 print("Erreur sauvegarde : \(error.localizedDescription)")
                 self?.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)

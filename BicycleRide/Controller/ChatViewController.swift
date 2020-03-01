@@ -21,7 +21,7 @@ class ChatViewController: UIViewController {
     let firestoreService = FirestoreService<Message>()
     
     var meetingId: String = ""
-    var messages: [AppDocument<Message>] = []
+    var messages: [Document<Message>] = []
     
     // MARK: - Init Methods
     
@@ -39,7 +39,7 @@ class ChatViewController: UIViewController {
     }
     
     private func initSnapshotListener() {
-        firestoreService.addSnapshotListenerForSelectedDocuments(collection: Constants.Firestore.messageCollectionName, field: "meetingId", text: meetingId) { (result) in
+        firestoreService.addSnapshotListenerForSelectedDocuments(collection: Constants.Firestore.messagesCollection, field: "meetingId", text: meetingId) { (result) in
             switch result {
                 case(.failure(let error)):
                     print("Erreur listener : \(error.localizedDescription)")
@@ -64,7 +64,7 @@ class ChatViewController: UIViewController {
                                   text: text,
                                   timeStamp: Date().timeIntervalSince1970)
             
-            firestoreService.addDocument(collection: Constants.Firestore.messageCollectionName, object: message) { [weak self] (error) in
+            firestoreService.addDocument(collection: Constants.Firestore.messagesCollection, object: message) { [weak self] (error) in
                 if let error = error {
                     print("Erreur envoi : \(error.localizedDescription)")
                     self?.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)

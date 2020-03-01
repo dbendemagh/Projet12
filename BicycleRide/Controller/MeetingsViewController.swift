@@ -20,7 +20,7 @@ class MeetingsViewController: UIViewController {
     let authService = AuthService()
     let firestoreService = FirestoreService<Meeting>()
     
-    var meetings: [AppDocument<Meeting>] = []
+    var meetings: [Document<Meeting>] = []
     var selectedRow: Int = 0
     
     // MARK: - Init Methods
@@ -44,7 +44,7 @@ class MeetingsViewController: UIViewController {
     }
 
     private func initSnapshotListener() {
-        firestoreService.addSnapshotListenerForAllDocuments(collection: Constants.Firestore.meetingCollectionName) { (result) in
+        firestoreService.addSnapshotListenerForAllDocuments(collection: Constants.Firestore.meetingsCollection) { (result) in
             switch result {
                 case(.failure(let error)):
                     print("Erreur listener : \(error.localizedDescription)")
@@ -62,7 +62,7 @@ class MeetingsViewController: UIViewController {
     // MARK: - Methods
     
     private func loadMeetings() {
-        firestoreService.loadDocuments(collection: Constants.Firestore.meetingCollectionName) { result in
+        firestoreService.loadDocuments(collection: Constants.Firestore.meetingsCollection) { result in
             switch result {
                 case(.failure(_)):
                     self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.getDocumentError)

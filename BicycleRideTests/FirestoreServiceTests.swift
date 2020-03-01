@@ -41,7 +41,7 @@ class FirestoreServiceTests: XCTestCase {
     }
     
     let id = "xhyAOHONTRtgWjYpgiun"
-    var fakeFirestoreDocument = FakeFirestoreDocument(documentID: "", datas: [:])
+    var fakeFirestoreDocument = FakeQueryDocumentSnapshot(documentID: "", datas: [:])
     
     override func setUp() {
         fakeMeetingData = ["creatorId": fakeEmail,
@@ -81,7 +81,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.addSnapshotListenerForAllDocuments(collection: Constants.Firestore.messageCollectionName) { (result) in
+        firestoreService.addSnapshotListenerForAllDocuments(collection: Constants.Firestore.messagesCollection) { (result) in
             guard case .success(let appDocuments) = result else {
                 XCTFail()
                 return
@@ -110,7 +110,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.addSnapshotListenerForAllDocuments(collection: Constants.Firestore.messageCollectionName)  { (result) in
+        firestoreService.addSnapshotListenerForAllDocuments(collection: Constants.Firestore.messagesCollection)  { (result) in
             guard case .failure(_) = result else {
                 XCTFail()
                 return
@@ -131,7 +131,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.addSnapshotListenerForSelectedDocuments(collection: Constants.Firestore.messageCollectionName, field: "VTT", text: fakeBikeType) { (result) in
+        firestoreService.addSnapshotListenerForSelectedDocuments(collection: Constants.Firestore.messagesCollection, field: "VTT", text: fakeBikeType) { (result) in
             guard case .success(let appDocuments) = result else {
                 XCTFail()
                 return
@@ -160,7 +160,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.addSnapshotListenerForSelectedDocuments(collection: Constants.Firestore.messageCollectionName, field: "VTT", text: fakeBikeType)  { (result) in
+        firestoreService.addSnapshotListenerForSelectedDocuments(collection: Constants.Firestore.messagesCollection, field: "VTT", text: fakeBikeType)  { (result) in
             guard case .failure(_) = result else {
                 XCTFail()
                 return
@@ -181,7 +181,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.loadDocuments(collection: Constants.Firestore.meetingCollectionName) { (result) in
+        firestoreService.loadDocuments(collection: Constants.Firestore.meetingsCollection) { (result) in
             
             guard case .success(let appDocuments) = result else {
                 XCTFail()
@@ -216,7 +216,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.loadDocuments(collection: Constants.Firestore.meetingCollectionName) { (result) in
+        firestoreService.loadDocuments(collection: Constants.Firestore.meetingsCollection) { (result) in
             guard case .failure(_) = result else {
                 XCTFail()
                 return
@@ -239,7 +239,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.loadDocuments(collection: Constants.Firestore.messageCollectionName) { (result) in
+        firestoreService.loadDocuments(collection: Constants.Firestore.messagesCollection) { (result) in
             guard case .success(let appDocuments) = result else {
                 XCTFail()
                 return
@@ -267,7 +267,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.addDocument(collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
+        firestoreService.addDocument(collection: Constants.Firestore.meetingsCollection, object: meeting) { (error) in
             guard error == nil else {
                 XCTFail()
                 return
@@ -289,7 +289,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.addDocument(collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
+        firestoreService.addDocument(collection: Constants.Firestore.meetingsCollection, object: meeting) { (error) in
             guard let _ = error else {
                 XCTFail()
                 return
@@ -310,7 +310,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.modifyDocument(id: id, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
+        firestoreService.modifyDocument(id: id, collection: Constants.Firestore.meetingsCollection, object: meeting) { (error) in
             guard error == nil else {
                 XCTFail()
                 return
@@ -331,7 +331,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.modifyDocument(id: id, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
+        firestoreService.modifyDocument(id: id, collection: Constants.Firestore.meetingsCollection, object: meeting) { (error) in
             guard let _ = error else {
                 XCTFail()
                 return
@@ -352,7 +352,7 @@ class FirestoreServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        firestoreService.searchDocuments(collection: Constants.Firestore.meetingCollectionName, field: "email", text: fakeEmail) { (result) in
+        firestoreService.searchDocuments(collection: Constants.Firestore.meetingsCollection, field: "email", text: fakeEmail) { (result) in
             guard case .success(let appDocuments) = result else {
                 XCTFail()
                 return

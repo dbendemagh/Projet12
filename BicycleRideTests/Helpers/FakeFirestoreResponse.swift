@@ -15,10 +15,10 @@ struct FakeFirestoreResponse {
 }
 
 struct FakeQuerySnapshot {
-    var documents: [FakeFirestoreDocument]
+    var documents: [FakeQueryDocumentSnapshot]
 }
 
-struct FakeFirestoreDocument: FirestoreDocumentProtocol {
+struct FakeQueryDocumentSnapshot: QueryDocumentSnapshotProtocol {
     var documentID: String
     var datas: [String : Any]
     

@@ -39,9 +39,9 @@ struct Constants {
     }
     
     struct Firestore {
-        static let userCollectionName = "user"
-        static let meetingCollectionName = "meeting"
-        static let messageCollectionName = "message"
+        static let userProfilesCollection = "userProfiles"
+        static let meetingsCollection = "meetings"
+        static let messagesCollection = "messages"
         static let timeStamp = "timeStamp"
     }
     

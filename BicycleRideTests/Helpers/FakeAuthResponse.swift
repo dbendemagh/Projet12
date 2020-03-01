@@ -18,7 +18,7 @@ struct FakeAuthDataResult {
     var user: FakeUser?
 }
 
-struct FakeUser: AuthUserProtocol {
+struct FakeUser: UserProtocol {
     var displayName: String?
     var email: String?
 }

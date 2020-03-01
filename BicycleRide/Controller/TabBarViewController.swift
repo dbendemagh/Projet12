@@ -18,11 +18,6 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         
         setupUserConnectionListener()
-        
-        for family in UIFont.familyNames.sorted() {
-            let names = UIFont.fontNames(forFamilyName: family)
-            print("Famille : \(family) Noms polices : \(names)")
-        }
     }
     
     // MARK: - Methods

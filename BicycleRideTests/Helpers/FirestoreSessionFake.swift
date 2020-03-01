@@ -57,22 +57,12 @@ class FirestoreSessionFake: FirestoreProtocol {
     
     func addDocument(collection: String, data: [String : Any], completion: @escaping (Error?) -> Void) {
         let error = fakeFirestoreResponse.error
-
-        //if let error = error {
-            completion(error)
-        //} else {
-        //    completion(nil)
-        //}
+        completion(error)
     }
     
     func modifyDocument(id: String, collection: String, data: [String : Any], completion: @escaping (Error?) -> Void) {
         let error = fakeFirestoreResponse.error
-
-        //if let error = error {
-            completion(error)
-        //} else {
-        //    completion(nil)
-        //}
+        completion(error)
     }
     
     func searchDocuments(collection: String, field: String, text: String, completion: @escaping (FirestoreResult) -> Void ) {

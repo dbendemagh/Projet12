@@ -31,7 +31,7 @@
 		6578526523E20D00009B1A4C /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526423E20D00009B1A4C /* UserProfileViewController.swift */; };
 		6578526723E2E33A009B1A4C /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526623E2E33A009B1A4C /* UIStackView.swift */; };
 		6578526A23E31327009B1A4C /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526923E31327009B1A4C /* RoundButton.swift */; };
-		6578526C23E5E868009B1A4C /* AppDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526B23E5E867009B1A4C /* AppDocument.swift */; };
+		6578526C23E5E868009B1A4C /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526B23E5E867009B1A4C /* Document.swift */; };
 		6578526F23E748EA009B1A4C /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578526E23E748EA009B1A4C /* Double.swift */; };
 		6578527123E759C3009B1A4C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578527023E759C3009B1A4C /* Message.swift */; };
 		6578527323E75A47009B1A4C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578527223E75A47009B1A4C /* ChatViewController.swift */; };
@@ -93,7 +93,7 @@
 		6578526423E20D00009B1A4C /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		6578526623E2E33A009B1A4C /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		6578526923E31327009B1A4C /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
-		6578526B23E5E867009B1A4C /* AppDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDocument.swift; sourceTree = "<group>"; };
+		6578526B23E5E867009B1A4C /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		6578526E23E748EA009B1A4C /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		6578527023E759C3009B1A4C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		6578527223E75A47009B1A4C /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -214,7 +214,7 @@
 				651EF80423C0F850005FD140 /* Meeting.swift */,
 				651EF80A23C24B8F005FD140 /* UserProfile.swift */,
 				6578527023E759C3009B1A4C /* Message.swift */,
-				6578526B23E5E867009B1A4C /* AppDocument.swift */,
+				6578526B23E5E867009B1A4C /* Document.swift */,
 				651EF85C23CB8F78005FD140 /* MeetingAnnotation.swift */,
 			);
 			path = Model;
@@ -496,7 +496,7 @@
 			files = (
 				651EF80B23C24B8F005FD140 /* UserProfile.swift in Sources */,
 				6578526523E20D00009B1A4C /* UserProfileViewController.swift in Sources */,
-				6578526C23E5E868009B1A4C /* AppDocument.swift in Sources */,
+				6578526C23E5E868009B1A4C /* Document.swift in Sources */,
 				65B273D223BCCFC000BF04FF /* LoginViewController.swift in Sources */,
 				65CBA16523EEED06003E49EE /* String.swift in Sources */,
 				6578525523DA121A009B1A4C /* FirestoreSession.swift in Sources */,

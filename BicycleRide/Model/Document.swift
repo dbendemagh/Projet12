@@ -1,5 +1,5 @@
 //
-//  AppDocument.swift
+//  Document.swift
 //  BicycleRide
 //
 //  Created by Daniel BENDEMAGH on 01/02/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AppDocument<T> {
+struct Document<T> {
     var documentId: String = ""
     var data: T?
 }

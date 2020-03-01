@@ -29,7 +29,7 @@ class MeetingDetailsViewController: UIViewController {
     
     // MARK: - Properties
     
-    var meetingDocument = AppDocument<Meeting>()
+    var meetingDocument = Document<Meeting>()
     
     let authService = AuthService()
     let firestoreService = FirestoreService<Meeting>()
@@ -122,7 +122,7 @@ class MeetingDetailsViewController: UIViewController {
             
                 toggleActivityIndicator(shown: true)
             
-                firestoreService.modifyDocument(id: meetingDocument.documentId, collection: Constants.Firestore.meetingCollectionName, object: meeting) { (error) in
+            firestoreService.modifyDocument(id: meetingDocument.documentId, collection: Constants.Firestore.meetingsCollection, object: meeting) { (error) in
                     self.toggleActivityIndicator(shown: false)
                     if let _ = error {
                         self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)

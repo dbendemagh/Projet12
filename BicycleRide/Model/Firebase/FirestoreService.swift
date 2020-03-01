@@ -18,41 +18,41 @@ public class FirestoreService<T: Codable> {
     }
     
     // Listener for all documents
-    func addSnapshotListenerForAllDocuments(collection: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
+    func addSnapshotListenerForAllDocuments(collection: String, completion: @escaping (Result<[Document<T>], Error>) -> Void) {
         firestoreSession.addSnapshotListenerForAllDocuments(collection: collection) { result in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription.formatedError(path: #file, functionName: #function))
                 completion(.failure(error))
             case .success(let firebaseDocuments):
-                let appDocuments = self.getAppDocuments(firebaseDocuments: firebaseDocuments)
+                let appDocuments = self.getDocuments(firebaseDocuments: firebaseDocuments)
                 completion(.success(appDocuments))
             }
         }
     }
     
     // Listener for selected documents
-    func addSnapshotListenerForSelectedDocuments(collection: String, field: String, text: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
+    func addSnapshotListenerForSelectedDocuments(collection: String, field: String, text: String, completion: @escaping (Result<[Document<T>], Error>) -> Void) {
         firestoreSession.addSnapshotListenerForSelectedDocuments(collection: collection, fieldName: field, text: text) { result in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription.formatedError(path: #file, functionName: #function))
                 completion(.failure(error))
             case .success(let firebaseDocuments):
-                let appDocuments = self.getAppDocuments(firebaseDocuments: firebaseDocuments)
+                let appDocuments = self.getDocuments(firebaseDocuments: firebaseDocuments)
                 completion(.success(appDocuments))
             }
         }
     }
     
-    func loadDocuments(collection: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
+    func loadDocuments(collection: String, completion: @escaping (Result<[Document<T>], Error>) -> Void) {
         firestoreSession.loadDocuments(collection: collection) { result in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription.formatedError(path: #file, functionName: #function))
                 completion(.failure(error))
             case .success(let firebaseDocuments):
-                let appDocuments = self.getAppDocuments(firebaseDocuments: firebaseDocuments)
+                let appDocuments = self.getDocuments(firebaseDocuments: firebaseDocuments)
                 completion(.success(appDocuments))
             }
         }
@@ -74,14 +74,14 @@ public class FirestoreService<T: Codable> {
         }
     }
     
-    func searchDocuments(collection: String, field: String, text: String, completion: @escaping (Result<[AppDocument<T>], Error>) -> Void) {
+    func searchDocuments(collection: String, field: String, text: String, completion: @escaping (Result<[Document<T>], Error>) -> Void) {
         firestoreSession.searchDocuments(collection: collection, field: field, text: text) { (result) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription.formatedError(path: #file, functionName: #function))
                 completion(.failure(error))
             case .success(let firebaseDocuments):
-                let appDocuments = self.getAppDocuments(firebaseDocuments: firebaseDocuments)
+                let appDocuments = self.getDocuments(firebaseDocuments: firebaseDocuments)
                 completion(.success(appDocuments))
             }
         }
@@ -109,17 +109,17 @@ public class FirestoreService<T: Codable> {
         return nil
     }
     
-    private func getAppDocuments(firebaseDocuments: [DocumentSnapshotProtocol]) -> [AppDocument<T>]{
-        var appDocuments: [AppDocument<T>] = []
+    private func getDocuments(firebaseDocuments: [QueryDocumentSnapshotProtocol]) -> [Document<T>]{
+        var documents: [Document<T>] = []
         
         for firebaseDocument in firebaseDocuments {
-            var appDocument = AppDocument<T>()
-            appDocument.documentId = firebaseDocument.documentID
-            appDocument.data = self.decode(data: firebaseDocument.data())
-            appDocuments.append(appDocument)
+            var document = Document<T>()
+            document.documentId = firebaseDocument.documentID
+            document.data = self.decode(data: firebaseDocument.data())
+            documents.append(document)
         }
         
-        return appDocuments
+        return documents
     }
 }
 

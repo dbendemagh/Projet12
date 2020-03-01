@@ -23,7 +23,7 @@ class UserProfileViewController: UIViewController {
     let authService = AuthService()
     let firestoreService = FirestoreService<UserProfile>()
     
-    var userProfile = AppDocument<UserProfile>()
+    var userProfile = Document<UserProfile>()
     var distances:[String] = ["5-10 km", "10-15 km", "15-20 km", "20-25 km", "25-30 km", "30-35 km", "35-40 km", "40-45 km", "45-50 km"]
     var selectedDistance: Int = 0
     
@@ -70,7 +70,7 @@ class UserProfileViewController: UIViewController {
     private func loadUserProfile(email: String) {
         toggleActivityIndicator(shown: true)
         
-        firestoreService.searchDocuments(collection: Constants.Firestore.userCollectionName, field: "email", text: email) { (result) in
+        firestoreService.searchDocuments(collection: Constants.Firestore.userProfilesCollection, field: "email", text: email) { (result) in
             self.toggleActivityIndicator(shown: false)
             switch result {
             case .failure(_):
@@ -100,7 +100,7 @@ class UserProfileViewController: UIViewController {
         
         toggleActivityIndicator(shown: true)
         
-        firestoreService.modifyDocument(id: userProfile.documentId, collection: Constants.Firestore.userCollectionName, object: userProfileData) { (error) in
+        firestoreService.modifyDocument(id: userProfile.documentId, collection: Constants.Firestore.userProfilesCollection, object: userProfileData) { (error) in
             if let _ = error {
                 self.toggleActivityIndicator(shown: false)
                 self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)

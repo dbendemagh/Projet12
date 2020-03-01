@@ -11,7 +11,7 @@ import Foundation
 
 class AuthSessionFake: AuthProtocol {
     
-    var currentUser: AuthUserProtocol?
+    var currentUser: UserProtocol?
     
     private let fakeAuthResponse: FakeAuthResponse
     
@@ -49,7 +49,7 @@ class AuthSessionFake: AuthProtocol {
         completion(error)
     }
     
-    func signIn(email: String, password: String, completion: @escaping (Result<AuthUserProtocol, Error>) -> Void) {
+    func signIn(email: String, password: String, completion: @escaping (Result<UserProtocol, Error>) -> Void) {
         let authDataResult = fakeAuthResponse.authDataResult
         let error = fakeAuthResponse.error
         

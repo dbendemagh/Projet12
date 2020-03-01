@@ -8,12 +8,12 @@
 
 import Foundation
 
-protocol DocumentSnapshotProtocol {
+protocol QueryDocumentSnapshotProtocol {
     var documentID: String { get }
     func data() -> [String: Any]
 }
 
-typealias FirestoreResult = Result<[DocumentSnapshotProtocol], Error>
+typealias FirestoreResult = Result<[QueryDocumentSnapshotProtocol], Error>
 
 protocol FirestoreProtocol {
     func addSnapshotListenerForAllDocuments(collection: String, completion: @escaping (FirestoreResult)-> Void )

@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-extension QueryDocumentSnapshot : DocumentSnapshotProtocol {}
+extension QueryDocumentSnapshot : QueryDocumentSnapshotProtocol {}
 
 class FirestoreSession: FirestoreProtocol {
     let db = Firestore.firestore()
@@ -73,8 +73,8 @@ class FirestoreSession: FirestoreProtocol {
         }
     }
     
-    private func getDocuments(querySnapshot: QuerySnapshot?) -> [DocumentSnapshotProtocol] {
-        if let firestoreDocuments: [DocumentSnapshotProtocol] = querySnapshot?.documents {
+    private func getDocuments(querySnapshot: QuerySnapshot?) -> [QueryDocumentSnapshotProtocol] {
+        if let firestoreDocuments: [QueryDocumentSnapshotProtocol] = querySnapshot?.documents {
             return firestoreDocuments
         } else {
             return []

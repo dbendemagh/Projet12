@@ -28,7 +28,7 @@ class AuthServiceTests: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         
-        guard let user: AuthUserProtocol = authService.getCurrentUser() else {
+        guard let user: UserProtocol = authService.getCurrentUser() else {
             XCTFail()
             return
         }
