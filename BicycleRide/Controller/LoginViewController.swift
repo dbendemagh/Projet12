@@ -27,19 +27,28 @@ class LoginViewController: UIViewController {
     
     private func logIn() {
         guard let email = emailTextField.text, !email.isEmpty else {
-            displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.noEmail)
+            displayAlert(title: Constants.Alert.Title.incorrect, message: Constants.Alert.enterEmail)
             return
         }
         
         guard let password = passwordTextField.text, !password.isEmpty else {
-            displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.noPassword)
+            displayAlert(title: Constants.Alert.Title.incorrect, message: Constants.Alert.enterPassword)
             return
         }
         
         authService.signIn(email: email, password: password) { (result) in
             switch result {
-            case .failure(_):
-                self.displayAlert(title: "Erreur", message: Constants.Alert.loginError)
+            case .failure(let error):
+                switch error {
+                case FirebaseError.unknownEmail:
+                    self.displayAlert(title: Constants.Alert.Title.unknownEmail, message: Constants.Alert.checkEmail)
+                case FirebaseError.invalidEmail:
+                    self.displayAlert(title: Constants.Alert.Title.invalidEmail, message: Constants.Alert.checkEmail)
+                case FirebaseError.wrongPassword:
+                    self.displayAlert(title: Constants.Alert.Title.wrongPassword, message: Constants.Alert.wrongPassword)
+                default:
+                    self.displayAlert(title: Constants.Alert.Title.signInFailure, message: "")
+                }
             case .success(_):
                 self.dismiss(animated: true, completion: nil)
             }
@@ -51,10 +60,4 @@ class LoginViewController: UIViewController {
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         logIn()
     }
-    
-    @IBAction func dismissKeyboard(_ sender: Any) {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-    }
-    
 }

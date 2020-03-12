@@ -22,6 +22,7 @@ class TabBarViewController: UITabBarController {
     
     // MARK: - Methods
     
+    // User connection status
     private func setupUserConnectionListener() {
         authService.addUserConnectionListener { (connected) in
             if !connected {

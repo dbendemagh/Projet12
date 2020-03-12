@@ -10,7 +10,7 @@ import UIKit
 
 class MessageCell: UITableViewCell {
 
-    @IBOutlet weak var senderName: UILabel!
+    @IBOutlet weak var otherUserName: UILabel!
     @IBOutlet weak var currentUserName: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var messageView: UIView!

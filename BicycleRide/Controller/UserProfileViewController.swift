@@ -74,7 +74,7 @@ class UserProfileViewController: UIViewController {
             self.toggleActivityIndicator(shown: false)
             switch result {
             case .failure(_):
-                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.getDocumentError)
+                self.displayAlert(title: Constants.Alert.Title.error, message: Constants.Alert.getDocumentError)
             case .success(let userProfiles):
                 if let userProfile = userProfiles.first {
                     self.userProfile = userProfile
@@ -86,7 +86,7 @@ class UserProfileViewController: UIViewController {
     
     private func saveUserProfile() {
         guard let name = userNameTextField.text else {
-            displayAlert(title: "", message: Constants.Alert.noName)
+            displayAlert(title: "", message: Constants.Alert.enterName)
             return
         }
         
@@ -103,12 +103,12 @@ class UserProfileViewController: UIViewController {
         firestoreService.modifyDocument(id: userProfile.documentId, collection: Constants.Firestore.userProfilesCollection, object: userProfileData) { (error) in
             if let _ = error {
                 self.toggleActivityIndicator(shown: false)
-                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)
+                self.displayAlert(title: Constants.Alert.Title.error, message: Constants.Alert.saveDocumentError)
             } else {
                 self.authService.updateCurrentUser(userProfile: userProfileData) { (error) in
                     self.toggleActivityIndicator(shown: false)
                     if error != nil {
-                        self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)
+                        self.displayAlert(title: Constants.Alert.Title.error, message: Constants.Alert.saveDocumentError)
                     } else {
                         self.displayAlert(title: "", message: Constants.Alert.profileSaved)
                     }
@@ -130,7 +130,7 @@ class UserProfileViewController: UIViewController {
             userExperiencePickerView.selectRow(selectedDistance, inComponent: 0, animated: true)
         }
         
-        userBikeTypeSegmentedControl.selectedSegmentIndex = userProfile.bikeType == Constants.Bike.road ? 0 : 1
+        userBikeTypeSegmentedControl.selectedSegmentIndex = userProfile.bikeType == Constants.Bike.vtt ? 1 : 0
     }
 
     // Display Activity indicator
@@ -141,10 +141,6 @@ class UserProfileViewController: UIViewController {
     
     @IBAction func saveButtonTapped(_ sender: Any) {
         saveUserProfile()
-    }
-    
-    @IBAction func dismissKeyboard(_ sender: Any) {
-        userNameTextField.resignFirstResponder()
     }
 }
 

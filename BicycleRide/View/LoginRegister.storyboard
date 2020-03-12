@@ -92,9 +92,6 @@
                             <constraint firstItem="pDS-ce-mPJ" firstAttribute="top" secondItem="Taw-go-6Y8" secondAttribute="top" id="s7e-ay-Egy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bFf-Kh-B0s"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="pPR-DW-bbH" appends="YES" id="6j0-r2-bZq"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="Qtm-1y-jBd" id="kKE-74-WJf"/>
@@ -102,11 +99,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yyf-jS-wBv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="pPR-DW-bbH">
-                    <connections>
-                        <action selector="dismissKeyboard:" destination="QQo-z9-7ZW" id="zrw-yY-toJ"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-130.43478260869566" y="150.66964285714286"/>
         </scene>
@@ -173,9 +165,6 @@
                             <constraint firstItem="wEM-4i-vMw" firstAttribute="trailing" secondItem="o7a-K8-cNe" secondAttribute="trailing" constant="20" id="zQz-q8-jSa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wEM-4i-vMw"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="foe-8C-Uqv" appends="YES" id="TR7-yb-btV"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="hoJ-3F-Eha"/>
                     <connections>
@@ -185,11 +174,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OzB-Ha-21d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="foe-8C-Uqv">
-                    <connections>
-                        <action selector="dismissKeyboard:" destination="RE4-oo-kFx" id="Kwx-h6-x0F"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="831.88405797101461" y="150.66964285714286"/>
         </scene>

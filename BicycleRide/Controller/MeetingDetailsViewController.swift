@@ -50,7 +50,7 @@ class MeetingDetailsViewController: UIViewController {
             meetingNameLabel.text = data.name
             meetingStreetLabel.text = data.street
             meetingCityLabel.text = data.city
-            meetingDateTimeLabel.text =  data.timeStamp.date()
+            meetingDateTimeLabel.text = "\(data.timeStamp.date()) - \(data.timeStamp.time())"
             meetingDescriptionTextField.text = data.description
             
             meetingDistanceLabel.text = "Distance : \(data.distance) km"
@@ -125,7 +125,7 @@ class MeetingDetailsViewController: UIViewController {
             firestoreService.modifyDocument(id: meetingDocument.documentId, collection: Constants.Firestore.meetingsCollection, object: meeting) { (error) in
                     self.toggleActivityIndicator(shown: false)
                     if let _ = error {
-                        self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)
+                        self.displayAlert(title: Constants.Alert.Title.error, message: Constants.Alert.saveDocumentError)
                     } else {
                         self.addParticipant(name: name)
                         self.participateButton.isHidden = true

@@ -27,55 +27,44 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     // MARK: - Methods
     
     private func createUser() {
         guard let email = emailTextField.text, !email.isEmpty else {
-            displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.noEmail)
+            displayAlert(title: Constants.Alert.Title.incorrect, message: Constants.Alert.enterEmail)
             return
         }
         
-        // Check if email already exist
-        firestoreService.searchDocuments(collection: Constants.Firestore.userProfilesCollection, field: "email", text: email) { (result) in
-            switch result {
-            case .failure(_):
-                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.getDocumentError)
-                return
-            case .success(let user):
-                if !user.isEmpty {
-                    self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.emailAlreadyExist)
-                    return
-                }
-            }
-        }
-        
         guard let name = nameTextField.text, !name.isEmpty else {
-            displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.noName)
+            displayAlert(title: Constants.Alert.Title.incorrect, message: Constants.Alert.enterName)
             return
         }
         
         guard let password = passwordTextField.text, !password.isEmpty else {
-            displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.noPassword)
+            displayAlert(title: Constants.Alert.Title.incorrect, message: Constants.Alert.enterPassword)
             return
         }
         
         authService.createUser(email: email, password: password) { (result) in
             switch result {
             case .failure(let error):
+                switch error {
+                case FirebaseError.emailAlreadyExist:
+                    self.displayAlert(title: Constants.Alert.Title.emailAlreadyExist, message: Constants.Alert.enterOtherEmail)
+                default:
+                    self.displayAlert(title: Constants.Alert.Title.error, message: Constants.Alert.unknownError)
+                }
                 print(error.localizedDescription)
             case .success(_):
                 let userProfile = UserProfile( name: name, email: email, bikeType: "", experience: "")
+                
+                // Save display name
+                self.authService.updateCurrentUser(userProfile: userProfile) { (error) in
+                    if error != nil {
+                        self.displayAlert(title: Constants.Alert.Title.error, message: Constants.Alert.saveDocumentError)
+                    }
+                }
+                
                 self.saveUserProfile(userProfile: userProfile)
                 
                 self.dismiss(animated: true, completion: nil)
@@ -88,7 +77,7 @@ class RegisterViewController: UIViewController {
         firestoreService.modifyDocument(id: userProfile.email, collection: Constants.Firestore.userProfilesCollection, object: userProfile) { [weak self] (error) in
             if let error = error {
                 print("Erreur sauvegarde : \(error.localizedDescription)")
-                self?.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)
+                self?.displayAlert(title: Constants.Alert.Title.error, message: Constants.Alert.saveDocumentError)
             } else {
                 print("Profil sauvegardé")
             }
@@ -99,11 +88,5 @@ class RegisterViewController: UIViewController {
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
         createUser()
-    }
-    
-    @IBAction func dismissKeyboard(_ sender: Any) {
-        nameTextField.resignFirstResponder()
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
     }
 }

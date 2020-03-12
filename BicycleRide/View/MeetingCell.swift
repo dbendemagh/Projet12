@@ -27,7 +27,7 @@ class MeetingCell: UITableViewCell {
     
     func configure(meeting: Meeting) {
         meetingName.text = meeting.name
-        meetingDate.text = "\(meeting.timeStamp.date()) \(meeting.timeStamp.time())"
+        meetingDate.text = "\(meeting.timeStamp.date()) - \(meeting.timeStamp.time())"
         meetingCity.text = meeting.city.components(separatedBy: " ").last
         meetingDistance.text = " \(meeting.distance) km"
         if meeting.bikeType == Constants.Bike.road {

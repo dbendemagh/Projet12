@@ -14,6 +14,7 @@ extension QueryDocumentSnapshot : QueryDocumentSnapshotProtocol {}
 class FirestoreSession: FirestoreProtocol {
     let db = Firestore.firestore()
     
+    // Listener for all documents
     func addSnapshotListenerForAllDocuments(collection: String, completion: @escaping (FirestoreResult) -> Void ) {
         db.collection(collection)
             .order(by: Constants.Firestore.timeStamp)
@@ -26,6 +27,7 @@ class FirestoreSession: FirestoreProtocol {
         }
     }
     
+    // Listener for selected documents
     func addSnapshotListenerForSelectedDocuments(collection: String, fieldName: String, text: String, completion: @escaping (FirestoreResult) -> Void ) {
         db.collection(collection)
             .whereField(fieldName, isEqualTo: text)

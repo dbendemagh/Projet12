@@ -26,15 +26,28 @@ struct Constants {
     }
     
     struct Alert {
-        static let alertTitle = "Invalide"
-        static let noName = "Entrez votre nom"
-        static let noEmail = "Entrez votre adresse mail"
-        static let noPassword = "Entrez un mot de passe"
-        static let getDocumentError = "Une erreur est survenue pendant l'accès aux données."
-        static let saveDocumentError = "Une erreur est survenue pendant la sauvegarde des données"
-        static let emailAlreadyExist = "L'adresse mail existe déjà"
-        static let loginError = "Login/Mot de passe incorrect"
+        struct Title {
+            static let incorrect = "Saisie incorrecte"
+            static let invalid = "Invalide"
+            static let error = "Erreur"
+            static let unknownEmail = "Adresse mail inconnue"
+            static let invalidEmail = "Adresse mail invalide"
+            static let emailAlreadyExist = "L'adresse mail existe déjà"
+            static let wrongPassword = "Mot de passe incorrect"
+            static let signInFailure = "Echec de la connexion"
+            static let signOutFailure = "Echec de la déconnexion"
+        }
+        
+        static let enterName = "Veuillez entrer votre nom"
+        static let enterEmail = "Veuillez entrer votre adresse mail"
+        static let checkEmail = "Veuillez vérifier votre adresse mail."
+        static let enterOtherEmail = "Veuillez entrer une autre adresse"
+        static let enterPassword = "Veuillez entrer votre mot de passe"
+        static let wrongPassword = "Veuillez ressaisir votre mot de passe."
         static let profileSaved = "Le profil a été sauvegardé."
+        static let getDocumentError = "Une erreur est survenue pendant l'accès aux données."
+        static let saveDocumentError = "Une erreur est survenue pendant la sauvegarde des données."
+        static let unknownError = "Une erreur inconnue est survenue."
         static let logoutError = "Une erreur est survenue lors de la déconnexion."
     }
     
@@ -61,7 +74,10 @@ struct Constants {
     }
 }
 
-enum FirestoreError : Error {
+enum FirebaseError : Error {
     case listenerError
-    case EmailAlreadyExist
+    case wrongPassword
+    case emailAlreadyExist
+    case invalidEmail
+    case unknownEmail
 }

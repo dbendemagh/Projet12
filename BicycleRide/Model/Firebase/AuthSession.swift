@@ -19,6 +19,7 @@ class AuthSession: AuthProtocol {
         return auth.currentUser
     }
     
+    // User connection status
     func addUserConnectionListener(completion: @escaping (Bool) -> Void) {
         _ = auth.addStateDidChangeListener { (auth, user) in
             if let _ = user {
@@ -32,7 +33,7 @@ class AuthSession: AuthProtocol {
     func createUser(email: String, password: String, completion: @escaping (AuthResult) -> Void) {
         auth.createUser(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
-                completion(.failure(error))
+                completion(.failure(self.getError(from: error)))
                 return
             }
             
@@ -56,7 +57,7 @@ class AuthSession: AuthProtocol {
     func signIn(email: String, password: String, completion: @escaping (AuthResult) -> Void) {
         auth.signIn(withEmail: email, password: password) { (authDataResult, error) in
             if let error = error {
-                completion(.failure(error))
+                completion(.failure(self.getError(from: error)))
                 return
             }
             
@@ -72,7 +73,28 @@ class AuthSession: AuthProtocol {
             try auth.signOut()
             completion(.success(true))
         } catch {
-            completion(.failure(error))
+            completion(.failure(self.getError(from: error)))
+        }
+    }
+    
+    private func getError(from error: Error) -> Error {
+        if let error = error as NSError? {
+            guard let errorCode = AuthErrorCode(rawValue: error.code) else {
+                return error
+            }
+            
+            switch errorCode {
+            case .userNotFound:
+                return FirebaseError.unknownEmail
+            case .invalidEmail:
+                return FirebaseError.invalidEmail
+            case .wrongPassword:
+                return FirebaseError.wrongPassword
+            case .emailAlreadyInUse:
+                return FirebaseError.emailAlreadyExist
+            default:
+                return error
+            }
         }
     }
 }

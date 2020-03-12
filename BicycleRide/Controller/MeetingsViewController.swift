@@ -32,17 +32,13 @@ class MeetingsViewController: UIViewController {
         initSnapshotListener()
     }
     
-    //override func viewWillAppear(_ animated: Bool) {
-    //    super.viewWillAppear(animated)
-        
-    //}
-    
     private func initTableView() {
         tableView.register(UINib(nibName: Constants.Cells.meetingCell, bundle: nil), forCellReuseIdentifier: Constants.Cells.meetingCell)
         tableView.dataSource = self
         tableView.delegate = self
     }
 
+    // Listener for new meetings
     private func initSnapshotListener() {
         firestoreService.addSnapshotListenerForAllDocuments(collection: Constants.Firestore.meetingsCollection) { (result) in
             switch result {
@@ -65,7 +61,7 @@ class MeetingsViewController: UIViewController {
         firestoreService.loadDocuments(collection: Constants.Firestore.meetingsCollection) { result in
             switch result {
                 case(.failure(_)):
-                    self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.getDocumentError)
+                    self.displayAlert(title: Constants.Alert.Title.error, message: Constants.Alert.getDocumentError)
                 case(.success(let meetings)):
                     self.meetings = meetings
                     self.tableView.reloadData()
@@ -97,7 +93,7 @@ class MeetingsViewController: UIViewController {
         authService.signOut { (result) in
             switch result {
             case .failure(_):
-                self.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.logoutError)
+                self.displayAlert(title: Constants.Alert.Title.signOutFailure, message: "")
             case .success(_):
                 break
             }

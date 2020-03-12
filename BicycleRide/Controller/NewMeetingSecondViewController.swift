@@ -86,13 +86,6 @@ class NewMeetingSecondViewController: UIViewController {
         meetingDistanceLabel.text = String("\(distance) km")
     }
     
-    @IBAction func dismissKeyboard(_ sender: Any) {
-        meetingNameTextField.resignFirstResponder()
-        meetingStreetTextField.resignFirstResponder()
-        meetingCityTextField.resignFirstResponder()
-        meetingDescriptionTextView.resignFirstResponder()
-    }
-    
     @IBAction func saveButtonTapped(_ sender: Any) {
         meeting.name = meetingNameTextField.text ?? ""
         meeting.street = meetingStreetTextField.text ?? ""
@@ -100,7 +93,13 @@ class NewMeetingSecondViewController: UIViewController {
         meeting.description = meetingDescriptionTextView.text ?? ""
         meeting.distance = distance
         
-        meeting.timeStamp = meetingDatePicker.date.timeIntervalSince1970
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: meetingTimeDatePicker.date)
+        let minute = calendar.component(.minute, from: meetingTimeDatePicker.date)
+        let date = calendar.date(bySettingHour: hour, minute: minute, second: 0, of: meetingDatePicker.date)
+        if let timeStamp = date?.timeIntervalSince1970 {
+            meeting.timeStamp = timeStamp
+        }
         
         meeting.bikeType = meetingBikeTypeSegmentedControl.selectedSegmentIndex == 0 ? Constants.Bike.road : Constants.Bike.vtt
         
@@ -119,7 +118,7 @@ class NewMeetingSecondViewController: UIViewController {
             self?.toggleActivityIndicator(shown: false)
             if let error = error {
                 print("Erreur sauvegarde : \(error.localizedDescription)")
-                self?.displayAlert(title: Constants.Alert.alertTitle, message: Constants.Alert.saveDocumentError)
+                self?.displayAlert(title: Constants.Alert.Title.error, message: Constants.Alert.saveDocumentError)
             } else {
                 print("Meeting sauvegardé")
                 self?.navigationController?.popToRootViewController(animated: true)

@@ -19,6 +19,7 @@ public class AuthService {
         return authSession.currentUser
     }
     
+    // User connection status
     func addUserConnectionListener(completion: @escaping (Bool) -> Void) {
         authSession.addUserConnectionListener { (connected) in
             if connected {
