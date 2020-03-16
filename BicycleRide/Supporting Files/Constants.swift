@@ -10,8 +10,6 @@ import Foundation
 
 struct Constants {
     
-    let appName = "🚲 BicycleRide"
-    
     struct Storyboard {
         static let LoginRegister = "LoginRegister"
     }
