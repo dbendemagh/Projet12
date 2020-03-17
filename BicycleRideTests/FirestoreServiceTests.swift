@@ -36,10 +36,6 @@ class FirestoreServiceTests: XCTestCase {
                           longitude: 0,
                           participants: [])
     
-    struct incorrectMeeting {
-        var planet: String
-    }
-    
     let id = "xhyAOHONTRtgWjYpgiun"
     var fakeFirestoreDocument = FakeQueryDocumentSnapshot(documentID: "", datas: [:])
     
