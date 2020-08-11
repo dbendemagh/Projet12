@@ -19,6 +19,7 @@
 		656FAA8623CF21A20090C4EC /* AuthProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656FAA8523CF21A20090C4EC /* AuthProtocol.swift */; };
 		656FAA8823CF21B90090C4EC /* FirestoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656FAA8723CF21B90090C4EC /* FirestoreProtocol.swift */; };
 		656FAA8A23CF251F0090C4EC /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656FAA8923CF251F0090C4EC /* AuthSession.swift */; };
+		657266E624E1A241002F1253 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 657266E524E1A241002F1253 /* README.md */; };
 		6578525523DA121A009B1A4C /* FirestoreSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578525423DA121A009B1A4C /* FirestoreSession.swift */; };
 		6578525723DDFC70009B1A4C /* AuthSessionFake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578525623DDFC70009B1A4C /* AuthSessionFake.swift */; };
 		6578525923DDFD85009B1A4C /* FakeAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6578525823DDFD85009B1A4C /* FakeAuthResponse.swift */; };
@@ -80,6 +81,7 @@
 		656FAA8523CF21A20090C4EC /* AuthProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProtocol.swift; sourceTree = "<group>"; };
 		656FAA8723CF21B90090C4EC /* FirestoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreProtocol.swift; sourceTree = "<group>"; };
 		656FAA8923CF251F0090C4EC /* AuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
+		657266E524E1A241002F1253 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6578525423DA121A009B1A4C /* FirestoreSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreSession.swift; sourceTree = "<group>"; };
 		6578525623DDFC70009B1A4C /* AuthSessionFake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSessionFake.swift; sourceTree = "<group>"; };
 		6578525823DDFD85009B1A4C /* FakeAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAuthResponse.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		65B2734523A975C100BF04FF = {
 			isa = PBXGroup;
 			children = (
+				657266E524E1A241002F1253 /* README.md */,
 				65B2735023A975C100BF04FF /* BicycleRide */,
 				65B2736723A975C300BF04FF /* BicycleRideTests */,
 				65B2734F23A975C100BF04FF /* Products */,
@@ -403,6 +406,7 @@
 			files = (
 				65B2735E23A975C300BF04FF /* LaunchScreen.storyboard in Resources */,
 				651EF80923C100EA005FD140 /* MeetingCell.xib in Resources */,
+				657266E624E1A241002F1253 /* README.md in Resources */,
 				65CBA16923F98601003E49EE /* SF-Pro-Display-Regular.otf in Resources */,
 				65B273CA23BAA7A800BF04FF /* GoogleService-Info.plist in Resources */,
 				65B2735B23A975C300BF04FF /* Assets.xcassets in Resources */,
