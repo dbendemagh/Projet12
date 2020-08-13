@@ -19,9 +19,13 @@ Les fonctionnalités sont :
   - Possibilité de participer
   - Echange de messages
 
-## APIs
+## Technologies
 
-L'application utilise les Apis :
+- Firebase
+- Mapkit
+- Core Location
+
+## Dépendances
 
 Avec Cocoapods :
 
